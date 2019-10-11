@@ -62,9 +62,11 @@ TODO            text eol=lf
 .csslintrc      text eol=lf
 .eslintrc       text eol=lf
 .htmlhintrc     text eol=lf
+.huskyrc        text eol=lf
 .jscsrc         text eol=lf
 .jshintrc       text eol=lf
 .jshintignore   text eol=lf
+.lintstagedrc   text eol=lf
 .stylelintrc    text eol=lf
 
 ## CONFIGS
