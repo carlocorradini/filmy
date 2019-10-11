@@ -1,5 +1,9 @@
 {
     "files.eol": "\n",
+    "files.associations": {
+        ".huskyrc": "json",
+        ".lintstagedrc": "json"
+    },
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
