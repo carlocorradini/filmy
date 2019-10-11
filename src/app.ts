@@ -8,7 +8,7 @@ dotenv.config();
 
 createConnection()
   .then(() => {
-    console.log('Database successfully connected 1');
+    console.log('Database successfully connected 2');
   })
   .catch((error) => {
     console.error(error);
