@@ -6,12 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "./node_modules/.bin/nodemon ./src/app.ts",
-    "lint": "./node_modules/.bin/eslint '**/*.ts'",
-    "lint:fix": "./node_modules/.bin/eslint '**/*.ts' --fix",
-    "pretty": "./node_modules/.bin/prettier --check '**/*.{ts,json}'",
-    "pretty:fix": "./node_modules/.bin/prettier --write '**/*.{ts,json}'",
     "precommit": "./node_modules/.bin/lint-staged",
-    "postcommit": "git update-index --again",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Carlo Corradini",
@@ -54,5 +49,13 @@
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "hooks": {
+        "pre-commit": "npm run precommit",
+        "post-commit": "git update-index --again"
+      }
+    }
   }
 }
