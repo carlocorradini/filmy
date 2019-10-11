@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "./node_modules/.bin/nodemon ./src/app.ts",
     "precommit": "./node_modules/.bin/lint-staged",
+    "postcommit": "git update-index --again",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Carlo Corradini",
@@ -49,11 +50,5 @@
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit",
-      "post-commit": "git update-index --again"
-    }
   }
 }
