@@ -52,7 +52,7 @@
   "husky": {
     "hooks": {
       "post-commit": "git update-index --again",
-      "pre-commit": "./node_modules/.bin/lint-staged"
+      "pre-commit": "lint-staged"
     }
   }
 }
