@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "npm run precommit",
-    "post-commit": "npm run postcommit"
+    "pre-commit": "lint-staged",
+    "post-commit": "git update-index --again"
   }
 }
