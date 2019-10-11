@@ -5,9 +5,13 @@
   "main": "./src/app.js",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "build": "npm run clean && tsc",
     "dev": "./node_modules/.bin/nodemon ./src/app.ts",
+    "lint": "./node_modules/.bin/eslint '**/*.ts'",
+    "lint:fix": "./node_modules/.bin/eslint '**/*.ts' --fix",
+    "pretty": "./node_modules/.bin/prettier --check '**/*.{ts,json}'",
+    "pretty:fix": "./node_modules/.bin/prettier --write '**/*.{ts,json}'",
+    "precommit": "./node_modules/.bin/lint-staged",
+    "postcommit": "git update-index --again",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Carlo Corradini",
@@ -45,6 +49,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
     "nodemon": "^1.19.3",
     "prettier": "^1.18.2",
     "ts-node": "^8.4.1",

@@ -1,0 +1,10 @@
+{
+  "**/*.{ts,json}": [
+    "./node_modules/.bin/prettier --write",
+    "git add"
+  ],
+  "**/*.ts": [
+    "./node_modules/.bin/eslint",
+    "git add"
+  ]
+}
