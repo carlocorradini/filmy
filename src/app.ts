@@ -1,29 +1,27 @@
+import './config'; // Always first!
 import path from 'path';
-import dotenv from 'dotenv';
 import express from 'express';
+import expressLogger from 'express-pino-logger';
 import { createConnection } from 'typeorm';
 import logger from './logger';
 
-// Load .env configuration file
-dotenv.config();
+(async () => {
+  try {
+    await createConnection();
+    const app = express();
 
-createConnection()
-  .then(() => {
-    logger.info('Database successfully connected');
-  })
-  .catch((error) => {
-    logger.error(error);
-  });
+    app.use(expressLogger({ logger }));
 
-// Create Express application
-const app = express();
+    app.set('views', path.join(__dirname, 'views'));
 
-app.set('views', path.join(__dirname, 'views'));
+    app.get('/', (req, res) => {
+      res.header('text/html').send('<h1>Hi Man!!!</h1>');
+    });
 
-app.get('/', (req, res) => {
-  res.header('text/html').send('<h1>Hi Man!!!</h1>');
-});
-
-app.listen(process.env.PORT, () => {
-  logger.info('Server Started');
-});
+    app.listen(process.env.PORT, () => {
+      logger.info(`Server running on port ${process.env.port}`);
+    });
+  } catch (ex) {
+    logger.error(ex);
+  }
+})();
