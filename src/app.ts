@@ -1,17 +1,18 @@
+import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
-import path from 'path';
 import { createConnection } from 'typeorm';
+import logger from './logger';
 
 // Load .env configuration file
 dotenv.config();
 
 createConnection()
   .then(() => {
-    console.log('Database successfully connected');
+    logger.info('Database successfully connected');
   })
   .catch((error) => {
-    console.error(error);
+    logger.error(error);
   });
 
 // Create Express application
@@ -24,5 +25,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log('Server Started');
+  logger.info('Server Started');
 });
