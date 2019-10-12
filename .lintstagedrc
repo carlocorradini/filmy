@@ -1,7 +1,8 @@
 {
-  "*.ts": [
+  "*.{js,ts}": [
     "eslint --fix",
     "prettier --write",
+    "npm run test",
     "git add"
   ]
 }

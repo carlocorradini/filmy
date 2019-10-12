@@ -14,6 +14,10 @@
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
   ],
+  "env": {
+    "node": true,
+    "jest": true
+  },
   "settings": {
     "react": {
       "version": "999.999.999"
