@@ -1,6 +1,6 @@
 {
   "*.ts": [
-    "eslint --fix",
+    "eslint --fix --color",
     "prettier --write",
     "git add"
   ]
