@@ -2,13 +2,11 @@
   "name": "ing",
   "version": "1.0.0",
   "description": "A Project for Ingegneria del Software 2",
-  "main": "./src/app.js",
+  "main": "./src/app.ts",
   "private": true,
   "scripts": {
     "dev": "npx nodemon ./src/app.ts",
-    "test": "npx jest",
-    "test:coverage": "npx jest --coverage",
-    "test:watch": "npx jest --watch"
+    "test": "npx jest --findRelatedTests"
   },
   "author": "Carlo Corradini",
   "contributors": [
