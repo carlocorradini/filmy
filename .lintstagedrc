@@ -1,5 +1,5 @@
 {
-  "*.{js,ts}": [
+  "./src/!(*test).{js,ts}": [
     "prettier --write",
     "eslint --fix",
     "npm run test",

@@ -1,1 +1,4 @@
-src/**/__tests__/**
+dist/
+build/
+coverage/
+node_modules/
