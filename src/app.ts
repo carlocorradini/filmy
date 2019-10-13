@@ -1,16 +1,15 @@
 import './config'; // Always first!
 import path from 'path';
 import express from 'express';
-import expressLogger from 'express-pino-logger';
 import { createConnection } from 'typeorm';
 import logger from './logger';
 
 (async () => {
   try {
-    await createConnection();
+    await createConnection().then(() => {
+      logger.info('Database successfully connected');
+    });
     const app = express();
-
-    app.use(expressLogger({ logger }));
 
     app.set('views', path.join(__dirname, 'views'));
 
