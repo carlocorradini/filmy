@@ -40,6 +40,6 @@ const logger = createLogger({
   ],
 });
 
-logger.debug('Logger successfully created');
+logger.debug('Logger created');
 
 export default logger;

@@ -1,28 +1,33 @@
 import './config'; // Always first!
 import path from 'path';
 import express from 'express';
+import nunjucks from 'nunjucks';
 import { createConnection } from 'typeorm';
 import logger from './logger';
+import routes from './routes';
+import Server from './server';
 
-(async () => {
-  try {
-    await createConnection().then(() => {
-      logger.info('Database successfully connected');
+createConnection()
+  .then(() => {
+    logger.info('Database connected');
+    return Server.create();
+  })
+  .then((app) => {
+    app.set('view engine', 'njk');
+    app.use('/static', express.static(path.join(__dirname, 'public')));
+    app.use('/', routes);
+
+    nunjucks.configure(path.join(__dirname, 'views'), {
+      autoescape: true,
+      noCache: true,
+      express: app,
     });
-    const app = express();
 
-    app.set('views', path.join(__dirname, 'views'));
-
-    app.get('/', (req, res) => {
-      res.header('text/html').send('<h1>Hi Man!!!</h1>');
-    });
-
-    app.listen(process.env.PORT, () => {
-      logger.info(`Server running on port ${process.env.port}`);
-    });
-
-    //
-  } catch (ex) {
-    logger.error(ex);
-  }
-})();
+    return Server.start(process.env.PORT !== undefined ? parseInt(process.env.PORT, 10) : 0);
+  })
+  .then((port) => {
+    logger.info(`Server running on port ${port}`);
+  })
+  .catch((ex) => {
+    logger.error(ex.toString());
+  });

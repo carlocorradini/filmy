@@ -46,6 +46,7 @@ typings/
 
 # distribution | compiled code/library
 dist/
+build/
 
 # coverage
 coverage/
