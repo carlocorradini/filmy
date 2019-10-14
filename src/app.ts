@@ -28,7 +28,7 @@ createConnection()
         logger.info(`Server running on port ${process.env.PORT}`);
       })
       .on('error', (ex) => {
-        logger.error(`Server error: ${ex.message}`);
+        logger.error(`Server error!!!: ${ex.message}`);
       });
   })
   .catch((ex) => {
