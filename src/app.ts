@@ -1,8 +1,9 @@
 import './config'; // Always first!
+import 'reflect-metadata';
 import path from 'path';
 import express from 'express';
+import favicon from 'serve-favicon';
 import nunjucks from 'nunjucks';
-import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import logger from './logger';
 import routes from './routes';
@@ -11,6 +12,7 @@ const app = express();
 
 app.set('view engine', 'njk');
 app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use('/', routes);
 
 nunjucks.configure(path.join(__dirname, 'views'), {
