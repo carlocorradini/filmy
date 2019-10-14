@@ -1,9 +1,12 @@
 import { Router } from 'express';
+import user from './user';
 
-const router = Router();
+const routes = Router();
 
-router.get('/', (req, res) => {
+routes.use(user);
+
+routes.get('/', (req, res) => {
   res.render('index');
 });
 
-export default router;
+export default routes;

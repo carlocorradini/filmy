@@ -23,6 +23,7 @@
         "declaration": false,
         "declarationMap": false,
         "emitDeclarationOnly": false,
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true
     },
     "include": [
