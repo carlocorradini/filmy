@@ -10,10 +10,11 @@ import routes from './routes';
 
 const app = express();
 
-app.set('view engine', 'njk');
-app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use('/', routes);
+app
+  .set('view engine', 'njk')
+  .use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+  .use('/static', express.static(path.join(__dirname, 'public')))
+  .use('/', routes);
 
 nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,
@@ -34,5 +35,5 @@ createConnection()
       });
   })
   .catch((ex) => {
-    logger.error(`Database connection error: ${ex.toString()}`);
+    logger.error(`Database connection | ${ex.toString()}`);
   });
