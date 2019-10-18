@@ -44,9 +44,12 @@ typings/
 # dotenv environment variables file
 .env
 
-# distribution | compiled code/library
+# Distribution | compiled code/library
 dist/
 build/
 
-# coverage
+# Coverage
 coverage/
+
+# Exceptions
+!.gitignore

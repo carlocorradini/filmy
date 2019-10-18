@@ -1,12 +1,9 @@
 import { Router } from 'express';
-import api from './api';
 
 const router = Router();
 
-router.use('/api', api);
-
 router.get('/', (req, res) => {
-  res.render('index');
+  res.send(`Hello From API V1.0 at ${new Date().toISOString()}`);
 });
 
 export default router;
