@@ -1,25 +1,5 @@
-import path from 'path';
-import express from 'express';
-import favicon from 'serve-favicon';
-import routes from '../routes';
+import createServer from './createServer';
 
-const app = express();
+export default { createServer };
 
-app
-  .use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
-  .use('/static', express.static(path.join(__dirname, '../public')))
-  .use('/', routes);
-
-const createServer = (port: number) => {
-  return new Promise((resolve, reject) => {
-    app
-      .listen(port, () => {
-        resolve(port);
-      })
-      .on('error', (ex) => {
-        reject(ex.message);
-      });
-  });
-};
-
-export default createServer;
+export { createServer };

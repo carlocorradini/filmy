@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import config from './config'; // ! Always first
 import logger from './logger';
-import createServer from './server';
+import { createServer } from './server';
 
 createConnection()
   .then(() => {
