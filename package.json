@@ -11,7 +11,7 @@
     "postbuild": "npx ts-node ./tools/build",
     "prod": "node ./app.js",
     "dev": "npx nodemon",
-    "test": "npx jest --findRelatedTests"
+    "test": "npx jest"
   },
   "author": "Carlo Corradini",
   "contributors": [
