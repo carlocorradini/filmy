@@ -1,9 +1,10 @@
 import path from 'path';
 import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
+import config from '../config';
 
 const logger = createLogger({
-  level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+  level: config.NODE_ENV === 'development' ? 'debug' : 'info',
   exitOnError: false,
   format: format.combine(
     format.label({

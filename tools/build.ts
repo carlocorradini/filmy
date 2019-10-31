@@ -1,17 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import shell from 'shelljs';
 
-const buildFolder = './build/';
+const BUILD_FOLDER = './build/';
 
-const files = new Set(['.env', 'LICENSE', 'README.md', 'package.json', 'package-lock.json']);
-const folders = new Set(['./src/views', './src/public']);
-
-// Copy Files
-files.forEach((file) => {
-  shell.cp('-R', file, buildFolder);
-});
+const FOLDERS = new Set(['./src/public']);
+const FILES = new Set(['LICENSE', 'README.md', 'package.json', 'package-lock.json']);
 
 // Copy Folders
-folders.forEach((folder) => {
-  shell.cp('-R', folder, buildFolder);
+FOLDERS.forEach((folder) => {
+  shell.cp('-R', folder, BUILD_FOLDER);
+});
+
+// Copy Files
+FILES.forEach((file) => {
+  shell.cp(file, BUILD_FOLDER);
 });
