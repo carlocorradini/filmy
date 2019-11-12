@@ -10,7 +10,7 @@ app
   .use('/static', express.static(path.join(__dirname, '../public')))
   .use('/', routes);
 
-const createServer = (port: number) => {
+const createServer = (port: number): Promise<number> => {
   return new Promise((resolve, reject) => {
     app
       .listen(port, () => {
