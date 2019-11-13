@@ -15,5 +15,3 @@ createConnection()
   .catch((ex) => {
     logger.error(ex.toString());
   });
-
-//
