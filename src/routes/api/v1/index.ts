@@ -1,11 +1,8 @@
 import { Router } from 'express';
-import sayHello from './sayHello';
-import getUser from './getUser';
+import film from './film';
 
 const router = Router();
 
-router.get('/', sayHello);
-
-router.get('/user/:id', getUser);
+router.use('/film', film);
 
 export default router;
