@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import path from 'path';
 // eslint-disable-next-line no-unused-vars
 import { createConnection, ConnectionOptions } from 'typeorm';
 import config from './config'; // ! Always first
@@ -12,9 +13,9 @@ createConnection(<ConnectionOptions>{
     ssl: config.DATABASE_SSL,
   },
   synchronize: config.DATABASE_SYNCHRONIZE,
-  entities: config.DATABASE_ENTITIES,
-  migrations: config.DATABASE_MIGRATIONS,
-  subscribers: config.DATABASE_SUBSCRIBERS,
+  entities: [path.join(__dirname, config.DATABASE_ENTITIES)],
+  migrations: [path.join(__dirname, config.DATABASE_MIGRATIONS)],
+  subscribers: [path.join(__dirname, config.DATABASE_SUBSCRIBERS)],
 })
   .then(() => {
     logger.info('Database connected');
@@ -24,5 +25,6 @@ createConnection(<ConnectionOptions>{
     logger.info(`Server running on port ${port}`);
   })
   .catch((ex) => {
+    console.log(ex);
     logger.error(ex.toString());
   });
