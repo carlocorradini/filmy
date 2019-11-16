@@ -25,6 +25,5 @@ createConnection(<ConnectionOptions>{
     logger.info(`Server running on port ${port}`);
   })
   .catch((ex) => {
-    console.log(ex);
     logger.error(ex.toString());
   });
