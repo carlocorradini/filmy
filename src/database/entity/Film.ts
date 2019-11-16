@@ -10,7 +10,7 @@ import {
   Check,
 } from 'typeorm';
 
-import { MinLength, MaxLength, IsString, IsInt, IsDate, IsUrl, IsPositive } from 'class-validator';
+import { MinLength, MaxLength, IsString, IsInt, IsDate, IsUrl } from 'class-validator';
 import Actor from './Actor';
 
 @Entity()
@@ -18,7 +18,6 @@ import Actor from './Actor';
 export default class Film {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   @Index()
-  @IsPositive({ message: 'Id must be a positive number, but actual is $value' })
   id!: number;
 
   @Column({
@@ -52,8 +51,7 @@ export default class Film {
   releaseDate!: Date;
 
   @Column({
-    length: 128,
-    default: 'empty.png',
+    length: 256,
   })
   @IsUrl()
   poster!: string;

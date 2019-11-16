@@ -8,14 +8,13 @@ import {
   Check,
 } from 'typeorm';
 
-import { MinLength, MaxLength, IsString, IsDate, IsPositive, IsUrl, Equals } from 'class-validator';
+import { MinLength, MaxLength, IsString, IsDate, IsUrl, Equals } from 'class-validator';
 
 @Entity()
 @Check(`"gender" = 'M' OR "gender" = 'F'`)
 export default class Actor {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   @Index()
-  @IsPositive({ message: 'Id must be a positive number, but actual is $value' })
   id!: number;
 
   @Column({
@@ -62,8 +61,7 @@ export default class Actor {
   deathDate!: Date;
 
   @Column({
-    length: 128,
-    default: 'empty.png',
+    length: 256,
   })
   @IsUrl()
   profile!: string;

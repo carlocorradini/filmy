@@ -8,6 +8,7 @@ const StatusMessage: EnumDictionary<StatusCode, string> = {
   [StatusCode.OK]: 'Success',
   [StatusCode.NOT_FOUND]: 'Resource not found',
   [StatusCode.UNAUTHORIZED]: 'Unauthorized',
+  [StatusCode.INVALID]: 'Invalid',
   [StatusCode.UNKNOWN_ERROR]: 'Unknown Error',
 };
 

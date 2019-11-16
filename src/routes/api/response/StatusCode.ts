@@ -6,6 +6,8 @@ enum StatusCode {
   // eslint-disable-next-line no-unused-vars
   UNAUTHORIZED,
   // eslint-disable-next-line no-unused-vars
+  INVALID,
+  // eslint-disable-next-line no-unused-vars
   UNKNOWN_ERROR,
 }
 
