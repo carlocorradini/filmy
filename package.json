@@ -16,8 +16,8 @@
     "postbuild": "npx ts-node ./tools/build",
     "test": "npx jest",
     "start:dev": "npx nodemon",
-    "prestart": "npm run build && npm install --only=dev",
-    "start": "cd build && node ./app.js"
+    "prestart": "cd build && npm install --only=dev",
+    "start": "node ./build/app.js"
   },
   "author": "Carlo Corradini",
   "contributors": [
