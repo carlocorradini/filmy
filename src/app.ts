@@ -1,10 +1,21 @@
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+// eslint-disable-next-line no-unused-vars
+import { createConnection, ConnectionOptions } from 'typeorm';
 import config from './config'; // ! Always first
 import logger from './logger';
 import { createServer } from './server';
 
-createConnection()
+createConnection(<ConnectionOptions>{
+  type: config.DATABASE_TYPE,
+  url: config.DATABASE_URL,
+  extra: {
+    ssl: config.DATABASE_SSL,
+  },
+  synchronize: config.DATABASE_SYNCHRONIZE,
+  entities: config.DATABASE_ENTITIES,
+  migrations: config.DATABASE_MIGRATIONS,
+  subscribers: config.DATABASE_SUBSCRIBERS,
+})
   .then(() => {
     logger.info('Database connected');
     return createServer(config.PORT);

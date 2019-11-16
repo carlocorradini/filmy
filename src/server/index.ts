@@ -1,5 +1,4 @@
 import createServer from './createServer';
+import configServer from './configServer';
 
-export default createServer;
-
-export { createServer };
+export { createServer, configServer };
