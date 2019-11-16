@@ -12,7 +12,7 @@ const config: Config = {
   DATABASE_TYPE: process.env.DATABASE_TYPE !== undefined ? process.env.DATABASE_TYPE : 'postgres',
   DATABASE_URL: process.env.DATABASE_URL !== undefined ? process.env.DATABASE_URL: 'postgres://username:password@localhost:5432/filmy',
   DATABASE_SSL: process.env.DATABASE_SSL !== undefined ? process.env.DATABASE_SSL === 'true' : true,
-  DATABASE_SYNCHRONIZE: process.env.TYPEORM_SYNCHRONIZE !== undefined ? process.env.TYPEORM_SYNCHRONIZE === 'true' : false,
+  DATABASE_SYNCHRONIZE: process.env.TYPEORM_SYNCHRONIZE !== undefined ? process.env.TYPEORM_SYNCHRONIZE === 'true' : true,
   DATABASE_ENTITIES: process.env.DATABASE_ENTITIES !== undefined ? process.env.DATABASE_ENTITIES : './database/entity/**/*.js',
   DATABASE_MIGRATIONS: process.env.DATABASE_MIGRATIONS !== undefined ? process.env.DATABASE_MIGRATIONS : './database/migration/**/*.js',
   DATABASE_SUBSCRIBERS: process.env.DATABASE_SUBSCRIBERS !== undefined ? process.env.DATABASE_SUBSCRIBERS : './database/subscriber/**/*.js',
