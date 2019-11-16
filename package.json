@@ -17,7 +17,7 @@
     "test": "npx jest",
     "start:dev": "npx nodemon",
     "prestart": "npm run build && npm install --only=dev",
-    "start": "node ./build/app.js"
+    "start": "cd build && node ./app.js"
   },
   "author": "Carlo Corradini",
   "contributors": [
