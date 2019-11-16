@@ -5,7 +5,7 @@ export default interface Config {
   DATABASE_URL: string;
   DATABASE_SSL: boolean;
   DATABASE_SYNCHRONIZE: boolean;
-  DATABASE_ENTITIES: string | Function[] | undefined;
-  DATABASE_MIGRATIONS: string | Function[] | undefined;
-  DATABASE_SUBSCRIBERS: string | Function[] | undefined;
+  DATABASE_ENTITIES: string;
+  DATABASE_MIGRATIONS: string;
+  DATABASE_SUBSCRIBERS: string;
 }
