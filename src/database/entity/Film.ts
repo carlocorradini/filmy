@@ -22,7 +22,7 @@ export default class Film {
   @Index()
   id!: number;
 
-  @Column({ name: 'title', unique: true, length: 256 })
+  @Column({ name: 'title', length: 256 })
   @IsString({ message: '$property must be a string type' })
   @MinLength(1, {
     message:
