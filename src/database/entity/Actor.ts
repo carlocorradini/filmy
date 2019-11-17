@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,69 +7,71 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Check,
+  ManyToMany,
 } from 'typeorm';
 
-import { MinLength, MaxLength, IsString, IsDate, IsUrl, Equals } from 'class-validator';
+import { MinLength, MaxLength, IsString, IsUrl, Equals, IsDateString } from 'class-validator';
+// eslint-disable-next-line import/no-cycle
+import Film from './Film';
 
-@Entity()
+@Entity({ name: 'actor' })
 @Check(`"gender" = 'M' OR "gender" = 'F'`)
 export default class Actor {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
+  @PrimaryGeneratedColumn({ name: 'id', type: 'bigint' })
   @Index()
   id!: number;
 
-  @Column({
-    length: 128,
-  })
-  @IsString({ message: 'Name must be a string type' })
+  @Column({ name: 'name', length: 128 })
+  @IsString({ message: '$property must be a string type' })
   @MinLength(1, {
-    message: 'Name is too short. Minimal length is $constraint1 characters, but actual is $value',
+    message:
+      '$property is too short. Minimal length is $constraint1 characters, but actual is $value',
   })
   @MaxLength(128, {
-    message: 'Name is too long. Maximal length is $constraint1 characters, but actual is $value',
+    message:
+      '$property is too long. Maximal length is $constraint1 characters, but actual is $value',
   })
   name!: string;
 
-  @Column({
-    length: 128,
-  })
-  @IsString({ message: 'Surname must be a string type' })
+  @Column({ name: 'surname', length: 128 })
+  @IsString({ message: '$property must be a string type' })
   @MinLength(1, {
     message:
-      'Surname is too short. Minimal length is $constraint1 characters, but actual is $value',
+      '$property is too short. Minimal length is $constraint1 characters, but actual is $value',
   })
   @MaxLength(128, {
-    message: 'Surname is too long. Maximal length is $constraint1 characters, but actual is $value',
+    message:
+      '$property is too long. Maximal length is $constraint1 characters, but actual is $value',
   })
   surname!: string;
 
-  @Column({
-    type: 'character',
-  })
-  @IsString({ message: 'Genger must be a String type' })
-  @Equals(['M', 'F'], { message: "Gender must be equals to 'M' or 'F'" })
+  @Column({ name: 'gender', type: 'character' })
+  @IsString({ message: '$property must be a String type' })
+  @Equals(['M', 'F'], { message: "$property must be equals to 'M' or 'F'" })
   gender!: string;
 
-  @Column({ type: 'date' })
-  @IsDate({ message: 'Birth Date must be a Date type' })
-  birthDate!: Date;
+  @Column({ name: 'birth_date', type: 'date' })
+  @IsDateString({ message: '$property must be a Date type' })
+  birth_date!: Date;
 
-  @Column({
-    type: 'date',
-    nullable: true,
-  })
-  @IsDate({ message: 'Death Date must be a Date type' })
-  deathDate!: Date;
+  @Column({ name: 'death_date', type: 'date', nullable: true })
+  @IsDateString({ message: '$property must be a Date type' })
+  death_date!: Date;
 
-  @Column({
-    length: 256,
-  })
+  @Column({ name: 'profile', length: 256 })
   @IsUrl()
   profile!: string;
 
-  @CreateDateColumn()
-  createDate!: Date;
+  @CreateDateColumn({ name: 'create_date' })
+  create_date!: Date;
 
-  @UpdateDateColumn()
-  updateDate!: Date;
+  @UpdateDateColumn({ name: 'update_date' })
+  update_date!: Date;
+
+  // eslint-disable-next-line no-unused-vars
+  @ManyToMany((type) => Film, (film) => film.actors, {
+    primary: true,
+    nullable: false,
+  })
+  films!: Film[];
 }
