@@ -17,7 +17,7 @@ describe('Valid Film', () => {
   test('Should pass validation due to correct values', async () => {
     const film = createFilm();
     const errors = await validate(film);
-    expect(errors.length).toBe(1);
+    expect(errors.length).toBe(0);
   });
 });
 
