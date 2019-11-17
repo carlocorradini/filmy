@@ -5,14 +5,17 @@ import { createResponse, StatusCode } from '../../response';
 import Film from '../../../../database/entity/Film';
 import logger from '../../../../logger';
 
-export default async (req: Request, res: Response) => {
+export default (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10) || 0;
 
-  try {
-    const film: Film = await getRepository(Film).findOneOrFail({ id }, { relations: ['actors'] });
-    res.send(createResponse(StatusCode.OK, film));
-  } catch (ex) {
-    logger.warn(`API | Film with id ${id} not found`);
-    res.send(createResponse(StatusCode.NOT_FOUND, ex.name));
-  }
+  getRepository(Film)
+    .findOneOrFail({ id }, { relations: ['actors'] })
+    .then((film) => {
+      logger.info(`API | Film with id ${id} found`);
+      res.json(createResponse(StatusCode.OK, film));
+    })
+    .catch((ex) => {
+      logger.warn(`API | Film with id ${id} not found or failed due to ${ex.toString()}`);
+      res.json(createResponse(StatusCode.NOT_FOUND, ex.toString()));
+    });
 };
