@@ -10,7 +10,6 @@ import {
   JoinTable,
   Check,
 } from 'typeorm';
-
 import { MinLength, MaxLength, IsString, IsInt, IsUrl, Min, Max, IsDate } from 'class-validator';
 // eslint-disable-next-line import/no-cycle
 import Actor from './Actor';

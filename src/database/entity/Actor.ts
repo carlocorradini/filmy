@@ -10,7 +10,7 @@ import {
   ManyToMany,
 } from 'typeorm';
 
-import { MinLength, MaxLength, IsString, IsUrl, Equals, IsDateString } from 'class-validator';
+import { MinLength, MaxLength, IsString, IsUrl, IsDate, IsIn, MaxDate } from 'class-validator';
 // eslint-disable-next-line import/no-cycle
 import Film from './Film';
 
@@ -47,15 +47,17 @@ export default class Actor {
 
   @Column({ name: 'gender', type: 'character' })
   @IsString({ message: '$property must be a String type' })
-  @Equals(['M', 'F'], { message: "$property must be equals to 'M' or 'F'" })
+  @IsIn(['M', 'F'], { message: "$property must be equals to 'M' or 'F'" })
   gender!: string;
 
   @Column({ name: 'birth_date', type: 'date' })
-  @IsDateString({ message: '$property must be a Date type' })
+  @IsDate({ message: '$property must be a Date type' })
+  @MaxDate(new Date(), { message: '$property must be a valid Date' })
   birth_date!: Date;
 
   @Column({ name: 'death_date', type: 'date', nullable: true })
-  @IsDateString({ message: '$property must be a Date type' })
+  @IsDate({ message: '$property must be a Date type' })
+  @MaxDate(new Date(), { message: '$property must be a valid Date' })
   death_date!: Date;
 
   @Column({ name: 'profile', length: 256 })
