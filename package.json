@@ -11,13 +11,17 @@
   "private": true,
   "scripts": {
     "clean": "npx rimraf ./build/ && npx rimraf ./log/",
+    "prettify": "npx prettier --write ./src/**/*.ts",
+    "prettify:staged": "npx prettier --write",
+    "lint": "npx eslint --fix",
     "prebuild": "npm run clean",
     "build": "npx tsc",
     "postbuild": "npx ts-node ./tools/build",
     "test": "npx jest",
-    "start:dev": "npx nodemon",
+    "test:staged": "npx jest --bail --findRelatedTests",
     "prestart": "cd build && npm install --production",
-    "start": "node ./build/app.js"
+    "start": "node ./build/app.js",
+    "start:dev": "npx nodemon"
   },
   "author": "Carlo Corradini",
   "contributors": [

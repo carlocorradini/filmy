@@ -1,8 +1,8 @@
 {
-  "./src/*.{js,ts}": [
-    "prettier --write",
-    "eslint --fix",
-    "jest --bail --findRelatedTests",
+  "*.{js,ts}": [
+    "npm run prettify:staged",
+    "npm run lint",
+    "npm run test:staged",
     "git add"
   ]
 }

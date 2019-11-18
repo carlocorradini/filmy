@@ -9,7 +9,6 @@ import {
   Check,
   ManyToMany,
 } from 'typeorm';
-
 import { MinLength, MaxLength, IsString, IsUrl, IsDate, IsIn, MaxDate } from 'class-validator';
 // eslint-disable-next-line import/no-cycle
 import Film from './Film';
