@@ -1,5 +1,5 @@
 {
-  "*.ts": [
+  "*.{js, ts}": [
     "npm run prettify",
     "npm run lint",
     "npm run test:staged",

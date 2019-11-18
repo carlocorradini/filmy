@@ -12,7 +12,7 @@ import {
 import { MinLength, MaxLength, IsString, IsUrl, IsDate, IsIn, MaxDate } from 'class-validator';
 // eslint-disable-next-line import/no-cycle
 import Film from './Film';
-//
+
 @Entity({ name: 'actor' })
 @Check(`"gender" = 'M' OR "gender" = 'F'`)
 export default class Actor {
