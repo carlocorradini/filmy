@@ -1,4 +1,4 @@
-# Filmy
+# :clapper:Filmy:clapper:
 
 [![Build Status](https://github.com/carlocorradini/filmy/workflows/CI/badge.svg)](https://github.com/carlocorradini/filmy/actions)
 
