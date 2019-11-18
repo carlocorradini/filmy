@@ -14,7 +14,7 @@ const createFilm = (): Film => {
 };
 
 describe('Valid Film', () => {
-  test('Should pass validation due to correct values', async () => {
+  test('It should pass validation due to correct values', async () => {
     const film = createFilm();
     const errors = await validate(film);
     expect(errors.length).toBe(0);
@@ -22,37 +22,37 @@ describe('Valid Film', () => {
 });
 
 describe('Invalid Film', () => {
-  test('Should fail validation due to title minimum length', async () => {
+  test('It should fail validation due to title minimum length', async () => {
     const film = createFilm();
     film.title = '';
     const errors = await validate(film);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to title maximum length', async () => {
+  test('It should fail validation due to title maximum length', async () => {
     const film = createFilm();
     film.title = StringUtil.generateRandom(257);
     const errors = await validate(film);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to minimal rating not reached', async () => {
+  test('It should fail validation due to minimal rating not reached', async () => {
     const film = createFilm();
     film.rating = 0;
     const errors = await validate(film);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to maximal rating reached', async () => {
+  test('It should fail validation due to maximal rating reached', async () => {
     const film = createFilm();
     film.rating = 101;
     const errors = await validate(film);
     expect(errors.length).toBe(1);
   });
-  test('Should fail due to invalid release date type', async () => {
+  test('It should fail due to invalid release date type', async () => {
     const film = createFilm();
     film.release_date = new Date('2019-2019-2019');
     const errors = await validate(film);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to invalid poster URL', async () => {
+  test('It should fail validation due to invalid poster URL', async () => {
     const film = createFilm();
     film.poster = 'htt://invalid.com/profile.jpg';
     let errors = await validate(film);

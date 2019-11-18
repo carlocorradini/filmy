@@ -16,7 +16,7 @@ const createActor = (): Actor => {
 };
 
 describe('Valid Actor', () => {
-  test('Should pass validation due to correct values', async () => {
+  test('It should pass validation due to correct values', async () => {
     const actor = createActor();
     const errors = await validate(actor);
     expect(errors.length).toBe(0);
@@ -24,61 +24,61 @@ describe('Valid Actor', () => {
 });
 
 describe('Invalid Actor', () => {
-  test('Should fail validation due to name minimum length', async () => {
+  test('It should fail validation due to name minimum length', async () => {
     const actor = createActor();
     actor.name = '';
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to name maximum length', async () => {
+  test('It should fail validation due to name maximum length', async () => {
     const actor = createActor();
     actor.name = StringUtil.generateRandom(129);
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to surname minimum length', async () => {
+  test('It should fail validation due to surname minimum length', async () => {
     const actor = createActor();
     actor.surname = '';
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to surname maximum length', async () => {
+  test('It should fail validation due to surname maximum length', async () => {
     const actor = createActor();
     actor.surname = StringUtil.generateRandom(129);
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to unknown gender', async () => {
+  test('It should fail validation due to unknown gender', async () => {
     const actor = createActor();
     actor.gender = 'U';
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to max birth date reached', async () => {
+  test('It should fail validation due to max birth date reached', async () => {
     const actor = createActor();
     actor.birth_date = DateUtil.tomorrow();
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail due to invalid birth date type', async () => {
+  test('It should fail due to invalid birth date type', async () => {
     const actor = createActor();
     actor.birth_date = new Date('2019-2019-2019');
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to max death date reached', async () => {
+  test('It should fail validation due to max death date reached', async () => {
     const actor = createActor();
     actor.death_date = DateUtil.tomorrow();
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail due to invalid death date type', async () => {
+  test('It should fail due to invalid death date type', async () => {
     const actor = createActor();
     actor.death_date = new Date('2019-2019-2019');
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('Should fail validation due to invalid profile URL', async () => {
+  test('It should fail validation due to invalid profile URL', async () => {
     const actor = createActor();
     actor.profile = 'htt://invalid.com/profile.jpg';
     let errors = await validate(actor);
