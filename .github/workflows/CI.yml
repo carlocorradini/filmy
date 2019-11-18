@@ -25,7 +25,14 @@ jobs:
       - name: install
         run: npm install
 
-      - name: pretty
-        run:
+      - name: prettify
+        run: npm run prettify
 
       - name: lint
+        run: npm run lint
+
+      - name: build
+        run: npm run build
+
+      - name: test
+        run: npm test
