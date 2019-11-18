@@ -1,4 +1,8 @@
-# Members
+# Filmy
+
+[![Build Status](https://github.com/carlocorradini/filmy/workflows/CI/badge.svg)](https://github.com/carlocorradini/filmy/actions)
+
+## Members
 
 |  Name   |  Surname  |     Username      |    MAT     |
 | :-----: | :-------: | :---------------: | :--------: |
