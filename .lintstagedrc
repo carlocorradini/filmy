@@ -1,6 +1,6 @@
 {
   "*.{js,ts}": [
-    "npm run prettify",
+    "npm run prettify:staged",
     "npm run lint",
     "npm run test:staged",
     "git add"

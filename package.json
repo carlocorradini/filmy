@@ -11,7 +11,8 @@
   "private": true,
   "scripts": {
     "clean": "npx rimraf ./build/ && npx rimraf ./log/",
-    "prettify": "npx prettier --write",
+    "prettify": "npx prettier --write ./src/**/*.ts",
+    "prettify:staged": "npx prettier --write",
     "lint": "npx eslint --fix",
     "prebuild": "npm run clean",
     "build": "npx tsc",
