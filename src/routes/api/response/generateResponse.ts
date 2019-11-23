@@ -11,13 +11,16 @@ export default (res: Response, statusCode: StatusCode, data?: any) => {
     statusCode = StatusCode.UNKNOWN_ERROR;
   }
 
-  res.status(statusCode).json({
-    success: statusCode === StatusCode.OK,
-    status_code: statusCode,
-    status_message: StatusMessage[statusCode],
-    ...(statusCode < 400 && { data }),
-    ...(statusCode >= 400 && { error_message: data }),
-  });
+  res
+    .status(statusCode)
+    .json({
+      success: statusCode === StatusCode.OK,
+      status_code: statusCode,
+      status_message: StatusMessage[statusCode],
+      ...(statusCode < 400 && { data }),
+      ...(statusCode >= 400 && { error_message: data }),
+    })
+    .end();
 
   logger.debug(`Sending Response data: ${data instanceof Object ? JSON.stringify(data) : data}`);
 };
