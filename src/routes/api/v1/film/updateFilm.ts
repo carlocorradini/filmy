@@ -3,8 +3,8 @@ import { Request, Response } from 'express';
 import { getRepository, getCustomRepository } from 'typeorm';
 import { APIUtil } from '../../../../utils';
 import { generateResponse, StatusCode } from '../../response';
-import Film from '../../../../database/entity/Film';
-import FilmRepository from '../../../../database/entity_repository/FilmRepository';
+import Film from '../../../../db/entity/Film';
+import FilmRepository from '../../../../db/entity_repository/FilmRepository';
 
 export default async (req: Request, res: Response) => {
   const id = await APIUtil.id(req.params.id);

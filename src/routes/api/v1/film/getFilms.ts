@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { generateResponse, StatusCode } from '../../response';
-import Film from '../../../../database/entity/Film';
+import Film from '../../../../db/entity/Film';
 
 export default async (req: Request, res: Response) => {
   getRepository(Film)
