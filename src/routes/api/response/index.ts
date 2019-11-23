@@ -1,5 +1,5 @@
 import StatusCode from './StatusCode';
 import StatusMessage from './StatusMessage';
-import createResponse from './createResponse';
+import generateResponse from './generateResponse';
 
-export { StatusCode, StatusMessage, createResponse };
+export { StatusCode, StatusMessage, generateResponse };

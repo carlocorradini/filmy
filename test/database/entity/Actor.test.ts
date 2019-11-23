@@ -1,6 +1,6 @@
 import { validate } from 'class-validator';
-import Actor from './Actor';
-import { StringUtil, DateUtil } from '../../utils';
+import Actor from '../../../src/database/entity/Actor';
+import { StringUtil } from '../../../src/utils';
 
 const createActor = (): Actor => {
   const actor: Actor = new Actor();
@@ -8,8 +8,8 @@ const createActor = (): Actor => {
   actor.name = 'Steve';
   actor.surname = 'McQueen';
   actor.gender = 'M';
-  actor.birth_date = new Date('1930-03-24');
-  actor.death_date = new Date('1980-11-07');
+  actor.birth_date = '1930-03-24';
+  actor.death_date = '1980-11-07';
   actor.profile = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/b8LEJ08B4DMX2gsi5UTsYNRNJee.jpg';
 
   return actor;
@@ -54,27 +54,15 @@ describe('Invalid Actor', () => {
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
-  test('It should fail validation due to max birth date reached', async () => {
+  test('It should fail due to invalid birth date', async () => {
     const actor = createActor();
-    actor.birth_date = DateUtil.tomorrow();
-    const errors = await validate(actor);
-    expect(errors.length).toBe(1);
-  });
-  test('It should fail due to invalid birth date type', async () => {
-    const actor = createActor();
-    actor.birth_date = new Date('2019-2019-2019');
-    const errors = await validate(actor);
-    expect(errors.length).toBe(1);
-  });
-  test('It should fail validation due to max death date reached', async () => {
-    const actor = createActor();
-    actor.death_date = DateUtil.tomorrow();
+    actor.birth_date = '2019-2019-2019';
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });
   test('It should fail due to invalid death date type', async () => {
     const actor = createActor();
-    actor.death_date = new Date('2019-2019-2019');
+    actor.death_date = '2019-2019-2019';
     const errors = await validate(actor);
     expect(errors.length).toBe(1);
   });

@@ -9,14 +9,14 @@ import {
   Check,
   ManyToMany,
 } from 'typeorm';
-import { MinLength, MaxLength, IsString, IsUrl, IsDate, IsIn, MaxDate } from 'class-validator';
+import { MinLength, MaxLength, IsString, IsUrl, IsIn, IsISO8601 } from 'class-validator';
 // eslint-disable-next-line import/no-cycle
 import Film from './Film';
 
 @Entity({ name: 'actor' })
 @Check(`"gender" = 'M' OR "gender" = 'F'`)
 export default class Actor {
-  @PrimaryGeneratedColumn({ name: 'id', type: 'bigint' })
+  @PrimaryGeneratedColumn({ name: 'id', type: 'integer' })
   @Index()
   id!: number;
 
@@ -50,14 +50,12 @@ export default class Actor {
   gender!: string;
 
   @Column({ name: 'birth_date', type: 'date' })
-  @IsDate({ message: '$property must be a Date type' })
-  @MaxDate(new Date(), { message: '$property must be a valid Date' })
-  birth_date!: Date;
+  @IsISO8601({ message: '$property must be a valid Date, but actual is $value' })
+  birth_date!: string;
 
   @Column({ name: 'death_date', type: 'date', nullable: true })
-  @IsDate({ message: '$property must be a Date type' })
-  @MaxDate(new Date(), { message: '$property must be a valid Date' })
-  death_date!: Date;
+  @IsISO8601({ message: '$property must be a valid Date, but actual is $value' })
+  death_date!: string;
 
   @Column({ name: 'profile', length: 256 })
   @IsUrl()
@@ -69,10 +67,14 @@ export default class Actor {
   @UpdateDateColumn({ name: 'update_date' })
   update_date!: Date;
 
-  // eslint-disable-next-line no-unused-vars
-  @ManyToMany((type) => Film, (film) => film.actors, {
-    primary: true,
-    nullable: false,
-  })
+  @ManyToMany(
+    // eslint-disable-next-line no-unused-vars
+    (type) => Film,
+    (film) => film.actors,
+    {
+      primary: true,
+      nullable: false,
+    }
+  )
   films!: Film[];
 }

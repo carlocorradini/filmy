@@ -1,14 +1,16 @@
 enum StatusCode {
   // eslint-disable-next-line no-unused-vars
-  OK = 0,
+  OK = 200,
   // eslint-disable-next-line no-unused-vars
-  NOT_FOUND,
+  BAD_REQUEST = 400,
   // eslint-disable-next-line no-unused-vars
-  UNAUTHORIZED,
+  UNAUTHORIZED = 401,
   // eslint-disable-next-line no-unused-vars
-  INVALID,
+  NOT_FOUND = 404,
   // eslint-disable-next-line no-unused-vars
-  UNKNOWN_ERROR,
+  INTERNAL_SERVER_ERROR = 500,
+  // eslint-disable-next-line no-unused-vars
+  UNKNOWN_ERROR = 520,
 }
 
 export default StatusCode;

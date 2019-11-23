@@ -1,21 +1,19 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import { createResponse, StatusCode } from '../../response';
+import { generateResponse, StatusCode } from '../../response';
+import { APIUtil } from '../../../../utils';
 import Film from '../../../../database/entity/Film';
-import logger from '../../../../logger';
 
-export default (req: Request, res: Response) => {
-  const id = parseInt(req.params.id, 10) || 0;
+export default async (req: Request, res: Response) => {
+  const id = await APIUtil.id(req.params.id);
 
   getRepository(Film)
     .findOneOrFail({ id }, { relations: ['actors'] })
     .then((film) => {
-      logger.info(`API | Film with id ${id} found`);
-      res.json(createResponse(StatusCode.OK, film));
+      generateResponse(res, StatusCode.OK, film);
     })
-    .catch((ex) => {
-      logger.warn(`API | Film with id ${id} not found or failed due to ${ex.toString()}`);
-      res.json(createResponse(StatusCode.NOT_FOUND, ex.toString()));
+    .catch(() => {
+      generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
     });
 };

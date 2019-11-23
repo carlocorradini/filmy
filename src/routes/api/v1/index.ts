@@ -1,10 +1,3 @@
-import { Router } from 'express';
-import film from './film';
-import actor from './actor';
+import v1 from './v1';
 
-const router = Router();
-
-router.use('/film', film);
-router.use('/actor', actor);
-
-export default router;
+export default v1;

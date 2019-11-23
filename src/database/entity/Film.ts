@@ -10,14 +10,14 @@ import {
   JoinTable,
   Check,
 } from 'typeorm';
-import { MinLength, MaxLength, IsString, IsInt, IsUrl, Min, Max, IsDate } from 'class-validator';
+import { MinLength, MaxLength, IsString, IsInt, IsUrl, Min, Max, IsISO8601 } from 'class-validator';
 // eslint-disable-next-line import/no-cycle
 import Actor from './Actor';
 
 @Entity({ name: 'film' })
 @Check(`"rating" BETWEEN 1 AND 100`)
 export default class Film {
-  @PrimaryGeneratedColumn({ name: 'id', type: 'bigint' })
+  @PrimaryGeneratedColumn({ name: 'id', type: 'integer' })
   @Index()
   id!: number;
 
@@ -44,8 +44,8 @@ export default class Film {
   rating!: number;
 
   @Column({ name: 'release_date', type: 'date' })
-  @IsDate({ message: '$property must be a Date type' })
-  release_date!: Date;
+  @IsISO8601({ message: '$property must be a valid Date' })
+  release_date!: string;
 
   @Column({ name: 'poster', length: 256, unique: true })
   @IsUrl()
@@ -57,11 +57,12 @@ export default class Film {
   @UpdateDateColumn({ name: 'update_date' })
   update_date!: Date;
 
-  // eslint-disable-next-line no-unused-vars
-  @ManyToMany((type) => Actor, (actor) => actor.films, {
-    primary: true,
-    nullable: false,
-  })
+  @ManyToMany(
+    // eslint-disable-next-line no-unused-vars
+    (type) => Actor,
+    (actor) => actor.films,
+    { primary: true, nullable: false }
+  )
   @JoinTable({
     name: 'film_actor',
     joinColumn: {

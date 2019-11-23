@@ -6,9 +6,10 @@ type EnumDictionary<T extends string | symbol | number, U> = {
 
 const StatusMessage: EnumDictionary<StatusCode, string> = {
   [StatusCode.OK]: 'Success',
-  [StatusCode.NOT_FOUND]: 'Resource not found',
+  [StatusCode.BAD_REQUEST]: 'Invalid request message',
   [StatusCode.UNAUTHORIZED]: 'Unauthorized',
-  [StatusCode.INVALID]: 'Invalid',
+  [StatusCode.NOT_FOUND]: 'Resource not found',
+  [StatusCode.INTERNAL_SERVER_ERROR]: 'Internal Server error',
   [StatusCode.UNKNOWN_ERROR]: 'Unknown Error',
 };
 

@@ -1,4 +1,4 @@
-import StringUtil from './StringUtil';
+import StringUtil from '../../src/utils/StringUtil';
 
 const RANDOM_STRING_LENGTH: number = 64;
 

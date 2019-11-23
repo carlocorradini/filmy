@@ -1,4 +1,4 @@
-import DateUtil from './DateUtil';
+import DateUtil from '../../src/utils/DateUtil';
 
 describe('Date Util functionality', () => {
   test('It should return a Date type', () => {

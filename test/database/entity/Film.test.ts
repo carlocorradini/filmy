@@ -1,13 +1,13 @@
 import { validate } from 'class-validator';
-import Film from './Film';
-import { StringUtil } from '../../utils';
+import Film from '../../../src/database/entity/Film';
+import { StringUtil } from '../../../src/utils';
 
 const createFilm = (): Film => {
   const film: Film = new Film();
 
   film.title = 'The Great Escape';
   film.rating = 80;
-  film.release_date = new Date('1963-07-04');
+  film.release_date = '1963-07-04';
   film.poster = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/qhy4HgUqhEbwQ1ekKTv7yEB3b0e.jpg';
 
   return film;
@@ -48,7 +48,7 @@ describe('Invalid Film', () => {
   });
   test('It should fail due to invalid release date type', async () => {
     const film = createFilm();
-    film.release_date = new Date('2019-2019-2019');
+    film.release_date = '2019-2019-2019';
     const errors = await validate(film);
     expect(errors.length).toBe(1);
   });
