@@ -23,7 +23,7 @@
     "test": "npx jest",
     "test:staged": "npx jest --bail --findRelatedTests",
     "prestart": "cd build && npm install --production",
-    "start:prod": "node ./build/app.js",
+    "start:prod": "npx cross-env NODE_ENV=\"production\" node ./build/app.js",
     "start:dev": "npx nodemon"
   },
   "author": "Carlo Corradini",
@@ -45,6 +45,7 @@
     "class-validator": "^0.11.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",

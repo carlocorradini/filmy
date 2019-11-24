@@ -1,9 +1,15 @@
+import path from 'path';
 import dotenv from 'dotenv';
 // eslint-disable-next-line no-unused-vars
 import Configuration from './Configuration';
 
 // Load .env file
-dotenv.config();
+dotenv.config({
+  path: path.resolve(
+    path.join(process.cwd(), process.env.NODE_ENV === 'production' ? './build' : ''),
+    '.env'
+  ),
+});
 
 // prettier-ignore
 const config: Configuration = {
