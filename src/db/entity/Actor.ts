@@ -20,41 +20,29 @@ export default class Actor {
   @Index()
   id!: number;
 
-  @Column({ name: 'name', length: 128 })
-  @IsString({ message: '$property must be a string type' })
-  @MinLength(1, {
-    message:
-      '$property is too short. Minimal length is $constraint1 characters, but actual is $value',
-  })
-  @MaxLength(128, {
-    message:
-      '$property is too long. Maximal length is $constraint1 characters, but actual is $value',
-  })
+  @Column({ name: 'name', length: 64 })
+  @IsString()
+  @MinLength(1)
+  @MaxLength(64)
   name!: string;
 
-  @Column({ name: 'surname', length: 128 })
-  @IsString({ message: '$property must be a string type' })
-  @MinLength(1, {
-    message:
-      '$property is too short. Minimal length is $constraint1 characters, but actual is $value',
-  })
-  @MaxLength(128, {
-    message:
-      '$property is too long. Maximal length is $constraint1 characters, but actual is $value',
-  })
+  @Column({ name: 'surname', length: 64 })
+  @IsString()
+  @MinLength(1)
+  @MaxLength(64)
   surname!: string;
 
   @Column({ name: 'gender', type: 'character' })
-  @IsString({ message: '$property must be a String type' })
-  @IsIn(['M', 'F'], { message: "$property must be equals to 'M' or 'F'" })
+  @IsString()
+  @IsIn(['M', 'F'])
   gender!: string;
 
   @Column({ name: 'birth_date', type: 'date' })
-  @IsISO8601({ message: '$property must be a valid Date, but actual is $value' })
+  @IsISO8601()
   birth_date!: string;
 
   @Column({ name: 'death_date', type: 'date', nullable: true })
-  @IsISO8601({ message: '$property must be a valid Date, but actual is $value' })
+  @IsISO8601()
   death_date!: string;
 
   @Column({ name: 'profile', length: 256 })

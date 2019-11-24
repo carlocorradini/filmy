@@ -1,5 +1,5 @@
 import { validate } from 'class-validator';
-import Actor from '../../../src/database/entity/Actor';
+import Actor from '../../../src/db/entity/Actor';
 import { StringUtil } from '../../../src/utils';
 
 const createActor = (): Actor => {

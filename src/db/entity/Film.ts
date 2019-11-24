@@ -22,29 +22,19 @@ export default class Film {
   id!: number;
 
   @Column({ name: 'title', length: 256 })
-  @IsString({ message: '$property must be a string type' })
-  @MinLength(1, {
-    message:
-      '$property is too short. Minimal length is $constraint1 characters, but actual is $value',
-  })
-  @MaxLength(256, {
-    message:
-      '$property is too long. Maximal length is $constraint1 characters, but actual is $value',
-  })
+  @IsString()
+  @MinLength(1)
+  @MaxLength(256)
   title!: string;
 
   @Column({ name: 'rating', type: 'smallint' })
-  @IsInt({ message: '$property must be an int type' })
-  @Min(1, {
-    message: '$property is too low. Minimal rating is $constraint1, but actual is $value',
-  })
-  @Max(100, {
-    message: '$property is too high, Maximal rating is $constraint1, but actual is $value',
-  })
+  @IsInt()
+  @Min(1)
+  @Max(100)
   rating!: number;
 
   @Column({ name: 'release_date', type: 'date' })
-  @IsISO8601({ message: '$property must be a valid Date' })
+  @IsISO8601()
   release_date!: string;
 
   @Column({ name: 'poster', length: 256, unique: true })

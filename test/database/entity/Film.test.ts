@@ -1,5 +1,5 @@
 import { validate } from 'class-validator';
-import Film from '../../../src/database/entity/Film';
+import Film from '../../../src/db/entity/Film';
 import { StringUtil } from '../../../src/utils';
 
 const createFilm = (): Film => {

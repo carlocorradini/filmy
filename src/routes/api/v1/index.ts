@@ -1,3 +1,12 @@
-import v1 from './v1';
+import { Router } from 'express';
+import auth from './auth';
+import film from './film';
+import actor from './actor';
 
-export default v1;
+const router = Router();
+
+router.use('/auth', auth);
+router.use('/film', film);
+router.use('/actor', actor);
+
+export default router;

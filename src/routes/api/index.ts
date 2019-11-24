@@ -1,5 +1,10 @@
-import * as response from './response';
-import api from './api';
+import { Router } from 'express';
+import status from './status';
+import v1 from './v1';
 
-export default api;
-export { response, api };
+const router = Router();
+
+router.use('/status', status);
+router.use('/v1', v1);
+
+export default router;

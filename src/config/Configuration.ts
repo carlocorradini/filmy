@@ -8,4 +8,5 @@ export default interface Config {
   DATABASE_ENTITIES: string;
   DATABASE_MIGRATIONS: string;
   DATABASE_SUBSCRIBERS: string;
+  SECURITY_JWT_KEY: string;
 }
