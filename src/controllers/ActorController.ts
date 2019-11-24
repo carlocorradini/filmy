@@ -55,7 +55,7 @@ export default class ActorController {
       const actor: Actor = await getRepository(Actor).findOneOrFail({ id });
 
       await getRepository(Actor)
-        .delete(actor)
+        .delete({ id: actor.id })
         .then(() => {
           generateResponse(res, StatusCode.ACCEPTED, actor);
         })

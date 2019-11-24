@@ -55,7 +55,7 @@ export default class FilmController {
       const film: Film = await getRepository(Film).findOneOrFail({ id });
 
       await getRepository(Film)
-        .delete(film)
+        .delete({ id: film.id })
         .then(() => {
           generateResponse(res, StatusCode.ACCEPTED, film);
         })

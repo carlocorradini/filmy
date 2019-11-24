@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IsString, MinLength, MaxLength, IsEmail } from 'class-validator';
+import { Exclude } from 'class-transformer';
 
 @Entity('user')
 export default class User {
@@ -42,11 +43,14 @@ export default class User {
   @IsString()
   @MinLength(8) // Real password min length
   @MaxLength(128) // Real password max length
+  @Exclude()
   password!: string;
 
   @CreateDateColumn({ name: 'create_date' })
+  @Exclude()
   create_date!: Date;
 
   @UpdateDateColumn({ name: 'update_date' })
+  @Exclude()
   update_date!: Date;
 }

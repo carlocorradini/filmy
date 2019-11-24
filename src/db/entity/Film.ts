@@ -11,6 +11,7 @@ import {
   Check,
 } from 'typeorm';
 import { MinLength, MaxLength, IsString, IsInt, IsUrl, Min, Max, IsISO8601 } from 'class-validator';
+import { Exclude } from 'class-transformer';
 // eslint-disable-next-line import/no-cycle
 import Actor from './Actor';
 
@@ -42,9 +43,11 @@ export default class Film {
   poster!: string;
 
   @CreateDateColumn({ name: 'create_date' })
+  @Exclude()
   create_date!: Date;
 
   @UpdateDateColumn({ name: 'update_date' })
+  @Exclude()
   update_date!: Date;
 
   @ManyToMany(

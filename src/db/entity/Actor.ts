@@ -9,7 +9,16 @@ import {
   Check,
   ManyToMany,
 } from 'typeorm';
-import { MinLength, MaxLength, IsString, IsUrl, IsIn, IsISO8601 } from 'class-validator';
+import {
+  MinLength,
+  MaxLength,
+  IsString,
+  IsUrl,
+  IsIn,
+  IsISO8601,
+  IsOptional,
+} from 'class-validator';
+import { Exclude } from 'class-transformer';
 // eslint-disable-next-line import/no-cycle
 import Film from './Film';
 
@@ -42,7 +51,8 @@ export default class Actor {
   birth_date!: string;
 
   @Column({ name: 'death_date', type: 'date', nullable: true })
-  @IsISO8601()
+  @IsOptional()
+  @IsISO8601({ always: false })
   death_date!: string;
 
   @Column({ name: 'profile', length: 256 })
@@ -50,9 +60,11 @@ export default class Actor {
   profile!: string;
 
   @CreateDateColumn({ name: 'create_date' })
+  @Exclude()
   create_date!: Date;
 
   @UpdateDateColumn({ name: 'update_date' })
+  @Exclude()
   update_date!: Date;
 
   @ManyToMany(
