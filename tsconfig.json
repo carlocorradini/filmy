@@ -20,7 +20,7 @@
         "paths": {
             "*": [
                 "./node_modules/*"
-            ],
+            ]
         },
         "declaration": false,
         "declarationMap": false,
@@ -35,7 +35,8 @@
     "exclude": [
         "./node_modules",
         "./test",
-        "./**/*.spec.ts",
-        "./**/*.test.ts"
+        "./build",
+        "./src/**/*.spec.ts",
+        "./src/**/*.test.ts"
     ]
 }

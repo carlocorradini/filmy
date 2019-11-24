@@ -2,10 +2,8 @@ import express from 'express';
 import configServer from './configServer';
 
 const createServer = (port: number): Promise<number> => {
-  const app = express();
-
   return new Promise((resolve, reject) => {
-    configServer(app).then(() => {
+    configServer(express()).then((app) => {
       app
         .listen(port, () => {
           resolve(port);

@@ -5,18 +5,22 @@ import compression from 'compression';
 import helmet from 'helmet';
 import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import routes from '../routes';
 
-export default (app: Express): Promise<void> => {
+export default (app: Express): Promise<Express> => {
+  app
+    .enable('trust proxy')
+    .use(cors())
+    .use(compression())
+    .use(helmet())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
+    .use('/static', express.static(path.join(__dirname, '../public')))
+    .use('/', routes);
+
   return new Promise((resolve) => {
-    app
-      .use(compression())
-      .use(helmet())
-      .use(bodyParser.json())
-      .use(bodyParser.urlencoded({ extended: true }))
-      .use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
-      .use('/static', express.static(path.join(__dirname, '../public')))
-      .use('/', routes);
-    resolve();
+    resolve(app);
   });
 };

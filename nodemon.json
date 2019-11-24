@@ -9,9 +9,9 @@
     ".env"
   ],
   "ignore": [
-    "./node_modules/**/node_modules",
-    "*.test.js",
-    "*.test.ts",
-    ".git"
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    ".git",
+    "node_modules"
   ]
 }
