@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository } from 'typeorm';
+import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
 import UserRepository from '../db/repository/UserRepository';
 import User from '../db/entity/User';
 import { StatusCode, generateResponse } from '../response';
@@ -80,8 +80,16 @@ export default class UserController {
           await userRepository.save(user);
           generateResponse(res, StatusCode.OK, user);
         })
-        .catch(() => {
-          generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an User with id ${id}`);
+        .catch((ex) => {
+          if (ex instanceof QueryFailedError) {
+            generateResponse(
+              res,
+              StatusCode.BAD_REQUEST,
+              'Unable to Update due Constraint violation'
+            );
+          } else {
+            generateResponse(res, StatusCode.NOT_FOUND, `Cannot find an User with id ${id}`);
+          }
         });
     } catch (ex) {
       generateResponse(res, StatusCode.BAD_REQUEST, ex);

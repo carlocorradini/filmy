@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository } from 'typeorm';
+import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
 import FilmRepository from '../db/repository/FilmRepository';
 import Film from '../db/entity/Film';
 import { APIUtil } from '../utils';
@@ -81,8 +81,16 @@ export default class FilmController {
           await filmRepository.save(film);
           generateResponse(res, StatusCode.OK, film);
         })
-        .catch(() => {
-          generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
+        .catch((ex) => {
+          if (ex instanceof QueryFailedError) {
+            generateResponse(
+              res,
+              StatusCode.BAD_REQUEST,
+              'Unable to Update due Constraint violation'
+            );
+          } else {
+            generateResponse(res, StatusCode.NOT_FOUND, `Cannot find a Film with id ${id}`);
+          }
         });
     } catch (ex) {
       generateResponse(res, StatusCode.BAD_REQUEST, ex);

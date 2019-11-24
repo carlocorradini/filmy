@@ -11,7 +11,7 @@ interface Payload {
 export default class JWTUtil {
   private static readonly EXPIRES_IN: string = '1h';
 
-  private static validPayload(payload: Payload): boolean {
+  private static isValidPayload(payload: Payload): boolean {
     return (
       typeof payload !== 'undefined' &&
       typeof payload.id !== 'undefined' &&
@@ -41,7 +41,7 @@ export default class JWTUtil {
     return new Promise((resolve, reject) => {
       try {
         const payload = <Payload>jwt.verify(token, config.SECURITY_JWT_KEY);
-        if (!JWTUtil.validPayload(payload)) {
+        if (!JWTUtil.isValidPayload(payload)) {
           reject(new Error('Inalid Payload from token'));
         }
         resolve(payload);
@@ -53,7 +53,7 @@ export default class JWTUtil {
 
   public static generate(payload: Payload): Promise<string> {
     return new Promise((resolve, reject) => {
-      if (!JWTUtil.validPayload(payload)) {
+      if (!JWTUtil.isValidPayload(payload)) {
         reject(new Error('Invalid Payload'));
       }
       resolve(

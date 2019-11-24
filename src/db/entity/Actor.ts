@@ -18,7 +18,6 @@ import {
   IsISO8601,
   IsOptional,
 } from 'class-validator';
-import { Exclude } from 'class-transformer';
 // eslint-disable-next-line import/no-cycle
 import Film from './Film';
 
@@ -46,7 +45,7 @@ export default class Actor {
   @IsIn(['M', 'F'])
   gender!: string;
 
-  @Column({ name: 'birth_date', type: 'date' })
+  @Column({ name: 'birth_date', type: 'date', update: false })
   @IsISO8601()
   birth_date!: string;
 
@@ -59,12 +58,10 @@ export default class Actor {
   @IsUrl()
   profile!: string;
 
-  @CreateDateColumn({ name: 'create_date' })
-  @Exclude()
+  @CreateDateColumn({ name: 'create_date', select: false, update: false })
   create_date!: Date;
 
-  @UpdateDateColumn({ name: 'update_date' })
-  @Exclude()
+  @UpdateDateColumn({ name: 'update_date', select: false })
   update_date!: Date;
 
   @ManyToMany(

@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository } from 'typeorm';
+import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
 import ActorRepository from '../db/repository/ActorRepository';
 import Actor from '../db/entity/Actor';
 import { APIUtil } from '../utils';
@@ -81,8 +81,16 @@ export default class ActorController {
           await actorRepository.save(actor);
           generateResponse(res, StatusCode.OK, actor);
         })
-        .catch(() => {
-          generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
+        .catch((ex) => {
+          if (ex instanceof QueryFailedError) {
+            generateResponse(
+              res,
+              StatusCode.BAD_REQUEST,
+              'Unable to Update due Constraint violation'
+            );
+          } else {
+            generateResponse(res, StatusCode.NOT_FOUND, `Cannot find an Actor with id ${id}`);
+          }
         });
     } catch (ex) {
       generateResponse(res, StatusCode.BAD_REQUEST, ex);

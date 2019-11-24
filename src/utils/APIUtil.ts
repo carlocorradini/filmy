@@ -11,7 +11,7 @@ interface Credentials {
 export default class APIUtil {
   private static readonly ID_DEFAULT_VALUE: number = 0;
 
-  private static validCredentials(credentials: Credentials): boolean {
+  private static isValidCredentials(credentials: Credentials): boolean {
     return (
       typeof credentials !== 'undefined' &&
       typeof credentials.username !== 'undefined' &&
@@ -32,13 +32,16 @@ export default class APIUtil {
     });
   }
 
-  public static pruneValidationError(errors: ValidationError[]): ValidationError[] {
-    return errors.map((error: ValidationError) => {
-      // eslint-disable-next-line no-param-reassign
-      delete error.target;
-      // eslint-disable-next-line no-param-reassign
-      delete error.children;
-      return error;
+  public static ip(req: Request): Promise<string> {
+    const ip: string | undefined = req.headers['x-forwarded-for']
+      ? req.headers['x-forwarded-for'][0]
+      : req.connection.remoteAddress;
+
+    return new Promise((resolve, reject) => {
+      if (!ip) {
+        reject();
+      }
+      resolve(ip);
     });
   }
 
@@ -46,10 +49,20 @@ export default class APIUtil {
     const credentials = <Credentials>req.body;
 
     return new Promise((resolve, reject) => {
-      if (!APIUtil.validCredentials(credentials)) {
+      if (!APIUtil.isValidCredentials(credentials)) {
         reject(new Error('Invalid Credentials'));
       }
       resolve(credentials);
+    });
+  }
+
+  public static pruneValidationError(errors: ValidationError[]): ValidationError[] {
+    return errors.map((error: ValidationError) => {
+      // eslint-disable-next-line no-param-reassign
+      delete error.target;
+      // eslint-disable-next-line no-param-reassign
+      delete error.children;
+      return error;
     });
   }
 }
