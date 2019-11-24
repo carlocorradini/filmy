@@ -1,4 +1,4 @@
-import auth from './auth';
+import AuthMiddleware from './AuthMiddleware';
 
 // eslint-disable-next-line import/prefer-default-export
-export { auth };
+export { AuthMiddleware };

@@ -11,9 +11,9 @@ import { IsString, MinLength, MaxLength, IsEmail } from 'class-validator';
 
 @Entity('user')
 export default class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   @Index()
-  id!: number;
+  id!: string;
 
   @Column({ name: 'name', length: 64 })
   @IsString()
@@ -38,9 +38,10 @@ export default class User {
   @MaxLength(128)
   email!: string;
 
-  @Column({ name: 'password', length: 128 })
+  @Column({ name: 'password', length: 72 })
   @IsString()
-  @MaxLength(128)
+  @MinLength(8) // Real password min length
+  @MaxLength(128) // Real password max length
   password!: string;
 
   @CreateDateColumn({ name: 'create_date' })

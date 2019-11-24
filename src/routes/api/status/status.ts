@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Router, Request, Response } from 'express';
-import { StatusCode } from '../../../utils';
+import { StatusCode } from '../../../response';
 
 const router = Router();
 

@@ -1,9 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
 import { getRepository, getCustomRepository } from 'typeorm';
-import FilmRepository from '../db/entity_repository/FilmRepository';
+import FilmRepository from '../db/repository/FilmRepository';
 import Film from '../db/entity/Film';
-import { APIUtil, StatusCode } from '../utils';
+import { APIUtil } from '../utils';
+import { StatusCode, generateResponse } from '../response';
 
 export default class FilmController {
   public static async getOne(req: Request, res: Response) {
@@ -12,10 +13,10 @@ export default class FilmController {
     getRepository(Film)
       .findOneOrFail({ id }, { relations: ['actors'] })
       .then((film) => {
-        APIUtil.generateResponse(res, StatusCode.OK, film);
+        generateResponse(res, StatusCode.OK, film);
       })
       .catch(() => {
-        APIUtil.generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
+        generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
       });
   }
 
@@ -23,10 +24,10 @@ export default class FilmController {
     getRepository(Film)
       .find({ relations: ['actors'] })
       .then((films) => {
-        APIUtil.generateResponse(res, StatusCode.OK, films);
+        generateResponse(res, StatusCode.OK, films);
       })
       .catch(() => {
-        APIUtil.generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
+        generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
       });
   }
 
@@ -37,13 +38,13 @@ export default class FilmController {
       getRepository(Film)
         .save(film)
         .then((_film) => {
-          APIUtil.generateResponse(res, StatusCode.CREATED, _film);
+          generateResponse(res, StatusCode.CREATED, _film);
         })
         .catch(() => {
-          APIUtil.generateResponse(res, StatusCode.BAD_REQUEST, 'Constraints violation');
+          generateResponse(res, StatusCode.BAD_REQUEST, 'Constraints violation');
         });
     } catch (ex) {
-      APIUtil.generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      generateResponse(res, StatusCode.BAD_REQUEST, ex);
     }
   }
 
@@ -56,13 +57,13 @@ export default class FilmController {
       await getRepository(Film)
         .delete(film)
         .then(() => {
-          APIUtil.generateResponse(res, StatusCode.ACCEPTED, film);
+          generateResponse(res, StatusCode.ACCEPTED, film);
         })
         .catch(() => {
-          APIUtil.generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
+          generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
         });
     } catch (ex) {
-      APIUtil.generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
+      generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
     }
   }
 
@@ -78,17 +79,13 @@ export default class FilmController {
         .then(async (film) => {
           await filmRepository.merge(film, newFilm);
           await filmRepository.save(film);
-          APIUtil.generateResponse(res, StatusCode.OK, film);
+          generateResponse(res, StatusCode.OK, film);
         })
         .catch(() => {
-          APIUtil.generateResponse(
-            res,
-            StatusCode.NOT_FOUND,
-            `Unable to find a Film with id ${id}`
-          );
+          generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
         });
     } catch (ex) {
-      APIUtil.generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      generateResponse(res, StatusCode.BAD_REQUEST, ex);
     }
   }
 }

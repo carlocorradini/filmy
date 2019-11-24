@@ -1,9 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
 import { getRepository, getCustomRepository } from 'typeorm';
-import ActorRepository from '../db/entity_repository/ActorRepository';
+import ActorRepository from '../db/repository/ActorRepository';
 import Actor from '../db/entity/Actor';
-import { APIUtil, StatusCode } from '../utils';
+import { APIUtil } from '../utils';
+import { StatusCode, generateResponse } from '../response';
 
 export default class ActorController {
   public static async getOne(req: Request, res: Response) {
@@ -12,14 +13,10 @@ export default class ActorController {
     getRepository(Actor)
       .findOneOrFail({ id }, { relations: ['films'] })
       .then((actor) => {
-        APIUtil.generateResponse(res, StatusCode.OK, actor);
+        generateResponse(res, StatusCode.OK, actor);
       })
       .catch(() => {
-        APIUtil.generateResponse(
-          res,
-          StatusCode.NOT_FOUND,
-          `Unable to find an Actor with id ${id}`
-        );
+        generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
       });
   }
 
@@ -27,10 +24,10 @@ export default class ActorController {
     getRepository(Actor)
       .find({ relations: ['films'] })
       .then((actors) => {
-        APIUtil.generateResponse(res, StatusCode.OK, actors);
+        generateResponse(res, StatusCode.OK, actors);
       })
       .catch(() => {
-        APIUtil.generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
+        generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
       });
   }
 
@@ -41,13 +38,13 @@ export default class ActorController {
       getRepository(Actor)
         .save(actor)
         .then((_actor) => {
-          APIUtil.generateResponse(res, StatusCode.CREATED, _actor);
+          generateResponse(res, StatusCode.CREATED, _actor);
         })
         .catch(() => {
-          APIUtil.generateResponse(res, StatusCode.BAD_REQUEST, 'Constraints violation');
+          generateResponse(res, StatusCode.BAD_REQUEST, 'Constraints violation');
         });
     } catch (ex) {
-      APIUtil.generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      generateResponse(res, StatusCode.BAD_REQUEST, ex);
     }
   }
 
@@ -60,13 +57,13 @@ export default class ActorController {
       await getRepository(Actor)
         .delete(actor)
         .then(() => {
-          APIUtil.generateResponse(res, StatusCode.ACCEPTED, actor);
+          generateResponse(res, StatusCode.ACCEPTED, actor);
         })
         .catch(() => {
-          APIUtil.generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
+          generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
         });
     } catch (ex) {
-      APIUtil.generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
+      generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
     }
   }
 
@@ -82,17 +79,13 @@ export default class ActorController {
         .then(async (actor) => {
           await actorRepository.merge(actor, newActor);
           await actorRepository.save(actor);
-          APIUtil.generateResponse(res, StatusCode.OK, actor);
+          generateResponse(res, StatusCode.OK, actor);
         })
         .catch(() => {
-          APIUtil.generateResponse(
-            res,
-            StatusCode.NOT_FOUND,
-            `Unable to find an Actor with id ${id}`
-          );
+          generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
         });
     } catch (ex) {
-      APIUtil.generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      generateResponse(res, StatusCode.BAD_REQUEST, ex);
     }
   }
 }
