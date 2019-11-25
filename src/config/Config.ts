@@ -19,9 +19,9 @@ const config: Configuration = {
   DATABASE_URL: process.env.DATABASE_URL || 'postgres://username:password@localhost:5432/filmy',
   DATABASE_SSL: process.env.DATABASE_SSL ? process.env.DATABASE_SSL === 'true' : true,
   DATABASE_SYNCHRONIZE: process.env.DATABASE_SYNCHRONIZE ? process.env.DATABASE_SYNCHRONIZE === 'true' : true,
-  DATABASE_ENTITIES: process.env.DATABASE_ENTITIES || './db/entity/**/*.js',
-  DATABASE_MIGRATIONS: process.env.DATABASE_MIGRATIONS || './db/migration/**/*.js',
-  DATABASE_SUBSCRIBERS: process.env.DATABASE_SUBSCRIBERS || './db/subscriber/**/*.js',
+  DATABASE_ENTITIES: process.env.DATABASE_ENTITIES || `./db/entity/**/*.${process.env.NODE_ENV === 'production' ? 'js' : 'ts'}`,
+  DATABASE_MIGRATIONS: process.env.DATABASE_MIGRATIONS || `./db/migration/**/*.${process.env.NODE_ENV === 'production' ? 'js' : 'ts'}`,
+  DATABASE_SUBSCRIBERS: process.env.DATABASE_SUBSCRIBERS || `/./db/subscriber/**/*.${process.env.NODE_ENV === 'production' ? 'js' : 'ts'}`,
   SECURITY_JWT_KEY: process.env.SECURITY_JWT_KEY || '`2:<W_+3TJ-6ahMtv7LfgXc"XKxW4"Q&',
 };
 

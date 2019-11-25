@@ -3,7 +3,7 @@ import shell from 'shelljs';
 
 const BUILD_FOLDER = './build/';
 
-const FOLDERS = new Set(['./src/public']);
+const FOLDERS = new Set(['./src/public', './src/docs']);
 const FILES = new Set(['LICENSE', 'README.md', 'package.json', 'package-lock.json']);
 
 // Copy Folders
