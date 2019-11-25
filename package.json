@@ -53,9 +53,11 @@
     "pg": "^7.14.0",
     "reflect-metadata": "^0.1.13",
     "serve-favicon": "^2.5.0",
+    "swagger-ui-express": "^4.1.2",
     "typeorm": "^0.2.20",
     "winston": "^3.2.1",
-    "winston-daily-rotate-file": "^4.3.0"
+    "winston-daily-rotate-file": "^4.3.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -68,6 +70,8 @@
     "@types/node": "^12.12.11",
     "@types/serve-favicon": "^2.2.31",
     "@types/shelljs": "^0.8.6",
+    "@types/swagger-ui-express": "^4.1.0",
+    "@types/yamljs": "^0.2.30",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "eslint": "^6.6.0",

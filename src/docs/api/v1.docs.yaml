@@ -1,0 +1,54 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: Descrizione API
+  version: '1.0.0'
+  title: Filmy
+  contact:
+    email: carlo.corradini@studenti.unitn.it
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+tags:
+  - name: api_gateway
+    description: Gets the http or connection string
+paths:
+  /gateway:
+    get:
+      tags:
+        - api_gateway
+      summary: gets the api http or db connection
+      operationId: Fetch
+      description: |
+        gets the api http or db connection string using the passed in enum
+      parameters:
+        - in: query
+          name: apiType
+          description: pass an enum for the type of gateway request
+          required: true
+          schema:
+            $ref: '#/components/schemas/ApiType'
+      responses:
+        '200':
+          description: string containing api http or db conn
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: bad input parameter
+components:
+  schemas:
+    ApiType:
+      type: string
+      enum:
+        - DbProd
+        - DbQa
+        - DbDev
+        - Status1
+        - Status2
+    ApiResponse:
+      type: object
+      properties:
+        RequestItem:
+          type: string

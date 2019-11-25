@@ -2,6 +2,7 @@
 import { ValidationError } from 'class-validator';
 // eslint-disable-next-line no-unused-vars
 import { Request } from 'express';
+import { InvalidIdError, InvalidCredentialsError } from './errors';
 
 interface Credentials {
   username: string;
@@ -25,8 +26,8 @@ export default class APIUtil {
     const idParsed = parseInt(id, 10) || APIUtil.ID_DEFAULT_VALUE;
 
     return new Promise((resolve, reject) => {
-      if (strict && idParsed === APIUtil.ID_DEFAULT_VALUE) {
-        reject(new Error(`${id} is not a valid identifier`));
+      if ((strict && idParsed === APIUtil.ID_DEFAULT_VALUE) || idParsed < 0) {
+        reject(new InvalidIdError(`${id} is not a valid identifier`));
       }
       resolve(idParsed);
     });
@@ -50,7 +51,7 @@ export default class APIUtil {
 
     return new Promise((resolve, reject) => {
       if (!APIUtil.isValidCredentials(credentials)) {
-        reject(new Error('Invalid Credentials'));
+        reject(new InvalidCredentialsError('Invalid Credentials received from Request'));
       }
       resolve(credentials);
     });

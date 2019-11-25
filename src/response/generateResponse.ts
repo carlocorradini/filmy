@@ -22,5 +22,7 @@ export default (res: Response, statusCode: StatusCode, data?: any) => {
     })
     .end();
 
+  // eslint-disable-next-line no-param-reassign
+  if (!data) data = '?';
   logger.debug(`Sending Response data: ${data instanceof Object ? JSON.stringify(data) : data}`);
 };
