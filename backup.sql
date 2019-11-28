@@ -57,10 +57,7 @@ INSERT INTO public.film_actor (film_id, actor_id) VALUES (11, 19);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (11, 20);
 
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('4c4d470d-59e6-4504-86bd-1623019b511b', 'Ayoub', 'Saghir', 'ayoubsaghir', 'ayoub.saghir@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
-INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('b518546a-dc13-4919-aa22-897985833005', 'Luca', 'Santoro
-', 'lucasantoro
-', 'luca.santoro-1@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
-INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('986239ce-540b-4def-a250-56e2f412a4aa', 'Carlo', 'Corradini
-', 'carlocorradini', 'carlo.corradini@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
+INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('b518546a-dc13-4919-aa22-897985833005', 'Luca', 'Santoro', 'lucasantoro', 'luca.santoro-1@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
+INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('986239ce-540b-4def-a250-56e2f412a4aa', 'Carlo', 'Corradini', 'carlocorradini', 'carlo.corradini@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('3e001f4e-9d95-4641-ae18-478a27708128', 'Miraxh', 'Tereziu', 'miraxhtereziu', 'miraxh.tereziu@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('8b975e22-2873-4168-868c-bd2cd4118630', 'Grigore', 'Andronic', 'grigoreandronic', 'grigore.andronic@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
