@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
 import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
+import { validateOrReject } from 'class-validator';
 import FilmRepository from '../db/repository/FilmRepository';
 import Film from '../db/entity/Film';
 import { APIUtil } from '../utils';
@@ -71,27 +72,35 @@ export default class FilmController {
     const id = await APIUtil.id(req.params.id);
     const filmRepository = await getRepository(Film);
     const newFilm: Film = await getCustomRepository(FilmRepository).createFromBody(req.body);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.UNKNOWN_ERROR,
+      data: '',
+    };
 
-    filmRepository
-      .findOneOrFail({ id })
-      .then(async (film) => {
-        await filmRepository.merge(film, newFilm);
-        await getCustomRepository(FilmRepository).validate(film);
-        await filmRepository.save(film);
-        generateResponse(res, StatusCode.OK, film);
-      })
-      .catch((ex) => {
-        if (ex instanceof QueryFailedError) {
-          generateResponse(
-            res,
-            StatusCode.BAD_REQUEST,
-            'Unable to Update due Constraint violation'
-          );
-        } else {
-          console.log(ex);
-          generateResponse(res, StatusCode.BAD_REQUEST, ex.err.toString());
-          // generateResponse(res, StatusCode.NOT_FOUND, `Cannot find a Film with id ${id}`);
-        }
+    try {
+      const film: Film = await filmRepository.findOneOrFail({ id });
+      await filmRepository.merge(film, newFilm);
+      await validateOrReject(film, {
+        forbidUnknownValues: true,
+        validationError: {
+          target: false,
+        },
       });
+      await filmRepository.save(film);
+      response = { statusCode: StatusCode.OK, data: film };
+    } catch (ex) {
+      if (ex instanceof Error && ex.name === 'EntityNotFound') {
+        response = { statusCode: StatusCode.NOT_FOUND, data: `Cannot find a Film with id ${id}` };
+      } else if (Array.isArray(ex)) {
+        response = { statusCode: StatusCode.BAD_REQUEST, data: ex };
+      } else if (ex instanceof QueryFailedError) {
+        response = {
+          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+          data: ex.message,
+        };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
+    }
   }
 }

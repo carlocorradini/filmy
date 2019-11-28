@@ -2,8 +2,6 @@
 import { Dictionary } from 'express-serve-static-core';
 import { Repository, EntityRepository } from 'typeorm';
 import { validate } from 'class-validator';
-import { APIUtil } from '../../utils';
-import { ValidationError } from './errors';
 import Film from '../entity/Film';
 import Actor from '../entity/Actor';
 
@@ -28,23 +26,15 @@ export default class FilmRepository extends Repository<Film> {
   async createFromBodyOrFail(body: Dictionary<string>): Promise<Film> {
     const film: Film = await this.createFromBody(body);
 
-    const errors = await validate(film);
-    return new Promise((resolve, reject) => {
-      if (errors.length > 0) {
-        reject(APIUtil.pruneValidationError(errors));
-      } else {
-        resolve(film);
-      }
+    const errors = await validate(film, {
+      forbidUnknownValues: true,
+      validationError: {
+        target: false,
+      },
     });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  async validate(film: Film): Promise<Film> {
-    const errors = await validate(film);
-
     return new Promise((resolve, reject) => {
       if (errors.length > 0) {
-        reject(new ValidationError('', APIUtil.pruneValidationError(errors)));
+        reject(errors);
       } else {
         resolve(film);
       }
