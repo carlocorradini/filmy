@@ -9,7 +9,7 @@ import logger from '../logger';
 export default class AuthController {
   public static async signIn(req: Request, res: Response) {
     let response: { statusCode: StatusCode; data: any } = {
-      statusCode: StatusCode.UNKNOWN_ERROR,
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
       data: '',
     };
 
