@@ -10,7 +10,28 @@ export default class FilmRepository extends Repository<User> {
   async createFromBody(body: Dictionary<string>): Promise<User> {
     const user: User = this.create(body);
 
+    return new Promise((resolve) => {
+      resolve(user);
+    });
+  }
+
+  async createFromBodyOrFail(body: Dictionary<string>): Promise<User> {
+    const user: User = await this.createFromBody(body);
+
     const errors = await validate(user);
+    return new Promise((resolve, reject) => {
+      if (errors.length > 0) {
+        reject(APIUtil.pruneValidationError(errors));
+      } else {
+        resolve(user);
+      }
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async validate(user: User): Promise<User> {
+    const errors = await validate(user);
+
     return new Promise((resolve, reject) => {
       if (errors.length > 0) {
         reject(APIUtil.pruneValidationError(errors));

@@ -19,7 +19,28 @@ export default class FilmRepository extends Repository<Actor> {
       });
     }
 
+    return new Promise((resolve) => {
+      resolve(actor);
+    });
+  }
+
+  async createFromBodyOrFail(body: Dictionary<string>): Promise<Actor> {
+    const actor: Actor = await this.createFromBody(body);
+
     const errors = await validate(actor);
+    return new Promise((resolve, reject) => {
+      if (errors.length > 0) {
+        reject(APIUtil.pruneValidationError(errors));
+      } else {
+        resolve(actor);
+      }
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async validate(actor: Actor): Promise<Actor> {
+    const errors = await validate(actor);
+
     return new Promise((resolve, reject) => {
       if (errors.length > 0) {
         reject(APIUtil.pruneValidationError(errors));

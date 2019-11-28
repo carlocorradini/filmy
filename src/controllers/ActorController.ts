@@ -33,7 +33,9 @@ export default class ActorController {
 
   public static async add(req: Request, res: Response) {
     try {
-      const actor: Actor = await getCustomRepository(ActorRepository).createFromBody(req.body);
+      const actor: Actor = await getCustomRepository(ActorRepository).createFromBodyOrFail(
+        req.body
+      );
 
       getRepository(Actor)
         .save(actor)

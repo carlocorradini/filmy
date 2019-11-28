@@ -32,7 +32,7 @@ export default class UserController {
 
   public static async add(req: Request, res: Response) {
     try {
-      const user: User = await getCustomRepository(UserRepository).createFromBody(req.body);
+      const user: User = await getCustomRepository(UserRepository).createFromBodyOrFail(req.body);
 
       getRepository(User)
         .save(user)

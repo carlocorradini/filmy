@@ -33,7 +33,7 @@ export default class FilmController {
 
   public static async add(req: Request, res: Response) {
     try {
-      const film: Film = await getCustomRepository(FilmRepository).createFromBody(req.body);
+      const film: Film = await getCustomRepository(FilmRepository).createFromBodyOrFail(req.body);
 
       getRepository(Film)
         .save(film)
@@ -70,30 +70,28 @@ export default class FilmController {
   public static async update(req: Request, res: Response) {
     const id = await APIUtil.id(req.params.id);
     const filmRepository = await getRepository(Film);
+    const newFilm: Film = await getCustomRepository(FilmRepository).createFromBody(req.body);
 
-    try {
-      const newFilm: Film = await getCustomRepository(FilmRepository).createFromBody(req.body);
-
-      filmRepository
-        .findOneOrFail({ id })
-        .then(async (film) => {
-          await filmRepository.merge(film, newFilm);
-          await filmRepository.save(film);
-          generateResponse(res, StatusCode.OK, film);
-        })
-        .catch((ex) => {
-          if (ex instanceof QueryFailedError) {
-            generateResponse(
-              res,
-              StatusCode.BAD_REQUEST,
-              'Unable to Update due Constraint violation'
-            );
-          } else {
-            generateResponse(res, StatusCode.NOT_FOUND, `Cannot find a Film with id ${id}`);
-          }
-        });
-    } catch (ex) {
-      generateResponse(res, StatusCode.BAD_REQUEST, ex);
-    }
+    filmRepository
+      .findOneOrFail({ id })
+      .then(async (film) => {
+        await filmRepository.merge(film, newFilm);
+        await getCustomRepository(FilmRepository).validate(film);
+        await filmRepository.save(film);
+        generateResponse(res, StatusCode.OK, film);
+      })
+      .catch((ex) => {
+        if (ex instanceof QueryFailedError) {
+          generateResponse(
+            res,
+            StatusCode.BAD_REQUEST,
+            'Unable to Update due Constraint violation'
+          );
+        } else {
+          console.log(ex);
+          generateResponse(res, StatusCode.BAD_REQUEST, ex.err.toString());
+          // generateResponse(res, StatusCode.NOT_FOUND, `Cannot find a Film with id ${id}`);
+        }
+      });
   }
 }
