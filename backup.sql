@@ -1,5 +1,4 @@
 
-
 INSERT INTO public.actor (id, name, surname, gender, birth_date, death_date, profile, create_date, update_date) VALUES (1, 'Tom', 'Holland', 'M', '1996-06-01', NULL, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/ip7aXVH8s6wXv8cY6KI14OZgCI8.jpg', '2019-11-27 14:46:03.931009', '2019-11-27 14:46:03.931009');
 INSERT INTO public.actor (id, name, surname, gender, birth_date, death_date, profile, create_date, update_date) VALUES (2, 'Jake', 'Gyllenhaal', 'M', '1980-12-19', NULL, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/92sBuFC8tWPG7IqGDJNxysT7tIF.jpg', '2019-11-27 14:47:34.340676', '2019-11-27 14:47:34.340676');
 INSERT INTO public.actor (id, name, surname, gender, birth_date, death_date, profile, create_date, update_date) VALUES (3, 'Kristen', 'Bell', 'F', '1980-07-18', NULL, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/9DoDVUkoXhT3O2R1RymPlOfUryl.jpg', '2019-11-27 14:52:04.99165', '2019-11-27 14:52:04.99165');
@@ -21,8 +20,6 @@ INSERT INTO public.actor (id, name, surname, gender, birth_date, death_date, pro
 INSERT INTO public.actor (id, name, surname, gender, birth_date, death_date, profile, create_date, update_date) VALUES (19, 'Jared', 'Leto', 'M', '1971-12-26', NULL, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/i6zIpHiKBnaHtacJU6qgeoDjiw1.jpg', '2019-11-27 15:27:20.386071', '2019-11-27 15:27:20.386071');
 INSERT INTO public.actor (id, name, surname, gender, birth_date, death_date, profile, create_date, update_date) VALUES (20, 'Diane', 'Kruger', 'F', '1976-07-15', NULL, 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/cCVutSrGZg9kW2ux4hhvmm71ECJ.jpg', '2019-11-27 15:30:01.684989', '2019-11-27 15:30:01.684989');
 
-
-
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (1, 'Spider-Man: Far from Home', 76, '2019-06-26', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/lcq8dVxeeOqHvvgcte707K0KVx5.jpg', '2019-11-27 14:43:59.609442', '2019-11-27 14:43:59.609442');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (2, 'Frozen II', 70, '2019-11-07', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/qdfARIhgpgZOBh3vfNhWS4hmSo3.jpg', '2019-11-27 14:50:24.043626', '2019-11-27 14:50:24.043626');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (3, 'Joker', 84, '2019-10-04', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg', '2019-11-27 14:53:41.03669', '2019-11-27 14:53:41.03669');
@@ -34,8 +31,6 @@ INSERT INTO public.film (id, title, rating, release_date, poster, create_date, u
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (9, 'Limitless', 72, '2011-03-08', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/bQfOFEeXxi51ijQrbQY9qvMtYhZ.jpg', '2019-11-27 15:20:26.138413', '2019-11-27 15:20:26.138413');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (10, 'Suicide Squad ', 59, '2016-08-01', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg', '2019-11-27 15:24:15.29219', '2019-11-27 15:24:15.29219');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (11, 'Mr. Nobody', 79, '2011-12-20', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/jxd2XSsnUHHUbo50nzVnVnHRPVJ.jpg', '2019-11-27 15:28:58.965058', '2019-11-27 15:28:58.965058');
-
-
 
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (1, 1);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (1, 2);
@@ -61,8 +56,6 @@ INSERT INTO public.film_actor (film_id, actor_id) VALUES (10, 19);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (11, 19);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (11, 20);
 
-
-
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('4c4d470d-59e6-4504-86bd-1623019b511b', 'Ayoub', 'Saghir', 'ayoubsaghir', 'ayoub.saghir@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('b518546a-dc13-4919-aa22-897985833005', 'Luca', 'Santoro
 ', 'lucasantoro
@@ -71,5 +64,3 @@ INSERT INTO public."user" (id, name, surname, username, email, password, create_
 ', 'carlocorradini', 'carlo.corradini@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('3e001f4e-9d95-4641-ae18-478a27708128', 'Miraxh', 'Tereziu', 'miraxhtereziu', 'miraxh.tereziu@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('8b975e22-2873-4168-868c-bd2cd4118630', 'Grigore', 'Andronic', 'grigoreandronic', 'grigore.andronic@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
-
-
