@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
 import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
+import { validateOrReject } from 'class-validator';
 import ActorRepository from '../db/repository/ActorRepository';
 import Actor from '../db/entity/Actor';
 import { APIUtil } from '../utils';
@@ -33,7 +34,9 @@ export default class ActorController {
 
   public static async add(req: Request, res: Response) {
     try {
-      const actor: Actor = await getCustomRepository(ActorRepository).createFromBody(req.body);
+      const actor: Actor = await getCustomRepository(ActorRepository).createFromBodyOrFail(
+        req.body
+      );
 
       getRepository(Actor)
         .save(actor)
@@ -70,30 +73,36 @@ export default class ActorController {
   public static async update(req: Request, res: Response) {
     const id = await APIUtil.id(req.params.id);
     const actorRepository = await getRepository(Actor);
+    const newActor: Actor = await getCustomRepository(ActorRepository).createFromBody(req.body);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.UNKNOWN_ERROR,
+      data: '',
+    };
 
     try {
-      const newActor: Actor = await getCustomRepository(ActorRepository).createFromBody(req.body);
-
-      actorRepository
-        .findOneOrFail({ id })
-        .then(async (actor) => {
-          await actorRepository.merge(actor, newActor);
-          await actorRepository.save(actor);
-          generateResponse(res, StatusCode.OK, actor);
-        })
-        .catch((ex) => {
-          if (ex instanceof QueryFailedError) {
-            generateResponse(
-              res,
-              StatusCode.BAD_REQUEST,
-              'Unable to Update due Constraint violation'
-            );
-          } else {
-            generateResponse(res, StatusCode.NOT_FOUND, `Cannot find an Actor with id ${id}`);
-          }
-        });
+      const actor: Actor = await actorRepository.findOneOrFail({ id });
+      await actorRepository.merge(actor, newActor);
+      await validateOrReject(actor, {
+        forbidUnknownValues: true,
+        validationError: {
+          target: false,
+        },
+      });
+      await actorRepository.save(actor);
+      response = { statusCode: StatusCode.OK, data: actor };
     } catch (ex) {
-      generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      if (ex instanceof Error && ex.name === 'EntityNotFound') {
+        response = { statusCode: StatusCode.NOT_FOUND, data: `Cannot find an Actor with id ${id}` };
+      } else if (Array.isArray(ex)) {
+        response = { statusCode: StatusCode.BAD_REQUEST, data: ex };
+      } else if (ex instanceof QueryFailedError) {
+        response = {
+          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+          data: ex.message,
+        };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
     }
   }
 }

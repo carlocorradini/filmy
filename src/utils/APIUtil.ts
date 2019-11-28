@@ -1,6 +1,4 @@
 // eslint-disable-next-line no-unused-vars
-import { ValidationError } from 'class-validator';
-// eslint-disable-next-line no-unused-vars
 import { Request } from 'express';
 import { InvalidIdError, InvalidCredentialsError } from './errors';
 
@@ -54,16 +52,6 @@ export default class APIUtil {
         reject(new InvalidCredentialsError('Invalid Credentials received from Request'));
       }
       resolve(credentials);
-    });
-  }
-
-  public static pruneValidationError(errors: ValidationError[]): ValidationError[] {
-    return errors.map((error: ValidationError) => {
-      // eslint-disable-next-line no-param-reassign
-      delete error.target;
-      // eslint-disable-next-line no-param-reassign
-      delete error.children;
-      return error;
     });
   }
 }
