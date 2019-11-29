@@ -14,11 +14,11 @@ export default (res: Response, statusCode: StatusCode, data?: any) => {
   res
     .status(statusCode)
     .json({
-      success: statusCode === StatusCode.OK,
+      success: statusCode < StatusCode.BAD_REQUEST,
       status_code: statusCode,
       status_message: StatusMessage[statusCode],
-      ...(statusCode < 400 && { data }),
-      ...(statusCode >= 400 && { error_message: data }),
+      ...(statusCode < StatusCode.BAD_REQUEST && { data }),
+      ...(statusCode >= StatusCode.BAD_REQUEST && { error_message: data }),
     })
     .end();
 
