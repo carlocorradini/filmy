@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
 import { validateOrReject } from 'class-validator';
+import { InvalidParamError } from '../utils/errors';
 import ActorRepository from '../db/repository/ActorRepository';
 import Actor from '../db/entity/Actor';
 import { APIUtil } from '../utils';
@@ -9,27 +10,60 @@ import { StatusCode, generateResponse } from '../response';
 
 export default class ActorController {
   public static async getOne(req: Request, res: Response) {
-    const id = await APIUtil.id(req.params.id);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
 
-    getRepository(Actor)
-      .findOneOrFail({ id }, { relations: ['films'] })
-      .then((actor) => {
-        generateResponse(res, StatusCode.OK, actor);
-      })
-      .catch(() => {
-        generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
-      });
+    try {
+      const id = await APIUtil.id(req.params.id);
+      const actor: Actor = await getRepository(Actor).findOneOrFail(
+        { id },
+        { loadRelationIds: true }
+      );
+
+      response = { statusCode: StatusCode.OK, data: actor };
+    } catch (ex) {
+      if (ex instanceof InvalidParamError) {
+        response = { statusCode: StatusCode.BAD_REQUEST, data: ex.message };
+      } else if (ex instanceof Error && ex.name === 'EntityNotFound') {
+        response = {
+          statusCode: StatusCode.NOT_FOUND,
+          data: `Cannot find an Actor with the specified identifier`,
+        };
+      } else if (ex instanceof QueryFailedError) {
+        response = { statusCode: StatusCode.INTERNAL_SERVER_ERROR, data: ex.message };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
+    }
   }
 
   public static async getAll(req: Request, res: Response) {
-    getRepository(Actor)
-      .find({ relations: ['films'] })
-      .then((actors) => {
-        generateResponse(res, StatusCode.OK, actors);
-      })
-      .catch(() => {
-        generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
+
+    try {
+      const limit = await APIUtil.limit(req.query.limit);
+      const offset = await APIUtil.offset(req.query.offset);
+      const actors: Actor[] = await getRepository(Actor).find({
+        take: limit,
+        skip: offset,
+        loadRelationIds: true,
       });
+
+      response = { statusCode: StatusCode.OK, data: actors };
+    } catch (ex) {
+      if (ex instanceof InvalidParamError) {
+        response = { statusCode: StatusCode.BAD_REQUEST, data: ex.message };
+      } else if (ex instanceof QueryFailedError) {
+        response = { statusCode: StatusCode.INTERNAL_SERVER_ERROR, data: ex.message };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
+    }
   }
 
   public static async add(req: Request, res: Response) {
@@ -41,18 +75,13 @@ export default class ActorController {
     try {
       let actor: Actor = await getCustomRepository(ActorRepository).createFromBodyOrFail(req.body);
       actor = await getRepository(Actor).save(actor);
-      response = {
-        statusCode: StatusCode.CREATED,
-        data: actor,
-      };
+
+      response = { statusCode: StatusCode.CREATED, data: actor };
     } catch (ex) {
       if (Array.isArray(ex)) {
         response = { statusCode: StatusCode.BAD_REQUEST, data: ex };
       } else if (ex instanceof QueryFailedError) {
-        response = {
-          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
-          data: ex.message,
-        };
+        response = { statusCode: StatusCode.INTERNAL_SERVER_ERROR, data: ex.message };
       }
     } finally {
       generateResponse(res, response.statusCode, response.data);
@@ -70,18 +99,13 @@ export default class ActorController {
     try {
       const actor: Actor = await actorRepository.findOneOrFail({ id });
       await actorRepository.delete({ id: actor.id });
-      response = {
-        statusCode: StatusCode.ACCEPTED,
-        data: actor,
-      };
+
+      response = { statusCode: StatusCode.ACCEPTED, data: actor };
     } catch (ex) {
       if (ex instanceof Error && ex.name === 'EntityNotFound') {
         response = { statusCode: StatusCode.NOT_FOUND, data: `Cannot find an Actor with id ${id}` };
       } else if (ex instanceof QueryFailedError) {
-        response = {
-          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
-          data: ex.message,
-        };
+        response = { statusCode: StatusCode.INTERNAL_SERVER_ERROR, data: ex.message };
       }
     } finally {
       generateResponse(res, response.statusCode, response.data);
@@ -107,6 +131,7 @@ export default class ActorController {
         },
       });
       await actorRepository.save(actor);
+
       response = { statusCode: StatusCode.OK, data: actor };
     } catch (ex) {
       if (ex instanceof Error && ex.name === 'EntityNotFound') {
@@ -114,10 +139,7 @@ export default class ActorController {
       } else if (Array.isArray(ex)) {
         response = { statusCode: StatusCode.BAD_REQUEST, data: ex };
       } else if (ex instanceof QueryFailedError) {
-        response = {
-          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
-          data: ex.message,
-        };
+        response = { statusCode: StatusCode.INTERNAL_SERVER_ERROR, data: ex.message };
       }
     } finally {
       generateResponse(res, response.statusCode, response.data);
