@@ -1,12 +1,12 @@
 import DocsNotFoundError from './DocsNotFoundError';
-import InvalidIdError from './InvalidIdError';
+import InvalidParamError from './InvalidParamError';
 import InvalidCredentialsError from './InvalidCredentialsError';
 import JWTNotFoundError from './JWTNotFoundError';
 import JWTInvalidPayloadError from './JWTInvalidPayloadError';
 
 export {
   DocsNotFoundError,
-  InvalidIdError,
+  InvalidParamError,
   InvalidCredentialsError,
   JWTNotFoundError,
   JWTInvalidPayloadError,
