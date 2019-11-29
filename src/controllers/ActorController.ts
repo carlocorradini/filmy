@@ -33,40 +33,58 @@ export default class ActorController {
   }
 
   public static async add(req: Request, res: Response) {
-    try {
-      const actor: Actor = await getCustomRepository(ActorRepository).createFromBodyOrFail(
-        req.body
-      );
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
 
-      getRepository(Actor)
-        .save(actor)
-        .then((_actor) => {
-          generateResponse(res, StatusCode.CREATED, _actor);
-        })
-        .catch(() => {
-          generateResponse(res, StatusCode.BAD_REQUEST, 'Constraints violation');
-        });
+    try {
+      let actor: Actor = await getCustomRepository(ActorRepository).createFromBodyOrFail(req.body);
+      actor = await getRepository(Actor).save(actor);
+      response = {
+        statusCode: StatusCode.CREATED,
+        data: actor,
+      };
     } catch (ex) {
-      generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      if (Array.isArray(ex)) {
+        response = { statusCode: StatusCode.BAD_REQUEST, data: ex };
+      } else if (ex instanceof QueryFailedError) {
+        response = {
+          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+          data: ex.message,
+        };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
     }
   }
 
   public static async delete(req: Request, res: Response) {
     const id = await APIUtil.id(req.params.id);
+    const actorRepository = await getRepository(Actor);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
 
     try {
-      const actor: Actor = await getRepository(Actor).findOneOrFail({ id });
-
-      await getRepository(Actor)
-        .delete({ id: actor.id })
-        .then(() => {
-          generateResponse(res, StatusCode.ACCEPTED, actor);
-        })
-        .catch(() => {
-          generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
-        });
+      const actor: Actor = await actorRepository.findOneOrFail({ id });
+      await actorRepository.delete({ id: actor.id });
+      response = {
+        statusCode: StatusCode.ACCEPTED,
+        data: actor,
+      };
     } catch (ex) {
-      generateResponse(res, StatusCode.NOT_FOUND, `Unable to find an Actor with id ${id}`);
+      if (ex instanceof Error && ex.name === 'EntityNotFound') {
+        response = { statusCode: StatusCode.NOT_FOUND, data: `Cannot find an Actor with id ${id}` };
+      } else if (ex instanceof QueryFailedError) {
+        response = {
+          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+          data: ex.message,
+        };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
     }
   }
 
@@ -75,7 +93,7 @@ export default class ActorController {
     const actorRepository = await getRepository(Actor);
     const newActor: Actor = await getCustomRepository(ActorRepository).createFromBody(req.body);
     let response: { statusCode: StatusCode; data: any } = {
-      statusCode: StatusCode.UNKNOWN_ERROR,
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
       data: '',
     };
 

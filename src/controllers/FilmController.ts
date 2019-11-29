@@ -33,38 +33,58 @@ export default class FilmController {
   }
 
   public static async add(req: Request, res: Response) {
-    try {
-      const film: Film = await getCustomRepository(FilmRepository).createFromBodyOrFail(req.body);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
 
-      getRepository(Film)
-        .save(film)
-        .then((_film) => {
-          generateResponse(res, StatusCode.CREATED, _film);
-        })
-        .catch(() => {
-          generateResponse(res, StatusCode.BAD_REQUEST, 'Constraints violation');
-        });
+    try {
+      let film: Film = await getCustomRepository(FilmRepository).createFromBodyOrFail(req.body);
+      film = await getRepository(Film).save(film);
+      response = {
+        statusCode: StatusCode.CREATED,
+        data: film,
+      };
     } catch (ex) {
-      generateResponse(res, StatusCode.BAD_REQUEST, ex);
+      if (Array.isArray(ex)) {
+        response = { statusCode: StatusCode.BAD_REQUEST, data: ex };
+      } else if (ex instanceof QueryFailedError) {
+        response = {
+          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+          data: ex.message,
+        };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
     }
   }
 
   public static async delete(req: Request, res: Response) {
     const id = await APIUtil.id(req.params.id);
+    const filmRepository = await getRepository(Film);
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
 
     try {
-      const film: Film = await getRepository(Film).findOneOrFail({ id });
-
-      await getRepository(Film)
-        .delete({ id: film.id })
-        .then(() => {
-          generateResponse(res, StatusCode.ACCEPTED, film);
-        })
-        .catch(() => {
-          generateResponse(res, StatusCode.INTERNAL_SERVER_ERROR);
-        });
+      const film: Film = await filmRepository.findOneOrFail({ id });
+      await filmRepository.delete({ id: film.id });
+      response = {
+        statusCode: StatusCode.ACCEPTED,
+        data: film,
+      };
     } catch (ex) {
-      generateResponse(res, StatusCode.NOT_FOUND, `Unable to find a Film with id ${id}`);
+      if (ex instanceof Error && ex.name === 'EntityNotFound') {
+        response = { statusCode: StatusCode.NOT_FOUND, data: `Cannot find a Film with id ${id}` };
+      } else if (ex instanceof QueryFailedError) {
+        response = {
+          statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+          data: ex.message,
+        };
+      }
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
     }
   }
 
@@ -73,7 +93,7 @@ export default class FilmController {
     const filmRepository = await getRepository(Film);
     const newFilm: Film = await getCustomRepository(FilmRepository).createFromBody(req.body);
     let response: { statusCode: StatusCode; data: any } = {
-      statusCode: StatusCode.UNKNOWN_ERROR,
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
       data: '',
     };
 
