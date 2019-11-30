@@ -9,7 +9,7 @@ info:
   version: 1.0.0
 tags:
   - name: film
-    description: all the end points related to films
+    description: all the  end points related to films
   - name: actor
     description: all the end points related to actor
   - name: user
@@ -27,213 +27,6 @@ components:
       scheme: bearer
       bearerFormat: JWT
 paths:
-  /film/{filmID}:
-    get:
-      tags:
-        - film
-      summary: get film by id
-      description: endpoint that is going do give back all the information about a specific film given the id
-      parameters:
-        - in: path
-          name: filmID
-          description: give the id of the film that you want
-          required: true
-          schema:
-            type: integer
-            example: 1
-      responses:
-        200:
-          description: status code OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  status_code:
-                    type: integer
-                    format: int32
-                    example: 200
-                  status_message:
-                    type: string
-                    example: Success
-                  data:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        format: int32
-                        example: 1
-                      title:
-                        type: string
-                        example: 'Spider-Man: Far from Home'
-                      rating:
-                        type: integer
-                        format: int32
-                        example: 76
-                      release_date:
-                        type: string
-                        format: date
-                        example: 2019-06-26
-                      poster:
-                        type: string
-                        example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/lcq8dVxeeOqHvvgcte707K0KVx5.jpg
-                      actors:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              format: int32
-                              example: 1
-                            name:
-                              type: string
-                              example: Tom
-                            surname:
-                              type: string
-                              example: Holland
-                            gender:
-                              type: string
-                              example: M
-                            birth_date:
-                              type: string
-                              format: date
-                              example: 1996-06-01
-                            death_date:
-                              type: string
-                              format: nullable
-                            profile:
-                              type: string
-                              example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/ip7aXVH8s6wXv8cY6KI14OZgCI8.jpg
-        404:
-          description: status code NOT_FOUND
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  status_code:
-                    type: integer
-                    format: int32
-                    example: 404
-                  status_message:
-                    type: string
-                    example: Resource not found
-                  error_message:
-                    type: string
-                    example: Unable to find a Film with id 1
-  /film/limit={limitValue}&offset={offsetValue}:
-    get:
-      tags:
-        - film
-      summary: get all film in a range
-      description: endpoint that is going do give back all the film saved in the database given a range
-      parameters:
-        - in: query
-          name: limitValue
-          description: limit the number of results to a limit value
-          required: true
-          schema:
-            type: integer
-            example: 20
-        - in: query
-          name: offsetValue
-          description: offsetValue
-          required: true
-          schema:
-            type: integer
-            example: 10
-      responses:
-        200:
-          description: status code OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  status_code:
-                    type: integer
-                    format: int32
-                    example: 200
-                  status_message:
-                    type: string
-                    example: Success
-                  data:
-                    type: array
-                    items:
-                      properties:
-                        id:
-                          type: integer
-                          format: int32
-                          example: 1
-                        title:
-                          type: string
-                          example: 'Spider-Man: Far from Home'
-                        rating:
-                          type: integer
-                          format: int32
-                          example: 76
-                        release_date:
-                          type: string
-                          format: date
-                          example: 2019-06-26
-                        poster:
-                          type: string
-                          example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/lcq8dVxeeOqHvvgcte707K0KVx5.jpg
-                        actors:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int32
-                                example: 1
-                              name:
-                                type: string
-                                example: Tom
-                              surname:
-                                type: string
-                                example: Holland
-                              gender:
-                                type: string
-                                example: M
-                              birth_date:
-                                type: string
-                                format: date
-                                example: 1996-06-01
-                              death_date:
-                                type: string
-                                format: nullable
-                              profile:
-                                type: string
-                                example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/ip7aXVH8s6wXv8cY6KI14OZgCI8.jpg
-        500:
-          description: status code INTERNAL_SERVER_ERROR
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  status_code:
-                    type: integer
-                    format: int32
-                    example: 500
-                  status_message:
-                    type: string
-                    example: Internal server error
   /film:
     get:
       tags:
@@ -244,16 +37,18 @@ paths:
         - in: query
           name: limitValue
           description: limit the number of results to a limit value
-          required: true
+          required: false
           schema:
             type: integer
+            minimum: 0
             example: 20
         - in: query
           name: offsetValue
-          description: offsetValue
-          required: true
+          description: give an offsetValue value the results
+          required: false
           schema:
             type: integer
+            minimum: 0
             example: 10
       responses:
         200:
@@ -283,7 +78,7 @@ paths:
                           example: 1
                         title:
                           type: string
-                          example: 'Spider-Man: Far from Home'
+                          example: "Spider-Man: Far from Home"
                         rating:
                           type: integer
                           format: int32
@@ -298,31 +93,28 @@ paths:
                         actors:
                           type: array
                           items:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int32
-                                example: 1
-                              name:
-                                type: string
-                                example: Tom
-                              surname:
-                                type: string
-                                example: Holland
-                              gender:
-                                type: string
-                                example: M
-                              birth_date:
-                                type: string
-                                format: date
-                                example: 1996-06-01
-                              death_date:
-                                type: string
-                                format: nullable
-                              profile:
-                                type: string
-                                example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/ip7aXVH8s6wXv8cY6KI14OZgCI8.jpg
+                            type: integer
+                            format: int32
+                            example: 1
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: string
+                    example: -20 is not a valid limit
         500:
           description: status code INTERNAL_SERVER_ERROR
           content:
@@ -463,11 +255,119 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
+  /film/{filmID}:
+    get:
+      tags:
+        - film
+      summary: get film by id
+      description: endpoint that is going do give back all the information about a specific film given the id
+      parameters:
+        - in: path
+          name: filmID
+          description: give the id of the film that you want
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: status code OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int32
+                        example: 1
+                      title:
+                        type: string
+                        example: "Spider-Man: Far from Home"
+                      rating:
+                        type: integer
+                        format: int32
+                        example: 76
+                      release_date:
+                        type: string
+                        format: date
+                        example: 2019-06-26
+                      poster:
+                        type: string
+                        example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/lcq8dVxeeOqHvvgcte707K0KVx5.jpg
+                      actors:
+                        type: array
+                        items:
+                          type: integer
+                          format: int32
+                          example: 1
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Unable to find a Film with id 1
     put:
       tags:
         - film
       summary: upadete film by id
       description: endpoint that let you modify a specific film
+      parameters:
+        - in: path
+          name: filmID
+          description: give the id of the film that you want
+          required: true
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                title:
+                  type: string
+                  example: john wick
+                rating:
+                  type: integer
+                  format: int32
+                  example: 80
+                release_date:
+                  type: string
+                  format: date
+                  example: 2019-10-10
+                poster:
+                  type: string
+                  example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
       responses:
         200:
           description: status code OK
