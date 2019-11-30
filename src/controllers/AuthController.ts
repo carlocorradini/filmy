@@ -8,6 +8,11 @@ import logger from '../logger';
 
 export default class AuthController {
   public static async signIn(req: Request, res: Response) {
+    let response: { statusCode: StatusCode; data: any } = {
+      statusCode: StatusCode.INTERNAL_SERVER_ERROR,
+      data: '',
+    };
+
     try {
       const credentials = await APIUtil.credentials(req);
       const user: User = await getRepository(User).findOneOrFail(
@@ -16,15 +21,20 @@ export default class AuthController {
       );
       if (!(await CryptUtil.compare(credentials.password, user.password))) throw new Error();
 
-      generateResponse(res, StatusCode.OK, {
-        token: await JWTUtil.generate({
-          id: user.id,
-          username: user.username,
-        }),
-      });
+      response = {
+        statusCode: StatusCode.OK,
+        data: {
+          token: await JWTUtil.generate({
+            id: user.id,
+            username: user.username,
+          }),
+        },
+      };
     } catch (ex) {
       logger.warn(`Unauthorized Access from ${await APIUtil.ip(req)}`);
-      generateResponse(res, StatusCode.UNAUTHORIZED, 'Invalid Credentials');
+      response = { statusCode: StatusCode.UNAUTHORIZED, data: 'Invalid Credentials' };
+    } finally {
+      generateResponse(res, response.statusCode, response.data);
     }
   }
 }
