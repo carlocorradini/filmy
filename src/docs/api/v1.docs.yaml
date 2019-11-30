@@ -41,7 +41,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            example: 20
+            example: 0
         - in: query
           name: offsetValue
           description: give an offsetValue value the results
@@ -49,7 +49,7 @@ paths:
           schema:
             type: integer
             minimum: 0
-            example: 10
+            example: 0
       responses:
         200:
           description: status code OK
@@ -237,7 +237,7 @@ paths:
                               type: string
                               example: poster must be an URL address
         401:
-          description: status code bad authentication
+          description: status code UNAUTHORIZED
           content:
             application/json:
               schema:
@@ -255,6 +255,7 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
+        #magari anche 500
   /film/{filmID}:
     get:
       tags:
@@ -342,7 +343,7 @@ paths:
       parameters:
         - in: path
           name: filmID
-          description: give the id of the film that you want
+          description: give the id of the film that you want to modify
           required: true
           schema:
             type: integer
@@ -369,13 +370,201 @@ paths:
                   type: string
                   example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
       responses:
-        200:
-          description: status code OK
+        202:
+          description: status code ACCEPTED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int32
+                        example: 4
+                      title:
+                        type: string
+                        example: John Wick 2
+                      rating:
+                        type: integer
+                        format: int32
+                        example: 80
+                      release_date:
+                        type: string
+                        example: 2019-10-10T00:00:00.000Z
+                      poster:
+                        type: string
+                        example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.png
+                      update_date:
+                        type: string
+                        example: 2019-11-30T15:14:17.319Z
+        400: #da modificare
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          example: bello
+                        property:
+                          type: string
+                          example: poster
+                        constraints:
+                          type: object
+                          properties:
+                            isUrl:
+                              type: string
+                              example: poster must be an URL address
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        #magari anche 500
     delete:
       tags:
         - film
       summary: delete film by id
       description: endpoint that let you delete a specific film
+      parameters:
+        - in: path
+          name: filmID
+          description: give the id of the film that you want to delete
+          required: true
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
       responses:
-        200:
-          description: status code OK
+        202:
+          description: status code ACCEPTED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 202
+                  status_message:
+                    type: string
+                    example: Request accepted
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int32
+                        example: 6
+                      title:
+                        type: string
+                        example: John Wick 2
+                      rating:
+                        type: integer
+                        format: int32
+                        example: 80
+                      release_date:
+                        type: string
+                        format: date
+                        example: 2019-10-10
+                      poster:
+                        type: string
+                        example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
+        400: #da modificare
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          example: bello
+                        property:
+                          type: string
+                          example: poster
+                        constraints:
+                          type: object
+                          properties:
+                            isUrl:
+                              type: string
+                              example: poster must be an URL address
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        #magari anche 500
