@@ -32,10 +32,7 @@ export default class AuthController {
       };
     } catch (ex) {
       logger.warn(`Unauthorized Access from ${await APIUtil.ip(req)}`);
-      response = {
-        statusCode: StatusCode.UNAUTHORIZED,
-        data: 'Invalid Credentials',
-      };
+      response = { statusCode: StatusCode.UNAUTHORIZED, data: 'Invalid Credentials' };
     } finally {
       generateResponse(res, response.statusCode, response.data);
     }
