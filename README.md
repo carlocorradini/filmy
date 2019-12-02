@@ -16,7 +16,7 @@
 
 A little set of [APIs](https://en.wikipedia.org/wiki/Application_programming_interface) that allow users to get films or their infos. It uses a system of data validation for the user's requests.
 
-The user will access via _token_ to the system and then he is free to retrieve informations about films and actors. The user has the capacity to view all the items or to ask for a specific film/actor by ID.
+The user will access via _token_ to the system and then he is free to retrieve informations about films, actors ad authors. The user has the capacity to view all the items or to ask for a specific film/actor by ID.
 
 It uses a system of _continuous integration_ and _continuous deployment_ with [Heroku](https://www.heroku.com/). After each commit, the code is subject to various tests and each push (of code that passed previous tests) on the master branch will automatically push and run the new version on Heroku.
 
@@ -26,21 +26,51 @@ Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://githu
 
 Clone the repo and install the dependencies by doing
 
-```
+```console
 $   git clone https://github.com/carlocorradini/filmy
+$   cd filmy
 $   npm install
 ```
 
 Run the application by doing:
 
-```
-$   npm start:prod
+```console
+$   npm start:dev
 ```
 
 Run the tests by doing:
 
-```
+```console
 $   npm test
+```
+
+### Database
+
+> Change datatabase options in the file **database.propreties** before you start the database
+
+- Create the database
+
+1. Open the SQL Shell
+2. Provide the data requested
+3. Enter the command
+
+```console
+$ CREATE DATABASE [name]
+```
+
+> Where [name] is the database name provided in **database.properties**
+
+4. Open command line window
+5. Go to PostgreSQL bin folder
+
+```console
+$ PG_HOME/bin
+```
+
+6. Restore the database
+
+```console
+  $ psql -U [username] -d [name] -f backup.sql
 ```
 
 ## SCRUM
@@ -81,24 +111,21 @@ Available under _SCRUM_ folder.
 |       Script        | Description                                                                                        |
 | :-----------------: | :------------------------------------------------------------------------------------------------- |
 |      [clean]()      | Deletes the content of "build" and "log" directories                                               |
-|     [update]()      | Updates the dependancies to the latest version                                                     |
+|     [update]()      | Shows the updates for outdated dependancies                                                        |
 | [update:install]()  | Updates and install the dependancies to the latest version                                         |
 |    [prettify]()     | Parses the code to a prettier and easy to read version                                             |
 | [prettify:staged]() | Runs **_prettify_** against staged git files                                                       |
 |      [lint]()       | Analyzes source code to flag programming errors, bugs, stylistic errors, and suspicious constructs |
 |   [lint:staged]()   | Runs **_lint_** against staged git files                                                           |
-|    [prebuild]()     | Runs the "clean" script                                                                            |
-|      [build]()      |                                                                                                    |
-|    [postbuild]()    |                                                                                                    |
+|      [build]()      | Compiles source code and copy the resources                                                        |
 |      [test]()       | Runs a set of tests                                                                                |
 |   [test:staged]()   | Runs **_test_** against staged git files                                                           |
-|    [prestart]()     |                                                                                                    |
-|   [start:prod]()    |                                                                                                    |
-|    [start:dev]()    |                                                                                                    |
+|   [start:prod]()    | Runs the server with compiled files                                                                |
+|    [start:dev]()    | Runs a local copy the server without compiling. Just for Dev mode                                  |
 
 ## Endpoints
 
-For a more detailed description go to <link_heroku>
+For a more detailed description go to our [documentation](https://filmy-19.herokuapp.com/api/v1/docs/)
 
 | Endpoint                                              | Method | Description              |
 | :---------------------------------------------------- | :----: | :----------------------- |
