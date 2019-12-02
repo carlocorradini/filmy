@@ -60,7 +60,7 @@ paths:
             example: 0
       responses:
         200:
-          description: status code OK => everything went good, and the server is going to return a list with all the films
+          description: everything went good, and the server is going to return a list with all the films
           content:
             application/json:
               schema:
@@ -105,7 +105,7 @@ paths:
                             format: int32
                             example: 1
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example limit or offset)
+          description: something went wrong! there is a problem with request (example limit or offset)
           content:
             application/json:
               schema:
@@ -125,7 +125,7 @@ paths:
                     type: string
                     example: -20 is not a valid limit
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -169,7 +169,7 @@ paths:
                   example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
       responses:
         201:
-          description: status code CREATED => everything went good, the film was successful added in the database
+          description: everything went good, the film was successful added in the database
           content:
             application/json:
               schema:
@@ -213,7 +213,7 @@ paths:
                         type: string
                         example: 2019-11-29T14:31:30.669Z
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with the request (example limit or offset)
+          description: something went wrong! there is a problem with the request (example limit or offset)
           content:
             application/json:
               schema:
@@ -247,7 +247,7 @@ paths:
                               type: string
                               example: profile must be an URL address
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -267,7 +267,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -302,7 +302,7 @@ paths:
             example: 1
       responses:
         200:
-          description: status code OK => everything went good, and the server is going to return all the information about the specified film
+          description: everything went good, and the server is going to return all the information about the specified film
           content:
             application/json:
               schema:
@@ -346,7 +346,7 @@ paths:
                           format: int32
                           example: 1
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid id)
+          description: something went wrong! there is a problem with request (example not valid id)
           content:
             application/json:
               schema:
@@ -366,7 +366,7 @@ paths:
                     type: string
                     example: string is not a valid identifier
         404:
-          description: status code NOT_FOUND => something went wrong! film not found, try checking the filmID
+          description: something went wrong! film not found, try checking the filmID
           content:
             application/json:
               schema:
@@ -386,7 +386,7 @@ paths:
                     type: string
                     example: Unable to find a Film with id 1
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -438,7 +438,7 @@ paths:
                   example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
       responses:
         200:
-          description: status code OK => everything went good, the film update was successful
+          description: everything went good, the film update was successful
           content:
             application/json:
               schema:
@@ -477,7 +477,7 @@ paths:
                         type: string
                         example: 2019-11-30T15:14:17.319Z
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid url)
+          description: something went wrong! there is a problem with request (example not valid url)
           content:
             application/json:
               schema:
@@ -511,7 +511,7 @@ paths:
                               type: string
                               example: poster must be an URL address
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -531,7 +531,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         404:
-          description: status code NOT_FOUND => something went wrong! film not found, try checking the filmID
+          description: something went wrong! film not found, try checking the filmID
           content:
             application/json:
               schema:
@@ -551,7 +551,7 @@ paths:
                     type: string
                     example: Unable to find a Film with id 1
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -587,7 +587,7 @@ paths:
         - bearerAuth: []
       responses:
         202:
-          description: status code ACCEPTED => everything went good, the specified film was deleted
+          description: everything went good, the specified film was deleted
           content:
             application/json:
               schema:
@@ -624,7 +624,7 @@ paths:
                         type: string
                         example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -644,7 +644,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         404:
-          description: status code NOT_FOUND => something went wrong! film not found, try checking the filmID
+          description: something went wrong! film not found, try checking the filmID
           content:
             application/json:
               schema:
@@ -664,7 +664,7 @@ paths:
                     type: string
                     example: Unable to find a Film with id 1
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -706,7 +706,7 @@ paths:
             example: 0
       responses:
         200:
-          description: status code OK => everything went good, and the server is going to return a list with all the actors
+          description: everything went good, and the server is going to return a list with all the actors
           content:
             application/json:
               schema:
@@ -756,7 +756,7 @@ paths:
                             format: int32
                             example: 1
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example limit or offset)
+          description: something went wrong! there is a problem with request (example limit or offset)
           content:
             application/json:
               schema:
@@ -776,7 +776,7 @@ paths:
                     type: string
                     example: -20 is not a valid limit
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -822,7 +822,7 @@ paths:
                   example: http://instagram.com/Keanu%20Reeves
       responses:
         201:
-          description: status code CREATED => everything went good, the actor was successful added in the database
+          description: everything went good, the actor was successful added in the database
           content:
             application/json:
               schema:
@@ -870,7 +870,7 @@ paths:
                         type: string
                         example: 2019-12-02T10:40:38.678Z
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid url)
+          description: something went wrong! there is a problem with request (example not valid url)
           content:
             application/json:
               schema:
@@ -904,7 +904,7 @@ paths:
                               type: string
                               example: profile must be an URL address
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -924,7 +924,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -959,7 +959,7 @@ paths:
             example: 1
       responses:
         200:
-          description: status code OK => everything went good, and the server is going to return all the information about the specified actror
+          description: everything went good, and the server is going to return all the information about the specified actror
           content:
             application/json:
               schema:
@@ -1007,7 +1007,7 @@ paths:
                           format: int32
                           example: 1
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example bot valid id)
+          description: something went wrong! there is a problem with request (example bot valid id)
           content:
             application/json:
               schema:
@@ -1027,7 +1027,7 @@ paths:
                     type: string
                     example: string is not a valid identifier
         404:
-          description: status code NOT_FOUND => something went wrong! actor not found, try checking the actorID
+          description: something went wrong! actor not found, try checking the actorID
           content:
             application/json:
               schema:
@@ -1047,7 +1047,7 @@ paths:
                     type: string
                     example: Cannot find an Actor with the specified identifier
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1101,7 +1101,7 @@ paths:
                   example: http://instagram.com/Keanu%20Reeves
       responses:
         200:
-          description: status code OK => everything went good, the actor update was successful
+          description: everything went good, the actor update was successful
           content:
             application/json:
               schema:
@@ -1145,7 +1145,7 @@ paths:
                         type: string
                         example: 2019-12-02T11:08:02.454Z
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid url)
+          description: something went wrong! there is a problem with request (example not valid url)
           content:
             application/json:
               schema:
@@ -1179,7 +1179,7 @@ paths:
                               type: string
                               example: poster must be an URL address
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -1199,7 +1199,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         404:
-          description: status code NOT_FOUND => something went wrong! actor not found, try checking the actorID
+          description: something went wrong! actor not found, try checking the actorID
           content:
             application/json:
               schema:
@@ -1219,7 +1219,7 @@ paths:
                     type: string
                     example: Cannot find an Actor with id 1
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1255,7 +1255,7 @@ paths:
         - bearerAuth: []
       responses:
         202:
-          description: status code ACCEPTED => everything went good, the specified actor was deleted
+          description: everything went good, the specified actor was deleted
           content:
             application/json:
               schema:
@@ -1309,7 +1309,7 @@ paths:
                             type: string
                             example: http://instagram.com/Keanu%20Reeves
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -1329,7 +1329,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         404:
-          description: status code NOT_FOUND => something went wrong! actor not found, try checking the actorID
+          description: something went wrong! actor not found, try checking the actorID
           content:
             application/json:
               schema:
@@ -1349,7 +1349,7 @@ paths:
                     type: string
                     example: Cannot find an Actor with id 1
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1391,7 +1391,7 @@ paths:
             example: 0
       responses:
         200:
-          description: status code OK => everything went good, and the server is going to return a list with all the users
+          description: everything went good, and the server is going to return a list with all the users
           content:
             application/json:
               schema:
@@ -1427,7 +1427,7 @@ paths:
                           type: string
                           example: admin@gmail.com
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example limit or offset)
+          description: something went wrong! there is a problem with request (example limit or offset)
           content:
             application/json:
               schema:
@@ -1447,7 +1447,7 @@ paths:
                     type: string
                     example: -20 is not a valid limit
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1492,7 +1492,7 @@ paths:
                   example: mario.rossi@gmail.com
       responses:
         201:
-          description: status code CREATED => everything went good, the user was successful added in the database
+          description: everything went good, the user was successful added in the database
           content:
             application/json:
               schema:
@@ -1535,7 +1535,7 @@ paths:
                         type: string
                         example: 2019-12-02T11:58:07.111Z
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid email)
+          description: something went wrong! there is a problem with request (example not valid email)
           content:
             application/json:
               schema:
@@ -1569,7 +1569,7 @@ paths:
                               type: string
                               example: email must be an email
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -1589,7 +1589,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1624,7 +1624,7 @@ paths:
             example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
       responses:
         200:
-          description: status code OK => everything went good, and the server is going to return all the information about the specified user
+          description: everything went good, and the server is going to return all the information about the specified user
           content:
             application/json:
               schema:
@@ -1658,7 +1658,7 @@ paths:
                         type: string
                         example: mario.rossi@gmail.com
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid id)
+          description: something went wrong! there is a problem with request (example not valid id)
           content:
             application/json:
               schema:
@@ -1678,7 +1678,7 @@ paths:
                     type: string
                     example: 1 is not a valid identifier
         404:
-          description: status code NOT_FOUND => something went wrong! user not found, try checking the userID
+          description: something went wrong! user not found, try checking the userID
           content:
             application/json:
               schema:
@@ -1698,7 +1698,7 @@ paths:
                     type: string
                     example: Cannot find an User with the specified identifier
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1751,7 +1751,7 @@ paths:
                   example: mario.rossi@gmail.com
       responses:
         200:
-          description: status code OK => everything went good, the user update was successful
+          description: everything went good, the user update was successful
           content:
             application/json:
               schema:
@@ -1791,7 +1791,7 @@ paths:
                         type: string
                         example: 2019-12-02T12:11:40.269Z
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example limit or offset)
+          description: something went wrong! there is a problem with request (example limit or offset)
           content:
             application/json:
               schema:
@@ -1811,7 +1811,7 @@ paths:
                     type: string
                     example: 1 is not a valid identifier
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -1831,7 +1831,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         404:
-          description: status code NOT_FOUND => something went wrong! user not found, try checking the userID
+          description: something went wrong! user not found, try checking the userID
           content:
             application/json:
               schema:
@@ -1851,7 +1851,7 @@ paths:
                     type: string
                     example: Cannot find an user with id 1
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -1887,7 +1887,7 @@ paths:
         - bearerAuth: []
       responses:
         202:
-          description: status code ACCEPTED => everything went good, the specified user was deleted
+          description: everything went good, the specified user was deleted
           content:
             application/json:
               schema:
@@ -1921,7 +1921,7 @@ paths:
                         type: string
                         example: miraxh98@gmail.com
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request (example not valid id)
+          description: something went wrong! there is a problem with request (example not valid id)
           content:
             application/json:
               schema:
@@ -1941,7 +1941,7 @@ paths:
                     type: string
                     example: 1 is not a valid identifier
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -1961,7 +1961,7 @@ paths:
                     type: string
                     example: Invalid Authorization Token
         404:
-          description: status code NOT_FOUND => something went wrong! user not found, try checking the userID
+          description: something went wrong! user not found, try checking the userID
           content:
             application/json:
               schema:
@@ -1981,7 +1981,7 @@ paths:
                     type: string
                     example: Cannot find an User with id ed2f46db-be58-46bc-82c7-ec07281c3176
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -2017,7 +2017,7 @@ paths:
                   example: password
       responses:
         200:
-          description: status code OK => everything went good, the server is going to give a valid token
+          description: everything went good, the server is going to give a valid token
           content:
             application/json:
               schema:
@@ -2039,7 +2039,7 @@ paths:
                         type: string
                         example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwODQ0YThjLTdiYTctNGQxYS1hZGVhLWU4ODFiNmE5ZjMxMSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzUyODA2MjYsImV4cCI6MTU3NTI4NDIyNn0.K0aknnEJazNH1Kan3DjdHnkjCO-_M80tiNqWcSF-BFQ
         400:
-          description: status code BAD_REQUEST => something went wrong! there is a problem with request
+          description: something went wrong! there is a problem with request
           content:
             application/json:
               schema:
@@ -2056,7 +2056,7 @@ paths:
                     type: string
                     example: Invalid request message
         401:
-          description: status code UNAUTHORIZED => something went wrong! you are not authorized
+          description: something went wrong! you are not authorized
           content:
             application/json:
               schema:
@@ -2076,7 +2076,7 @@ paths:
                     type: string
                     example: Invalid Credentials
         500:
-          description: status code INTERNAL_SERVER_ERROR => something went wrong! there is an internal server error
+          description: something went wrong! there is an internal server error
           content:
             application/json:
               schema:
@@ -2084,7 +2084,7 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: false=
                   status_code:
                     type: integer
                     format: int32
@@ -2100,4 +2100,4 @@ paths:
       description: this end point returns the code 200 only in the api are working
       responses:
         200:
-          description: status code OK => everything went good, the APIs are working
+          description: everything went good, the APIs are working
