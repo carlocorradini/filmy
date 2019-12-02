@@ -255,7 +255,25 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
-        #magari anche 500
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal Server error
+                  error_message:
+                    type: string
+                    example: duplicate key value violates unique constraint UQ_211fd309ee6b6627b1cb46ba003
   /film/{filmID}:
     get:
       tags:
@@ -461,7 +479,25 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
-        #magari anche 500
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal Server error
+                  error_message:
+                    type: string
+                    example: duplicate key value violates unique constraint UQ_211fd309ee6b6627b1cb46ba003
     delete:
       tags:
         - film
@@ -567,4 +603,62 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
-        #magari anche 500
+  /auth/signin:
+    post:
+      tags:
+        - authentication
+      summary: get authentication Token
+      description: given username and the password the endpoint is going to give back an authentication Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: admin
+                password:
+                  type: string
+                  example: password
+      responses:
+        200:
+          description: status code OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwODQ0YThjLTdiYTctNGQxYS1hZGVhLWU4ODFiNmE5ZjMxMSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzUyODA2MjYsImV4cCI6MTU3NTI4NDIyNn0.K0aknnEJazNH1Kan3DjdHnkjCO-_M80tiNqWcSF-BFQ
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Credentials
