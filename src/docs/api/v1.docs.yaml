@@ -7,6 +7,15 @@ servers:
 info:
   title: Filmy
   version: 1.0.0
+  description: This is a server that let io get, insert, update and delete information about films and actors
+  contact:
+    email: carlo.corradini@studenti.unitn.it
+  license:
+    name: MIT
+    url: "https://opensource.org/licenses/MIT"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
 tags:
   - name: film
     description: all the  end points related to films
@@ -16,10 +25,6 @@ tags:
     description: all the end points related to users
   - name: authentication
     description: all the end points related to authentication
-  - name: docs
-    description: all the end points related to docs
-  - name: index
-    description: all the end points related to index
 components:
   securitySchemes:
     bearerAuth:
