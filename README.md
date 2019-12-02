@@ -51,44 +51,44 @@ Available under _SCRUM_ folder.
 
 ## Scripts
 
-|       Script        | Description |
-| :-----------------: | :---------: |
-|      [clean]()      |             |
-|     [update]()      |             |
-| [update:install]()  |             |
-|    [prettify]()     |             |
-| [prettify:staged]() |             |
-|      [lint]()       |             |
-|   [lint:staged]()   |             |
-|    [prebuild]()     |             |
-|      [build]()      |             |
-|    [postbuild]()    |             |
-|      [test]()       |             |
-|   [test:staged]()   |             |
-|    [prestart]()     |             |
-|   [start:prod]()    |             |
-|    [start:dev]()    |             |
+|       Script        |                                            Description                                             |
+| :-----------------: | :------------------------------------------------------------------------------------------------: |
+|      [clean]()      |                        Deletes the content of "build" and "log" directories                        |
+|     [update]()      |                           Updates the dependancies to the latest version                           |
+| [update:install]()  |                     Updates and install the dependancies to the latest version                     |
+|    [prettify]()     |                       Parses the code to a prettier and easy to read version                       |
+| [prettify:staged]() |                            Runs **_prettify_** against staged git files                            |
+|      [lint]()       | Analyzes source code to flag programming errors, bugs, stylistic errors, and suspicious constructs |
+|   [lint:staged]()   |                              Runs **_lint_** against staged git files                              |
+|    [prebuild]()     |                                      Runs the "clean" script                                       |
+|      [build]()      |                                                                                                    |
+|    [postbuild]()    |                                                                                                    |
+|      [test]()       |                                        Runs a set of tests                                         |
+|   [test:staged]()   |                              Runs **_test_** against staged git files                              |
+|    [prestart]()     |                                                                                                    |
+|   [start:prod]()    |                                                                                                    |
+|    [start:dev]()    |                                                                                                    |
 
 ## Endpoint list
 
 For a more detailed description go to <link_heroku>
 
-|                         Endpoint                         |    Description    |
-| :------------------------------------------------------: | :---------------: |
-| http://filmy-19.herokuapp.com/v1/auth/signin<1 endpoint> | <description_api> |
-|   http://filmy-19.herokuapp.com/api/status<1 endpoint>   | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film<1 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film<2 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film<3 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film<4 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film<5 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor<1 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor<2 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor<3 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor<4 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor<5 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user<1 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user<2 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user<3 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user<4 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user<5 endpoint>     | <description_api> |
+|                         Endpoint                          |    Description    |
+| :-------------------------------------------------------: | :---------------: |
+| http://filmy-19.herokuapp.com/v1/auth/signin <1 endpoint> | <description_api> |
+|   http://filmy-19.herokuapp.com/api/status <1 endpoint>   | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/film <1 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/film <2 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/film <3 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/film <4 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/film <5 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/actor <1 endpoint>    | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/actor <2 endpoint>    | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/actor <3 endpoint>    | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/actor <4 endpoint>    | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/actor <5 endpoint>    | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/user <1 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/user <2 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/user <3 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/user <4 endpoint>     | <description_api> |
+|    http://filmy-19.herokuapp.com/v1/user <5 endpoint>     | <description_api> |
