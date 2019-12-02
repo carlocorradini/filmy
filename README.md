@@ -14,7 +14,7 @@
 
 ## Description
 
-Set of APIs that allow users to get films and/or their infos. It uses a system of data validation for the user's requests.
+A little set of APIs that allow users to get films or their infos. It uses a system of data validation for the user's requests.
 
 The user will access via _token_ to the system and then he is free to retrieve informations about films and actors. The user has the capacity to view all the items or to ask for a specific film/actor by ID.
 
@@ -115,3 +115,7 @@ For a more detailed description go to <link_heroku>
 | http://filmy-19.herokuapp.com/v1/user <3 endpoint>    |        | <description_api>        |
 | http://filmy-19.herokuapp.com/v1/user <4 endpoint>    |        | <description_api>        |
 | http://filmy-19.herokuapp.com/v1/user <5 endpoint>    |        | <description_api>        |
+
+## License
+
+[MIT](https://github.com/nishanths/license/blob/master/LICENSE)
