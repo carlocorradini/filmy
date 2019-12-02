@@ -20,6 +20,8 @@ The user will access via _token_ to the system and then he is free to retrieve i
 
 It uses a system of _continuous integration_ and _continuous deployment_ with [Heroku](https://www.heroku.com/). After each commit, the code is subject to various tests and each push (of code that passed previous tests) on the master branch will automatically push and run the new version on Heroku.
 
+Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://github.com/okonet/lint-staged) we used _git hooks_ for having continuous integration in local too with the aim to have standardized code between developer and more conscious code writing.
+
 ## Run
 
 Clone the repo and install the dependencies by doing
