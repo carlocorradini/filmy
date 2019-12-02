@@ -27,6 +27,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
 paths:
+  #film-------------------------------------------------------------------------------------------------------------------
   /film:
     get:
       tags:
@@ -35,7 +36,7 @@ paths:
       description: endpoint that is going do give back all the film saved in the database
       parameters:
         - in: query
-          name: limitValue
+          name: limit
           description: limit the number of results to a limit value
           required: false
           schema:
@@ -43,7 +44,7 @@ paths:
             minimum: 0
             example: 0
         - in: query
-          name: offsetValue
+          name: offset
           description: give an offsetValue value the results
           required: false
           schema:
@@ -160,7 +161,7 @@ paths:
                   example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
       responses:
         201:
-          description: status code OK
+          description: status code CREATED
           content:
             application/json:
               schema:
@@ -226,16 +227,16 @@ paths:
                       properties:
                         value:
                           type: string
-                          example: bello
+                          example: not_an_url
                         property:
                           type: string
-                          example: poster
+                          example: profile
                         constraints:
                           type: object
                           properties:
                             isUrl:
                               type: string
-                              example: poster must be an URL address
+                              example: profile must be an URL address
         401:
           description: status code UNAUTHORIZED
           content:
@@ -427,7 +428,7 @@ paths:
                       update_date:
                         type: string
                         example: 2019-11-30T15:14:17.319Z
-        400: #da modificare
+        400:
           description: status code BAD_REQUEST
           content:
             application/json:
@@ -450,7 +451,7 @@ paths:
                       properties:
                         value:
                           type: string
-                          example: bello
+                          example: not_an_url
                         property:
                           type: string
                           example: poster
@@ -479,6 +480,26 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Unable to find a Film with id 1
         500:
           description: status code INTERNAL_SERVER_ERROR
           content:
@@ -551,7 +572,234 @@ paths:
                       poster:
                         type: string
                         example: https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg
-        400: #da modificare
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Unable to find a Film with id 1
+  #actor-------------------------------------------------------------------------------------------------------------------
+  /actor:
+    get:
+      tags:
+        - actor
+      summary: get all actrors
+      description: endpoint that is going do give back all the actrors saved in the database
+      parameters:
+        - in: query
+          name: limit
+          description: limit the number of results to a limit value
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            example: 0
+        - in: query
+          name: offset
+          description: give an offsetValue value the results
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            example: 0
+      responses:
+        200:
+          description: status code OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          format: int32
+                          example: 1
+                        name:
+                          type: string
+                          example: Tom
+                        surname:
+                          type: string
+                          example: Holland
+                        gender:
+                          type: string
+                          example: M
+                        birth_date:
+                          type: string
+                          format: date
+                          example: 1996-06-01
+                        death_date:
+                          type: string
+                          format: nullable
+                        profile:
+                          type: string
+                          example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/ip7aXVH8s6wXv8cY6KI14OZgCI8.jpg
+                        films:
+                          type: array
+                          items:
+                            type: integer
+                            format: int32
+                            example: 1
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: string
+                    example: -20 is not a valid limit
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal server error
+    post:
+      tags:
+        - actor
+      summary: add new actor
+      description: given the information about a new actor the endpoint is going to add the actor in the database
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Keanu
+                surname:
+                  type: string
+                  example: Reeves
+                gender:
+                  type: string
+                  example: M
+                birth_date:
+                  type: string
+                  format: date
+                  example: 1964-09-02
+                profile:
+                  type: string
+                  example: http://instagram.com/Keanu%20Reeves
+      responses:
+        201:
+          description: status code CREATED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 201
+                  status_message:
+                    type: string
+                    example: Resource created
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Keanu
+                      surname:
+                        type: string
+                        example: Reeves
+                      gender:
+                        type: string
+                        example: M
+                      birth_date:
+                        type: string
+                        format: date
+                        example: 1964-09-02
+                      profile:
+                        type: string
+                        example: http://instagram.com/Keanu%20Reeves
+                      death_date:
+                        type: string
+                        format: nullable
+                      id:
+                        type: integer
+                        format: int32
+                        example: 3
+                      create_date:
+                        type: string
+                        example: 2019-12-02T10:40:38.678Z
+                      update_date:
+                        type: string
+                        example: 2019-12-02T10:40:38.678Z
+        400:
           description: status code BAD_REQUEST
           content:
             application/json:
@@ -574,7 +822,242 @@ paths:
                       properties:
                         value:
                           type: string
-                          example: bello
+                          example: not_an_url
+                        property:
+                          type: string
+                          example: profile
+                        constraints:
+                          type: object
+                          properties:
+                            isUrl:
+                              type: string
+                              example: profile must be an URL address
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal Server error
+                  error_message:
+                    type: string
+                    example: duplicate key value violates unique constraint UQ_211fd309ee6b6627b1cb46ba003
+  /actor/{actorID}:
+    get:
+      tags:
+        - actor
+      summary: get actor by id
+      description: endpoint that is going do give back all the information about a specific actor given the id
+      parameters:
+        - in: path
+          name: actorID
+          description: give the id of the actor that you want
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: status code OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int32
+                        example: 1
+                      name:
+                        type: string
+                        example: Tom
+                      surname:
+                        type: string
+                        example: Holland
+                      gender:
+                        type: string
+                        example: M
+                      birth_date:
+                        type: string
+                        format: date
+                        example: 1996-06-01
+                      death_date:
+                        type: string
+                        format: nullable
+                      profile:
+                        type: string
+                        example: https://image.tmdb.org/t/p/w600_and_h900_bestv2/ip7aXVH8s6wXv8cY6KI14OZgCI8.jpg
+                      films:
+                        type: array
+                        items:
+                          type: integer
+                          format: int32
+                          example: 1
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Cannot find an Actor with the specified identifier
+    put:
+      tags:
+        - actor
+      summary: upadete actror by id
+      description: endpoint that let you modify a specific actor
+      parameters:
+        - in: path
+          name: actorID
+          description: give the id of the actor that you want to modify
+          required: true
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Keanu
+                surname:
+                  type: string
+                  example: Reeves
+                gender:
+                  type: string
+                  example: M
+                birth_date:
+                  type: string
+                  format: date
+                  example: 1964-09-02
+                profile:
+                  type: string
+                  example: http://instagram.com/Keanu%20Reeves
+      responses:
+        202:
+          description: status code ACCEPTED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int32
+                        example: 3
+                      name:
+                        type: string
+                        example: Keanu
+                      surname:
+                        type: string
+                        example: Reeves
+                      gender:
+                        type: string
+                        example: M
+                      birth_date:
+                        type: string
+                        example: 1964-09-02T00:00:00.000Z
+                      death_date:
+                        type: string
+                        format: nullable
+                      profile:
+                        type: string
+                        example: http://instagram.com/Keanu%20Reeves
+                      update_date:
+                        type: string
+                        example: 2019-12-02T11:08:02.454Z
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          example: not_an_url
                         property:
                           type: string
                           example: poster
@@ -603,6 +1086,155 @@ paths:
                   error_message:
                     type: string
                     example: Invalid Authorization Token
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Cannot find an Actor with id 1
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal Server error
+                  error_message:
+                    type: string
+                    example: duplicate key value violates unique constraint UQ_211fd309ee6b6627b1cb46ba003
+    delete:
+      tags:
+        - actor
+      summary: delete actror by id
+      description: endpoint that let you delete a specific actor
+      parameters:
+        - in: path
+          name: actorID
+          description: give the id of the actor that you want to delete
+          required: true
+          schema:
+            type: integer
+            example: 1
+      security:
+        - bearerAuth: []
+      responses:
+        202:
+          description: status code ACCEPTED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 202
+                  status_message:
+                    type: string
+                    example: Request accepted
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                      status_code:
+                        type: integer
+                        format: int32
+                        example: 202
+                      status_message:
+                        type: string
+                        example: Request accepted
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int32
+                            example: 3
+                          name:
+                            type: string
+                            example: Keanu
+                          surname:
+                            type: string
+                            example: Reeves
+                          gender:
+                            type: string
+                            example: M
+                          birth_date:
+                            type: string
+                            format: date
+                            example: 1964-09-02
+                          death_date:
+                            type: string
+                            format: nullable
+                          profile:
+                            type: string
+                            example: http://instagram.com/Keanu%20Reeves
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Cannot find an Actor with id 1
+  #authentication-------------------------------------------------------------------------------------------------------------------
   /auth/signin:
     post:
       tags:
