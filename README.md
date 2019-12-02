@@ -51,20 +51,20 @@ Available under _SCRUM_ folder.
 
 ## Scripts
 
-|       Script        |                                            Description                                             |
-| :-----------------: | :------------------------------------------------------------------------------------------------: |
-|      [clean]()      |                        Deletes the content of "build" and "log" directories                        |
-|     [update]()      |                           Updates the dependancies to the latest version                           |
-| [update:install]()  |                     Updates and install the dependancies to the latest version                     |
-|    [prettify]()     |                       Parses the code to a prettier and easy to read version                       |
-| [prettify:staged]() |                            Runs **_prettify_** against staged git files                            |
+|       Script        | Description                                                                                        |
+| :-----------------: | :------------------------------------------------------------------------------------------------- |
+|      [clean]()      | Deletes the content of "build" and "log" directories                                               |
+|     [update]()      | Updates the dependancies to the latest version                                                     |
+| [update:install]()  | Updates and install the dependancies to the latest version                                         |
+|    [prettify]()     | Parses the code to a prettier and easy to read version                                             |
+| [prettify:staged]() | Runs **_prettify_** against staged git files                                                       |
 |      [lint]()       | Analyzes source code to flag programming errors, bugs, stylistic errors, and suspicious constructs |
-|   [lint:staged]()   |                              Runs **_lint_** against staged git files                              |
-|    [prebuild]()     |                                      Runs the "clean" script                                       |
+|   [lint:staged]()   | Runs **_lint_** against staged git files                                                           |
+|    [prebuild]()     | Runs the "clean" script                                                                            |
 |      [build]()      |                                                                                                    |
 |    [postbuild]()    |                                                                                                    |
-|      [test]()       |                                        Runs a set of tests                                         |
-|   [test:staged]()   |                              Runs **_test_** against staged git files                              |
+|      [test]()       | Runs a set of tests                                                                                |
+|   [test:staged]()   | Runs **_test_** against staged git files                                                           |
 |    [prestart]()     |                                                                                                    |
 |   [start:prod]()    |                                                                                                    |
 |    [start:dev]()    |                                                                                                    |
@@ -73,22 +73,22 @@ Available under _SCRUM_ folder.
 
 For a more detailed description go to <link_heroku>
 
-|                       Endpoint                        | Method |       Description        |
-| :---------------------------------------------------: | :----: | :----------------------: |
-|     http://filmy-19.herokuapp.com/v1/auth/signin      |  POST  | Get authentication token |
-| http://filmy-19.herokuapp.com/api/status <1 endpoint> |        |    <description_api>     |
-|         http://filmy-19.herokuapp.com/v1/film         |  GET   |      Get all films       |
-|         http://filmy-19.herokuapp.com/v1/film         |  POST  |      Add a new film      |
-|    http://filmy-19.herokuapp.com/v1/film/{filmID}     |  GET   |      Get film by ID      |
-|    http://filmy-19.herokuapp.com/v1/film/{filmID}     |  PUT   |    Update film by ID     |
-|    http://filmy-19.herokuapp.com/v1/film/{filmID}     | DELETE |    Delete film by ID     |
-|        http://filmy-19.herokuapp.com/v1/actor         |  GET   |      Get all actors      |
-|        http://filmy-19.herokuapp.com/v1/actor/        |  POST  |      Add new actor       |
-|   http://filmy-19.herokuapp.com/v1/actor/{actorID}    |  GET   |     Get actor by ID      |
-|   http://filmy-19.herokuapp.com/v1/actor/{actorID}    |  PUT   |    Update actor by ID    |
-|   http://filmy-19.herokuapp.com/v1/actor/{actorID}    | DELETE |    Delete actor by ID    |
-|  http://filmy-19.herokuapp.com/v1/user <1 endpoint>   |        |    <description_api>     |
-|  http://filmy-19.herokuapp.com/v1/user <2 endpoint>   |        |    <description_api>     |
-|  http://filmy-19.herokuapp.com/v1/user <3 endpoint>   |        |    <description_api>     |
-|  http://filmy-19.herokuapp.com/v1/user <4 endpoint>   |        |    <description_api>     |
-|  http://filmy-19.herokuapp.com/v1/user <5 endpoint>   |        |    <description_api>     |
+| Endpoint                                              | Method | Description              |
+| :---------------------------------------------------- | :----: | :----------------------- |
+| http://filmy-19.herokuapp.com/v1/auth/signin          |  POST  | Get authentication token |
+| http://filmy-19.herokuapp.com/api/status <1 endpoint> |        | <description_api>        |
+| http://filmy-19.herokuapp.com/v1/film                 |  GET   | Get all films            |
+| http://filmy-19.herokuapp.com/v1/film                 |  POST  | Add a new film           |
+| http://filmy-19.herokuapp.com/v1/film/{filmID}        |  GET   | Get film by ID           |
+| http://filmy-19.herokuapp.com/v1/film/{filmID}        |  PUT   | Update film by ID        |
+| http://filmy-19.herokuapp.com/v1/film/{filmID}        | DELETE | Delete film by ID        |
+| http://filmy-19.herokuapp.com/v1/actor                |  GET   | Get all actors           |
+| http://filmy-19.herokuapp.com/v1/actor/               |  POST  | Add new actor            |
+| http://filmy-19.herokuapp.com/v1/actor/{actorID}      |  GET   | Get actor by ID          |
+| http://filmy-19.herokuapp.com/v1/actor/{actorID}      |  PUT   | Update actor by ID       |
+| http://filmy-19.herokuapp.com/v1/actor/{actorID}      | DELETE | Delete actor by ID       |
+| http://filmy-19.herokuapp.com/v1/user <1 endpoint>    |        | <description_api>        |
+| http://filmy-19.herokuapp.com/v1/user <2 endpoint>    |        | <description_api>        |
+| http://filmy-19.herokuapp.com/v1/user <3 endpoint>    |        | <description_api>        |
+| http://filmy-19.herokuapp.com/v1/user <4 endpoint>    |        | <description_api>        |
+| http://filmy-19.herokuapp.com/v1/user <5 endpoint>    |        | <description_api>        |
