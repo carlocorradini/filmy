@@ -18,6 +18,27 @@ Set of APIs that allow users to get films and/or their infos. It uses a system o
 
 The user will access via _token_ to the system and then he is free to retrieve informations about films and actors. The user has the capacity to view all the items or to ask for a specific film/actor by ID.
 
+## Run
+
+Clone the repo and install the dependencies by doing
+
+```
+$   git clone https://github.com/carlocorradini/filmy
+$   npm install
+```
+
+Run the application by doing:
+
+```
+$   npm start:prod
+```
+
+Run the tests by doing:
+
+```
+$   npm test
+```
+
 ## SCRUM
 
 Available under _SCRUM_ folder.
