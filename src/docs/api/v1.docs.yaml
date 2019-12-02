@@ -1234,6 +1234,594 @@ paths:
                   error_message:
                     type: string
                     example: Cannot find an Actor with id 1
+  #user-------------------------------------------------------------------------------------------------------------------
+  /user:
+    get:
+      tags:
+        - user
+      summary: get all users
+      description: endpoint that is going do give back all the users saved in the database
+      parameters:
+        - in: query
+          name: limit
+          description: limit the number of results to a limit value
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            example: 0
+        - in: query
+          name: offset
+          description: give an offsetValue value the results
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            example: 0
+      responses:
+        200:
+          description: status code OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 20844a8c-7ba7-4d1a-adea-e881b6a9f311
+                        name:
+                          type: string
+                          example: admin
+                        surname:
+                          type: string
+                          example: admin
+                        username:
+                          type: string
+                          example: admin
+                        email:
+                          type: string
+                          example: admin@gmail.com
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: string
+                    example: -20 is not a valid limit
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal server error
+    post:
+      tags:
+        - user
+      summary: add new user
+      description: given the information about a new user the endpoint is going to add the user in the database
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: mario
+                surname:
+                  type: string
+                  example: rossi
+                username:
+                  type: string
+                  example: admin
+                password:
+                  type: string
+                  example: $2a$10$yyc1wN2NBgMF4sCF6X4qL.iAXsYtYKRCWwjjWUysnOqv3g/ZSxLUG
+                email:
+                  type: string
+                  example: mario.rossi@gmail.com
+      responses:
+        201:
+          description: status code CREATED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 201
+                  status_message:
+                    type: string
+                    example: Resource created
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: test
+                      surname:
+                        type: string
+                        example: test
+                      username:
+                        type: string
+                        example: test
+                      email:
+                        type: string
+                        example: test@gmail.com
+                      password:
+                        type: string
+                        example: $2a$10$vY3gwxsISx7B/J7ym7kG2ONU4eFrs33cg/HT3FukoXLpoOr/.LhLi
+                      id:
+                        type: string
+                        example: 738a88e8-17e7-4e29-80d0-12f041aa6280
+                      create_date:
+                        type: string
+                        example: 2019-12-02T11:58:07.111Z
+                      update_date:
+                        type: string
+                        example: 2019-12-02T11:58:07.111Z
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: string
+                          example: not_email
+                        property:
+                          type: string
+                          example: profile
+                        constraints:
+                          type: object
+                          properties:
+                            isEmail:
+                              type: string
+                              example: email must be an email
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal Server error
+                  error_message:
+                    type: string
+                    example: duplicate key value violates unique constraint UQ_211fd309ee6b6627b1cb46ba003
+  /user/{userID}:
+    get:
+      tags:
+        - user
+      summary: get user by id
+      description: endpoint that is going do give back all the information about a specific user given the id
+      parameters:
+        - in: path
+          name: userID
+          description: give the id of the user that you want
+          required: true
+          schema:
+            type: string
+            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+      responses:
+        200:
+          description: status code OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: ed2e46bb-be58-46ac-82c7-ec07281c3176
+                      name:
+                        type: string
+                        example: mario
+                      surname:
+                        type: string
+                        example: rossi
+                      username:
+                        type: string
+                        example: admin
+                      email:
+                        type: string
+                        example: mario.rossi@gmail.com
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: string
+                    example: 1 is not a valid identifier
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Cannot find an Actor with the specified identifier
+    put:
+      tags:
+        - user
+      summary: upadete user by id
+      description: endpoint that let you modify a specific user
+      parameters:
+        - in: path
+          name: userID
+          description: give the id of the user that you want to modify
+          required: true
+          schema:
+            type: string
+            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: mario
+                surname:
+                  type: string
+                  example: rossi
+                username:
+                  type: string
+                  example: admin
+                password:
+                  type: string
+                  example: $2a$10$yyc1wN2NBgMF4sCF6X4qL.iAXsYtYKRCWwjjWUysnOqv3g/ZSxLUG
+                email:
+                  type: string
+                  example: mario.rossi@gmail.com
+      responses:
+        202:
+          description: status code ACCEPTED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  status_message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: ed2e46bb-be58-46ac-82c7-ec07281c3176
+                      name:
+                        type: string
+                        example: mario
+                      surname:
+                        type: string
+                        example: rossi
+                      username:
+                        type: string
+                        example: admin
+                      email:
+                        type: string
+                        example: mario.rossi@gmail.com
+                      password:
+                        type: string
+                        example: $2a$10$FA8tTeGCTk3xJ.hFDAbuA.CYpcHSiFmQxUf3P9NGvOQpYuGDgJwNG
+                      update_date:
+                        type: string
+                        example: 2019-12-02T12:11:40.269Z
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: string
+                    example: 1 is not a valid identifier
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Cannot find an user with id 1
+        500:
+          description: status code INTERNAL_SERVER_ERROR
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 500
+                  status_message:
+                    type: string
+                    example: Internal Server error
+                  error_message:
+                    type: string
+                    example: duplicate key value violates unique constraint UQ_211fd309ee6b6627b1cb46ba003
+    delete:
+      tags:
+        - user
+      summary: delete user by id
+      description: endpoint that let you delete a specific user
+      parameters:
+        - in: path
+          name: userID
+          description: give the id of the user that you want to delete
+          required: true
+          schema:
+            type: string
+            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+      security:
+        - bearerAuth: []
+      responses:
+        202:
+          description: status code ACCEPTED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 202
+                  status_message:
+                    type: string
+                    example: Request accepted
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: ed2e46bb-be58-46ac-82c7-ec07281c3176
+                      name:
+                        type: string
+                        example: mario
+                      surname:
+                        type: string
+                        example: rossi
+                      username:
+                        type: string
+                        example: miraxh
+                      email:
+                        type: string
+                        example: miraxh98@gmail.com
+        400:
+          description: status code BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 400
+                  status_message:
+                    type: string
+                    example: Invalid request message
+                  error_message:
+                    type: string
+                    example: 1 is not a valid identifier
+        401:
+          description: status code UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 401
+                  status_message:
+                    type: string
+                    example: Unauthorized request
+                  error_message:
+                    type: string
+                    example: Invalid Authorization Token
+        404:
+          description: status code NOT_FOUND
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  status_code:
+                    type: integer
+                    format: int32
+                    example: 404
+                  status_message:
+                    type: string
+                    example: Resource not found
+                  error_message:
+                    type: string
+                    example: Cannot find an User with id ed2f46db-be58-46bc-82c7-ec07281c3176
   #authentication-------------------------------------------------------------------------------------------------------------------
   /auth/signin:
     post:
