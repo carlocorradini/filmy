@@ -14,9 +14,11 @@
 
 ## Description
 
-A little set of APIs that allow users to get films or their infos. It uses a system of data validation for the user's requests.
+A little set of [APIs](https://en.wikipedia.org/wiki/Application_programming_interface) that allow users to get films or their infos. It uses a system of data validation for the user's requests.
 
 The user will access via _token_ to the system and then he is free to retrieve informations about films and actors. The user has the capacity to view all the items or to ask for a specific film/actor by ID.
+
+It uses a system of _continuous integration_ and _continuous deployment_ with [Heroku](https://www.heroku.com/). After each commit, the code is subject to various tests and each push (of code that passed previous tests) on the master branch will automatically push and run the new version on Heroku.
 
 ## Run
 
