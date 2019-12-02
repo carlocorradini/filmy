@@ -73,22 +73,22 @@ Available under _SCRUM_ folder.
 
 For a more detailed description go to <link_heroku>
 
-|                         Endpoint                          |    Description    |
-| :-------------------------------------------------------: | :---------------: |
-| http://filmy-19.herokuapp.com/v1/auth/signin <1 endpoint> | <description_api> |
-|   http://filmy-19.herokuapp.com/api/status <1 endpoint>   | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film <1 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film <2 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film <3 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film <4 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/film <5 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor <1 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor <2 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor <3 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor <4 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/actor <5 endpoint>    | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user <1 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user <2 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user <3 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user <4 endpoint>     | <description_api> |
-|    http://filmy-19.herokuapp.com/v1/user <5 endpoint>     | <description_api> |
+|                       Endpoint                        | Method |       Description        |
+| :---------------------------------------------------: | :----: | :----------------------: |
+|     http://filmy-19.herokuapp.com/v1/auth/signin      |  POST  | Get authentication token |
+| http://filmy-19.herokuapp.com/api/status <1 endpoint> |        |    <description_api>     |
+|         http://filmy-19.herokuapp.com/v1/film         |  GET   |      Get all films       |
+|         http://filmy-19.herokuapp.com/v1/film         |  POST  |      Add a new film      |
+|    http://filmy-19.herokuapp.com/v1/film/{filmID}     |  GET   |      Get film by ID      |
+|    http://filmy-19.herokuapp.com/v1/film/{filmID}     |  PUT   |    Update film by ID     |
+|    http://filmy-19.herokuapp.com/v1/film/{filmID}     | DELETE |    Delete film by ID     |
+|        http://filmy-19.herokuapp.com/v1/actor         |  GET   |      Get all actors      |
+|        http://filmy-19.herokuapp.com/v1/actor/        |  POST  |      Add new actor       |
+|   http://filmy-19.herokuapp.com/v1/actor/{actorID}    |  GET   |     Get actor by ID      |
+|   http://filmy-19.herokuapp.com/v1/actor/{actorID}    |  PUT   |    Update actor by ID    |
+|   http://filmy-19.herokuapp.com/v1/actor/{actorID}    | DELETE |    Delete actor by ID    |
+|  http://filmy-19.herokuapp.com/v1/user <1 endpoint>   |        |    <description_api>     |
+|  http://filmy-19.herokuapp.com/v1/user <2 endpoint>   |        |    <description_api>     |
+|  http://filmy-19.herokuapp.com/v1/user <3 endpoint>   |        |    <description_api>     |
+|  http://filmy-19.herokuapp.com/v1/user <4 endpoint>   |        |    <description_api>     |
+|  http://filmy-19.herokuapp.com/v1/user <5 endpoint>   |        |    <description_api>     |
