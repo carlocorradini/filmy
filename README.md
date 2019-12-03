@@ -76,7 +76,7 @@ $ PG_HOME/bin
 
 ## SCRUM
 
-Available under _SCRUM_ folder.
+Available under [SCRUM](https://github.com/carlocorradini/filmy/tree/wiki/SCRUM) folder.
 
 ## Built with
 
@@ -131,7 +131,7 @@ For a more detailed description go to our [documentation](https://filmy-19.herok
 | Endpoint                                         | Method | Description              |
 | :----------------------------------------------- | :----: | :----------------------- |
 | http://filmy-19.herokuapp.com/v1/auth/signin     |  POST  | Get authentication token |
-| http://filmy-19.herokuapp.com/api/status         |        | <description_api>        |
+| http://filmy-19.herokuapp.com/api/status         |  GET   | Get APIs status          |
 | http://filmy-19.herokuapp.com/v1/film            |  GET   | Get all films            |
 | http://filmy-19.herokuapp.com/v1/film            |  POST  | Add a new film           |
 | http://filmy-19.herokuapp.com/v1/film/{filmID}   |  GET   | Get film by ID           |
