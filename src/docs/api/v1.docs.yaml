@@ -60,13 +60,13 @@ paths:
             example: 0
         - in: query
           name: title
-          description: filter the films by title (this endpoint is case sensitive)
+          description: filter the films by title (this parameter is case sensitive)
           required: false
           schema:
             type: string
             example: john wick
         - in: query
-          name: year
+          name: release_date
           description: filter the film by year (YYYY)
           required: false
           schema:
