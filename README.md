@@ -81,7 +81,7 @@ $ PG_HOME/bin
 Scrum is an agile way to manage a project, usually software development. Agile software development with Scrum is often perceived as a methodology; but rather than viewing Scrum as methodology, think of it as a framework for managing a process.
 Further information is available at the following address: https://www.mountaingoatsoftware.com/agile/scrum
 
-**Full SCRUM process documentation avaiable under [SCRUM](https://github.com/carlocorradini/filmy/tree/master/SCRUM) folder.**
+**Full SCRUM process documentation avaiable under [SCRUM folder](https://github.com/carlocorradini/filmy/tree/master/SCRUM).**
 
 ## Built with
 
