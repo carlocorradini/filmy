@@ -1,7 +1,14 @@
 /* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository, QueryFailedError, Like, Between } from 'typeorm';
+import {
+  getRepository,
+  getCustomRepository,
+  QueryFailedError,
+  Like,
+  Between,
+  MoreThan,
+} from 'typeorm';
 import { validateOrReject } from 'class-validator';
 import FilmRepository from '../db/repository/FilmRepository';
 import Film from '../db/entity/Film';
@@ -46,7 +53,7 @@ export default class FilmController {
     try {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
-      const { title, release_year } = req.query;
+      const { title, release_year, rating } = req.query;
       const films: Film[] = await getRepository(Film).find({
         take: limit,
         skip: offset,
@@ -59,6 +66,7 @@ export default class FilmController {
               new Date(`${release_year}-12-31`)
             ),
           }),
+          ...(rating !== undefined && { rating: MoreThan(rating) }),
         },
       });
 
