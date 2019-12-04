@@ -66,12 +66,12 @@ paths:
             type: string
             example: john wick
         - in: query
-          name: release_date
-          description: filter the film by year (YYYY)
+          name: release_year
+          description: filter the film by release year (YYYY)
           required: false
           schema:
             type: integer
-            example: 1989
+            example: 2014
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the films
@@ -718,6 +718,20 @@ paths:
             type: integer
             minimum: 0
             example: 0
+        - in: query
+          name: name
+          description: filter the actrors by name (this parameter is case sensitive)
+          required: false
+          schema:
+            type: string
+            example: keanu reeves
+        - in: query
+          name: birth_year
+          description: filter the actror by birth year (YYYY)
+          required: false
+          schema:
+            type: integer
+            example: 1964
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the actors
