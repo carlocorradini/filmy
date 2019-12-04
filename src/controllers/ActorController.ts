@@ -1,6 +1,7 @@
+/* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
+import { getRepository, getCustomRepository, QueryFailedError, Like, Between } from 'typeorm';
 import { validateOrReject } from 'class-validator';
 import { InvalidParamError } from '../utils/errors';
 import ActorRepository from '../db/repository/ActorRepository';
@@ -48,10 +49,19 @@ export default class ActorController {
     try {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
+      const { name, birth_year } = req.query;
+      if (Number.isNaN(parseInt(birth_year, 10)))
+        throw new InvalidParamError(`Invalid birth_year, received ${birth_year}`);
       const actors: Actor[] = await getRepository(Actor).find({
         take: limit,
         skip: offset,
         loadRelationIds: true,
+        where: {
+          ...(name !== undefined && { name: Like(`${name}%`) }),
+          ...(birth_year !== undefined && {
+            birth_date: Between(new Date(`${birth_year}-01-01`), new Date(`${birth_year}-12-31`)),
+          }),
+        },
       });
 
       response = { statusCode: StatusCode.OK, data: actors };
