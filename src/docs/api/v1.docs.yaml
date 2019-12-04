@@ -12,10 +12,10 @@ info:
     email: carlo.corradini@studenti.unitn.it
   license:
     name: MIT
-    url: "https://opensource.org/licenses/MIT"
+    url: 'https://opensource.org/licenses/MIT'
 externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'
 tags:
   - name: film
     description: all the  end points related to films
@@ -58,6 +58,18 @@ paths:
             type: integer
             minimum: 0
             example: 0
+        - in: query
+          name: title
+          description: give the title (or part of it) of the film that you want to recive (this endpoint is case sensitive)
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: year
+          description: give the title of the film that you want to recive (YYYY)
+          required: false
+          schema:
+            type: integer
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the films
@@ -86,7 +98,7 @@ paths:
                           example: 1
                         title:
                           type: string
-                          example: "Spider-Man: Far from Home"
+                          example: 'Spider-Man: Far from Home'
                         rating:
                           type: integer
                           format: int32
@@ -327,7 +339,7 @@ paths:
                         example: 1
                       title:
                         type: string
-                        example: "Spider-Man: Far from Home"
+                        example: 'Spider-Man: Far from Home'
                       rating:
                         type: integer
                         format: int32
@@ -1621,7 +1633,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
       responses:
         200:
           description: everything went good, and the server is going to return all the information about the specified user
@@ -1726,7 +1738,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
       security:
         - bearerAuth: []
       requestBody:
@@ -1882,7 +1894,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
       security:
         - bearerAuth: []
       responses:
