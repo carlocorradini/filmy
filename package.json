@@ -22,7 +22,7 @@
     "postbuild": "npx ts-node ./tools/build",
     "test": "npx jest",
     "test:staged": "npx jest --bail --findRelatedTests",
-    "prestart": "cd build && npm install --production",
+    "prestart:prod": "cd build && npm install --production",
     "start:prod": "npx cross-env NODE_ENV=\"production\" node ./build/app.js",
     "start:dev": "npx nodemon"
   },
