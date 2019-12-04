@@ -1,6 +1,7 @@
+/* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository, QueryFailedError, Like } from 'typeorm';
+import { getRepository, getCustomRepository, QueryFailedError, Like, Between } from 'typeorm';
 import { validateOrReject } from 'class-validator';
 import FilmRepository from '../db/repository/FilmRepository';
 import Film from '../db/entity/Film';
@@ -45,17 +46,22 @@ export default class FilmController {
     try {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
-      const { title } = req.query;
+      const { title, release_year } = req.query;
       const films: Film[] = await getRepository(Film).find({
         take: limit,
         skip: offset,
         loadRelationIds: true,
-        ...(title !== undefined && {
-          where: {
-            title: Like(`%${title}%`),
-          },
-        }),
+        where: {
+          ...(title !== undefined && { title: Like(`${title}%`) }),
+          ...(release_year !== undefined && {
+            release_date: Between(
+              new Date(`${release_year}-01-01`),
+              new Date(`${release_year}-12-31`)
+            ),
+          }),
+        },
       });
+
       response = { statusCode: StatusCode.OK, data: films };
     } catch (ex) {
       if (ex instanceof InvalidParamError) {
