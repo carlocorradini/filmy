@@ -60,16 +60,18 @@ paths:
             example: 0
         - in: query
           name: title
-          description: give the title (or part of it) of the film that you want to recive (this endpoint is case sensitive)
+          description: filter the films by title (this endpoint is case sensitive)
           required: false
           schema:
             type: string
+            example: john wick
         - in: query
           name: year
           description: filter the film by year (YYYY)
           required: false
           schema:
             type: integer
+            example: 1989
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the films
