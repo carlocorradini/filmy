@@ -17,9 +17,9 @@
 A little set of [APIs](https://en.wikipedia.org/wiki/Application_programming_interface) that allow users to get films/actors or their infos. It uses a system of data validation for the user's requests.
 
 The user has the capacity to view all the items or to ask for a specific film/actor by ID.
-The user is allowed to access the database informations via _GET_ requests without any need of authentication. _Tokens_ are used to gain the permissions required to alterate the content of the database (for instance, update and delete items).
+The user is allowed to access the database informations via _GET_ requests without any need of authentication. _Tokens_ are used to gain the permissions required to alterate the content of the database (for instance: add, update and delete items).
 
-It uses a system of _continuous integration_ and _continuous deployment_ with [Heroku](https://www.heroku.com/). After each commit, the code is subject to various tests and each push (of code that passed previous tests) on the master branch will automatically push and run the new version on Heroku.
+It uses a system of _continuous integration_, using _Git Actions_, and _continuous deployment_ with [Heroku](https://www.heroku.com/). After each commit, the code is subject to various tests and each push (of code that passed previous tests) on the master branch will automatically push and run the new version on Heroku.
 
 Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://github.com/okonet/lint-staged) we used _git hooks_ for having continuous integration in local too with the aim to have standardized code between developer and more conscious code writing.
 
@@ -36,7 +36,7 @@ $   npm install
 Run the application by doing:
 
 ```console
-$   npm start:dev
+$   npm run start:dev
 ```
 
 Run the tests by doing:
@@ -46,8 +46,6 @@ $   npm test
 ```
 
 ### Database
-
-> Change datatabase options in the file **database.propreties** before you start the database
 
 - Create the database
 
@@ -59,7 +57,7 @@ $   npm test
 $ CREATE DATABASE [name]
 ```
 
-> Where [name] is the database name provided in **database.properties**
+> Where [name] is the database name provided in **env. file at DATABASE_URL**
 
 4. Open command line window
 5. Go to PostgreSQL bin folder
@@ -131,14 +129,14 @@ For a more detailed description go to our [documentation](https://filmy-19.herok
 | Endpoint                                         | Method | Description              |
 | :----------------------------------------------- | :----: | :----------------------- |
 | http://filmy-19.herokuapp.com/v1/auth/signin     |  POST  | Get authentication token |
-| http://filmy-19.herokuapp.com/api/status         |  GET   | Get APIs status          |
+| http://filmy-19.herokuapp.com/api/v1/status      |  GET   | Get APIs status          |
 | http://filmy-19.herokuapp.com/v1/film            |  GET   | Get all films            |
 | http://filmy-19.herokuapp.com/v1/film            |  POST  | Add a new film           |
 | http://filmy-19.herokuapp.com/v1/film/{filmID}   |  GET   | Get film by ID           |
 | http://filmy-19.herokuapp.com/v1/film/{filmID}   |  PUT   | Update film by ID        |
 | http://filmy-19.herokuapp.com/v1/film/{filmID}   | DELETE | Delete film by ID        |
 | http://filmy-19.herokuapp.com/v1/actor           |  GET   | Get all actors           |
-| http://filmy-19.herokuapp.com/v1/actor/          |  POST  | Add new actor            |
+| http://filmy-19.herokuapp.com/v1/actor           |  POST  | Add new actor            |
 | http://filmy-19.herokuapp.com/v1/actor/{actorID} |  GET   | Get actor by ID          |
 | http://filmy-19.herokuapp.com/v1/actor/{actorID} |  PUT   | Update actor by ID       |
 | http://filmy-19.herokuapp.com/v1/actor/{actorID} | DELETE | Delete actor by ID       |
@@ -150,4 +148,4 @@ For a more detailed description go to our [documentation](https://filmy-19.herok
 
 ## License
 
-[MIT](https://github.com/nishanths/license/blob/master/LICENSE)
+[MIT](https://github.com/carlocorradini/filmy/blob/master/LICENSE)
