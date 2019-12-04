@@ -40,7 +40,7 @@ $   npm run start:dev
 ```
 
 ```console
-$   npm run start:dev
+$   npm run start:prod
 ```
 
 3. Run the tests by doing:
