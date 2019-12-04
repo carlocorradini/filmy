@@ -4,7 +4,6 @@ import { DocsUtil } from '../../../utils';
 
 const router = Router();
 
-router.use('', swaggerUI.serve);
-router.get('', swaggerUI.setup(DocsUtil.load(DocsUtil.API_VERSION.V1)));
+router.get('', swaggerUI.serve, swaggerUI.setup(DocsUtil.load(DocsUtil.API_VERSION.V1)));
 
 export default router;
