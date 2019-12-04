@@ -50,8 +50,10 @@ export default class ActorController {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
       const { name, birth_year } = req.query;
+
       if (Number.isNaN(parseInt(birth_year, 10)))
         throw new InvalidParamError(`Invalid birth_year, received ${birth_year}`);
+
       const actors: Actor[] = await getRepository(Actor).find({
         take: limit,
         skip: offset,
