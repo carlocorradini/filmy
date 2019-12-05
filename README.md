@@ -25,7 +25,7 @@ Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://githu
 
 ## Run
 
-Clone the repo and install the dependencies by doing
+1. Clone the repo and install the dependencies by doing
 
 ```console
 $   git clone https://github.com/carlocorradini/filmy
@@ -33,13 +33,17 @@ $   cd filmy
 $   npm install
 ```
 
-Run the application by doing:
+2. Run run the application in **dev mode** (start:dev) or in **prod mode** (start:prod)
 
 ```console
 $   npm run start:dev
 ```
 
-Run the tests by doing:
+```console
+$   npm run start:prod
+```
+
+3. Run the tests by doing:
 
 ```console
 $   npm test
@@ -74,7 +78,10 @@ $ PG_HOME/bin
 
 ## SCRUM
 
-Available under [SCRUM](https://github.com/carlocorradini/filmy/tree/wiki/SCRUM) folder.
+Scrum is an agile way to manage a project, usually software development. Agile software development with Scrum is often perceived as a methodology; but rather than viewing Scrum as methodology, think of it as a framework for managing a process.
+Further information is available at the following address: https://www.mountaingoatsoftware.com/agile/scrum
+
+**Full SCRUM process documentation avaiable under [SCRUM folder](https://github.com/carlocorradini/filmy/tree/master/SCRUM).**
 
 ## Built with
 
