@@ -33,15 +33,20 @@ $   cd filmy
 $   npm install
 ```
 
-2. Run run the application in **dev mode** (start:dev) or in **prod mode** (start:prod)
+2. Run the application in **dev mode** (start:dev) or in **prod mode** (start:prod)
 
 ```console
 $   npm run start:dev
 ```
 
+or
+
 ```console
+$   npm run build
 $   npm run start:prod
 ```
+
+**NB**: _"prod mode" uses builded files to run, so it's **mandatory** to do "npm run build" before executing the prod mode_
 
 3. Run the tests by doing:
 
