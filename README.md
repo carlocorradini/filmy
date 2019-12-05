@@ -46,7 +46,7 @@ $   npm run build
 $   npm run start:prod
 ```
 
-**NB**: _"prod mode" uses builded files to run, so it's **mandatory** to do "npm run build" before executing the prod mode_
+**NB**: _"prod mode" uses builded files to run, so it's **mandatory** to do "npm run build" before executing the "prod mode"_
 
 3. Run the tests by doing:
 
