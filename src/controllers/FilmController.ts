@@ -55,9 +55,9 @@ export default class FilmController {
       const offset = await APIUtil.offset(req.query.offset);
       const { title, release_year, rating } = req.query;
 
-      if (Number.isNaN(parseInt(release_year, 10)))
+      if (release_year !== undefined && Number.isNaN(parseInt(release_year, 10)))
         throw new InvalidParamError(`Invalid release_year, received ${release_year}`);
-      if (Number.isNaN(parseInt(rating, 10)))
+      if (rating !== undefined && Number.isNaN(parseInt(rating, 10)))
         throw new InvalidParamError(`Invalid rating, received ${rating}`);
 
       const films: Film[] = await getRepository(Film).find({
