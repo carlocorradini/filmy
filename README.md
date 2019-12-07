@@ -83,9 +83,24 @@ $ PG_HOME/bin
 
 ### Authentication
 
-1. Request the token using your credentials (username and password)
+1. Request the token by doing a **POST** request at "_.../api/v1/auth/signin_" with credentials in the body.
 
-2. Insert in the protected request the header
+Example of body of the POST request:
+
+```
+{
+	"username": "Pippo",
+	"password": "UnicornsAreBad"
+}
+```
+
+2. Use the protected request by inserting in the **header** of a **POST** request the value "bearer thisIsTheToken" where _thisIsTheToken_ is the token you were given in the step 1.
+
+Example of the Authorization key to insert in the header:
+
+```
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OTIwMzNiLTA5Y2EtNGI2NC1iNjI4LTAyNDA1NDg4N
+```
 
 ## SCRUM
 
