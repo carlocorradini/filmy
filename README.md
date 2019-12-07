@@ -81,6 +81,12 @@ $ PG_HOME/bin
   $ psql -U [username] -d [name] -f backup.sql
 ```
 
+### Authentication
+
+1. Request the token using your credentials (username and password)
+
+2. Insert in the protected request the header
+
 ## SCRUM
 
 Scrum is an agile way to manage a project, usually software development. Agile software development with Scrum is often perceived as a methodology; but rather than viewing Scrum as methodology, think of it as a framework for managing a process.
