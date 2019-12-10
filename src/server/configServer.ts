@@ -10,8 +10,8 @@ import routes from '../routes';
 
 export default (app: Express): Promise<Express> => {
   app
+    .options('*', cors())
     .enable('trust proxy')
-    .use(cors())
     .use(compression())
     .use(helmet())
     .use(bodyParser.json())
