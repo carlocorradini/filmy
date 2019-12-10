@@ -89,8 +89,8 @@ Example of body of the POST request:
 
 ```
 {
-	"username": "Pippo",
-	"password": "UnicornsAreBad"
+	"username": "Admin",
+	"password": "Password1234"
 }
 ```
 
@@ -107,10 +107,10 @@ Example of the reply
 ```
 2. Use the protected request by inserting in the **header** of the request the value "bearer [TOKEN]" where _[TOKEN]_ is the token you were given in the step 1.
 
-Example of the Authorization key to insert in the header:
+Example of the authorization **header**:
 
 ```
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwODQ0YThjLTdiYTctNGQxYS1hZGVhLWU4ODFiNmE5ZjMxMSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzUyODA2MjYsImV4cCI6MTU3NTI4NDIyNn0.K0aknnEJazNH1Kan3DjdHnkjCO-_M80tiNqWcSF-BFQ
+"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwODQ0YThjLTdiYTctNGQxYS1hZGVhLWU4ODFiNmE5ZjMxMSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzUyODA2MjYsImV4cCI6MTU3NTI4NDIyNn0.K0aknnEJazNH1Kan3DjdHnkjCO-_M80tiNqWcSF-BFQ"
 ```
 
 NB: the **token's validity is 1 hour**, after that time is necessary to request a new token
