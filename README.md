@@ -81,6 +81,40 @@ $ PG_HOME/bin
   $ psql -U [username] -d [name] -f backup.sql
 ```
 
+### Authentication
+
+1. Request the token by doing a request at "_.../api/v1/auth/signin_" with credentials in the body.
+
+Example of body of the POST request:
+
+```
+{
+  "username": "Admin",
+  "password": "Password1234"
+}
+```
+
+Example of the reply
+```
+{
+  "success": true,
+  "status_code": 200,
+  "status_message": "Success",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwODQ0YThjLTdiYTctNGQxYS1hZGVhLWU4ODFiNmE5ZjMxMSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzUyODA2MjYsImV4cCI6MTU3NTI4NDIyNn0.K0aknnEJazNH1Kan3DjdHnkjCO-_M80tiNqWcSF-BFQ"
+  }
+}
+```
+2. Use the protected request by inserting in the **header** of the request the value "bearer [TOKEN]" where _[TOKEN]_ is the token you were given in the step 1.
+
+Example of the authorization **header**:
+
+```
+"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIwODQ0YThjLTdiYTctNGQxYS1hZGVhLWU4ODFiNmE5ZjMxMSIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1NzUyODA2MjYsImV4cCI6MTU3NTI4NDIyNn0.K0aknnEJazNH1Kan3DjdHnkjCO-_M80tiNqWcSF-BFQ"
+```
+
+NB: the **token's validity is 1 hour**, after that time is necessary to request a new token
+
 ## SCRUM
 
 Scrum is an agile way to manage a project, usually software development. Agile software development with Scrum is often perceived as a methodology; but rather than viewing Scrum as methodology, think of it as a framework for managing a process.
