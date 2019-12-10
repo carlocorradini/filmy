@@ -12,10 +12,10 @@ info:
     email: carlo.corradini@studenti.unitn.it
   license:
     name: MIT
-    url: 'https://opensource.org/licenses/MIT'
+    url: "https://opensource.org/licenses/MIT"
 externalDocs:
-  description: 'Find out more about Swagger'
-  url: 'http://swagger.io'
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
 tags:
   - name: film
     description: all the  end points related to films
@@ -72,6 +72,13 @@ paths:
           schema:
             type: integer
             example: 2014
+        - in: query
+          name: rating
+          description: get all the films with a rating grater then the value inserted (extremes not included)
+          required: false
+          schema:
+            type: integer
+            example: 70
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the films
@@ -100,7 +107,7 @@ paths:
                           example: 1
                         title:
                           type: string
-                          example: 'Spider-Man: Far from Home'
+                          example: "Spider-Man: Far from Home"
                         rating:
                           type: integer
                           format: int32
@@ -341,7 +348,7 @@ paths:
                         example: 1
                       title:
                         type: string
-                        example: 'Spider-Man: Far from Home'
+                        example: "Spider-Man: Far from Home"
                       rating:
                         type: integer
                         format: int32
@@ -1649,7 +1656,7 @@ paths:
           required: true
           schema:
             type: string
-            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
+            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
       responses:
         200:
           description: everything went good, and the server is going to return all the information about the specified user
@@ -1754,7 +1761,7 @@ paths:
           required: true
           schema:
             type: string
-            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
+            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
       security:
         - bearerAuth: []
       requestBody:
@@ -1910,7 +1917,7 @@ paths:
           required: true
           schema:
             type: string
-            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
+            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
       security:
         - bearerAuth: []
       responses:
