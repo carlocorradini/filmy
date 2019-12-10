@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: http://filmy-19.herokuapp.com/api/v1
+  - url: https://filmy-19.herokuapp.com/api/v1
     description: Production server
   - url: http://localhost:8080/api/v1
     description: Local test server
@@ -49,7 +49,6 @@ paths:
           schema:
             type: integer
             minimum: 0
-            example: 0
         - in: query
           name: offset
           description: give an offsetValue value the results
@@ -57,28 +56,24 @@ paths:
           schema:
             type: integer
             minimum: 0
-            example: 0
         - in: query
           name: title
           description: filter the films by title (this parameter is case sensitive)
           required: false
           schema:
             type: string
-            example: john wick
         - in: query
           name: release_year
           description: filter the film by release year (YYYY)
           required: false
           schema:
             type: integer
-            example: 2014
         - in: query
           name: rating
           description: get all the films with a rating grater then the value inserted (extremes not included)
           required: false
           schema:
             type: integer
-            example: 70
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the films
@@ -716,7 +711,6 @@ paths:
           schema:
             type: integer
             minimum: 0
-            example: 0
         - in: query
           name: offset
           description: give an offsetValue value the results
@@ -724,21 +718,18 @@ paths:
           schema:
             type: integer
             minimum: 0
-            example: 0
         - in: query
           name: name
           description: filter the actrors by name (this parameter is case sensitive)
           required: false
           schema:
             type: string
-            example: keanu reeves
         - in: query
           name: birth_year
           description: filter the actror by birth year (YYYY)
           required: false
           schema:
             type: integer
-            example: 1964
       responses:
         200:
           description: everything went good, and the server is going to return a list with all the actors
