@@ -89,8 +89,8 @@ Example of body of the POST request:
 
 ```
 {
-	"username": "Admin",
-	"password": "Password1234"
+  "username": "Admin",
+  "password": "Password1234"
 }
 ```
 
