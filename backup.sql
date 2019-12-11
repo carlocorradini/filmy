@@ -32,6 +32,7 @@ INSERT INTO public.film (id, title, rating, release_date, poster, create_date, u
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (10, 'Suicide Squad ', 59, '2016-08-01', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg', '2019-11-27 15:24:15.29219', '2019-11-27 15:24:15.29219');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (11, 'Mr. Nobody', 79, '2011-12-20', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/jxd2XSsnUHHUbo50nzVnVnHRPVJ.jpg', '2019-11-27 15:28:58.965058', '2019-11-27 15:28:58.965058');
 
+
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (1, 1);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (1, 2);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (2, 3);
@@ -56,10 +57,12 @@ INSERT INTO public.film_actor (film_id, actor_id) VALUES (10, 19);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (11, 19);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (11, 20);
 
+
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('4c4d470d-59e6-4504-86bd-1623019b511b', 'Ayoub', 'Saghir', 'ayoubsaghir', 'ayoub.saghir@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('b518546a-dc13-4919-aa22-897985833005', 'Luca', 'Santoro', 'lucasantoro', 'luca.santoro-1@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('986239ce-540b-4def-a250-56e2f412a4aa', 'Carlo', 'Corradini', 'carlocorradini', 'carlo.corradini@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('3e001f4e-9d95-4641-ae18-478a27708128', 'Miraxh', 'Tereziu', 'miraxhtereziu', 'miraxh.tereziu@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
 INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('8b975e22-2873-4168-868c-bd2cd4118630', 'Grigore', 'Andronic', 'grigoreandronic', 'grigore.andronic@studenti.unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
-INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('4c4d470d-59e6-4504-86bd-1623019b511b', 'Jorge', 'Ramirez', 'jorgedanielramirezmedina', 'jorge.ramirezmedina@unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
-INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('4c4d470d-59e6-4504-86bd-1623019b511b', 'Renata', 'Guizzardi', 'renatasilvasouzaguizzardi', 'renata.guizzardi@unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-11-27 14:40:30.164042', '2019-11-27 14:40:30.164042');
+INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('dba906b7-8866-498c-96f4-c93583161961', 'Jorge', 'Ramirez', 'jorgedanielramirezmedina', 'jorge.ramirezmedina@unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-12-10 15:26:42.841683', '2019-12-10 15:26:42.841683');
+INSERT INTO public."user" (id, name, surname, username, email, password, create_date, update_date) VALUES ('1da19faa-3271-4aed-9b27-2fc2ffe46a3c', 'Renata', 'Guizzardi', 'renatasilvasouzaguizzardi', 'renata.guizzardi@unitn.it', '$2a$10$ydbURikO65LsMUyfp14hqOZvQQPm.nlO3.UZ5A5myKt7ptVYX9lFy', '2019-12-10 15:26:42.841683', '2019-12-10 15:26:42.841683');
+
