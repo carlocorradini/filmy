@@ -191,7 +191,7 @@ For a more detailed description go to our [documentation](https://filmy-19.herok
 | http://filmy-19.herokuapp.com/v1/user                                                                                       |  GET   | Get all users                                                                                           |
 | http://filmy-19.herokuapp.com/v1/user                                                                                       |  POST  | Add new user                                                                                            |
 | http://filmy-19.herokuapp.com/v1/user/{userID}                                                                              |  GET   | Get user by ID                                                                                          |
-| http://filmy-19.herokuapp.com/v1/user/{userID}                                                                              |  PUT   | Upload user by ID                                                                                       |
+| http://filmy-19.herokuapp.com/v1/user/{userID}                                                                              |  PUT   | Update user by ID                                                                                       |
 | http://filmy-19.herokuapp.com/v1/user/{userID}                                                                              | DELETE | Delete user by ID                                                                                       |
 
 ## License
