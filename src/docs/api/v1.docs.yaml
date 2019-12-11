@@ -12,10 +12,10 @@ info:
     email: carlo.corradini@studenti.unitn.it
   license:
     name: MIT
-    url: "https://opensource.org/licenses/MIT"
+    url: 'https://opensource.org/licenses/MIT'
 externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'
 tags:
   - name: film
     description: all the  end points related to films
@@ -39,8 +39,8 @@ paths:
     get:
       tags:
         - film
-      summary: get all film
-      description: endpoint that is going do give back all the film saved in the database
+      summary: get all films
+      description: endpoint that is going do give back all the films saved in the database
       parameters:
         - in: query
           name: limit
@@ -64,7 +64,7 @@ paths:
             type: string
         - in: query
           name: release_year
-          description: filter the film by release year (YYYY)
+          description: filter the films by release year (YYYY)
           required: false
           schema:
             type: integer
@@ -102,7 +102,7 @@ paths:
                           example: 1
                         title:
                           type: string
-                          example: "Spider-Man: Far from Home"
+                          example: 'Spider-Man: Far from Home'
                         rating:
                           type: integer
                           format: int32
@@ -343,7 +343,7 @@ paths:
                         example: 1
                       title:
                         type: string
-                        example: "Spider-Man: Far from Home"
+                        example: 'Spider-Man: Far from Home'
                       rating:
                         type: integer
                         format: int32
@@ -725,8 +725,26 @@ paths:
           schema:
             type: string
         - in: query
+          name: surname
+          description: filter the actrors by surname (this parameter is case sensitive)
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: gender
+          description: filter the actrors by gender (F for female and M for male)
+          required: false
+          schema:
+            type: string
+        - in: query
           name: birth_year
           description: filter the actror by birth year (YYYY)
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: death_year
+          description: filter the actror by death_year, you are going to get all the actor that die in a specific year (YYYY)
           required: false
           schema:
             type: integer
@@ -1647,7 +1665,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
       responses:
         200:
           description: everything went good, and the server is going to return all the information about the specified user
@@ -1752,7 +1770,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
       security:
         - bearerAuth: []
       requestBody:
@@ -1908,7 +1926,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: 'ed2e46bb-be58-46ac-82c7-ec07281c3176'
       security:
         - bearerAuth: []
       responses:
