@@ -53,7 +53,7 @@ export default class FilmController {
     try {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
-      const { title, release_year, rating, actorId } = req.query;
+      const { title, release_year, rating } = req.query;
 
       if (release_year !== undefined && Number.isNaN(parseInt(release_year, 10)))
         throw new InvalidParamError(`Invalid release_year, received ${release_year}`);
@@ -73,7 +73,6 @@ export default class FilmController {
             ),
           }),
           ...(rating !== undefined && { rating: MoreThan(rating) }),
-          ...(actorId !== undefined && { actorId: MoreThan(actorId) }),
         },
       });
 
