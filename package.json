@@ -22,7 +22,7 @@
     "postbuild": "npx ts-node ./tools/build",
     "test": "npx jest",
     "test:staged": "npx jest --bail --findRelatedTests",
-    "prestart": "cd build && npm install --production",
+    "prestart:prod": "cd build && npm install --production",
     "start:prod": "npx cross-env NODE_ENV=\"production\" node ./build/app.js",
     "start:dev": "npx nodemon"
   },
@@ -74,7 +74,7 @@
     "@types/swagger-ui-express": "^4.1.0",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
-    "eslint": "^6.7.1",
+    "eslint": "^6.7.2",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.18.2",

@@ -1,6 +1,14 @@
+/* eslint-disable camelcase */
 // eslint-disable-next-line no-unused-vars
 import { Request, Response } from 'express';
-import { getRepository, getCustomRepository, QueryFailedError } from 'typeorm';
+import {
+  getRepository,
+  getCustomRepository,
+  QueryFailedError,
+  Like,
+  Between,
+  MoreThan,
+} from 'typeorm';
 import { validateOrReject } from 'class-validator';
 import FilmRepository from '../db/repository/FilmRepository';
 import Film from '../db/entity/Film';
@@ -45,10 +53,27 @@ export default class FilmController {
     try {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
+      const { title, release_year, rating } = req.query;
+
+      if (release_year !== undefined && Number.isNaN(parseInt(release_year, 10)))
+        throw new InvalidParamError(`Invalid release_year, received ${release_year}`);
+      if (rating !== undefined && Number.isNaN(parseInt(rating, 10)))
+        throw new InvalidParamError(`Invalid rating, received ${rating}`);
+
       const films: Film[] = await getRepository(Film).find({
         take: limit,
         skip: offset,
         loadRelationIds: true,
+        where: {
+          ...(title !== undefined && { title: Like(`${title}%`) }),
+          ...(release_year !== undefined && {
+            release_date: Between(
+              new Date(`${release_year}-01-01`),
+              new Date(`${release_year}-12-31`)
+            ),
+          }),
+          ...(rating !== undefined && { rating: MoreThan(rating) }),
+        },
       });
 
       response = { statusCode: StatusCode.OK, data: films };

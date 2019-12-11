@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import status from './status';
 import docs from './docs';
 import auth from './auth';
 import film from './film';
@@ -7,6 +8,7 @@ import user from './user';
 
 const router = Router();
 
+router.use('/status', status);
 router.use('/docs', docs);
 router.use('/auth', auth);
 router.use('/film', film);
