@@ -49,10 +49,14 @@ export default class ActorController {
     try {
       const limit = await APIUtil.limit(req.query.limit);
       const offset = await APIUtil.offset(req.query.offset);
-      const { name, birth_year } = req.query;
+      const { name, surname, birth_year, death_year, gender } = req.query;
 
       if (birth_year !== undefined && Number.isNaN(parseInt(birth_year, 10)))
         throw new InvalidParamError(`Invalid birth_year, received ${birth_year}`);
+      if (death_year !== undefined && Number.isNaN(parseInt(death_year, 10)))
+        throw new InvalidParamError(`Invalid death_year, received ${death_year}`);
+      if (gender !== undefined && gender !== 'M' && gender !== 'F')
+        throw new InvalidParamError(`Invalid gender, received ${gender}`);
 
       const actors: Actor[] = await getRepository(Actor).find({
         take: limit,
@@ -60,8 +64,13 @@ export default class ActorController {
         loadRelationIds: true,
         where: {
           ...(name !== undefined && { name: Like(`${name}%`) }),
+          ...(surname !== undefined && { surname: Like(`${surname}%`) }),
+          ...(gender !== undefined && { gender: Like(`${gender}%`) }),
           ...(birth_year !== undefined && {
             birth_date: Between(new Date(`${birth_year}-01-01`), new Date(`${birth_year}-12-31`)),
+          }),
+          ...(death_year !== undefined && {
+            death_date: Between(new Date(`${death_year}-01-01`), new Date(`${death_year}-12-31`)),
           }),
         },
       });

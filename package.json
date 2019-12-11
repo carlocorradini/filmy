@@ -40,6 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/js-yaml": "^3.12.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "class-validator": "^0.11.0",
@@ -49,6 +50,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
+    "js-yaml": "^3.13.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.14.0",
     "reflect-metadata": "^0.1.13",
@@ -56,8 +58,7 @@
     "swagger-ui-express": "^4.1.2",
     "typeorm": "^0.2.20",
     "winston": "^3.2.1",
-    "winston-daily-rotate-file": "^4.3.0",
-    "yamljs": "^0.3.0"
+    "winston-daily-rotate-file": "^4.3.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -71,7 +72,6 @@
     "@types/serve-favicon": "^2.5.0",
     "@types/shelljs": "^0.8.6",
     "@types/swagger-ui-express": "^4.1.0",
-    "@types/yamljs": "^0.2.30",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
     "eslint": "^6.7.2",

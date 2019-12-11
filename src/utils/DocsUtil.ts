@@ -1,5 +1,5 @@
 import path from 'path';
-import YAML from 'yamljs';
+import YAML from 'js-yaml';
 import { DocsNotFoundError } from './errors';
 
 enum API_VERSION {
@@ -10,11 +10,10 @@ enum API_VERSION {
 export default class DocsUtil {
   public static readonly API_VERSION = API_VERSION;
 
-  public static load(apiVersion: API_VERSION): any {
+  public static load(apiVersion: API_VERSION): Promise<any> {
     if (!(apiVersion.toUpperCase() in API_VERSION)) {
       throw new DocsNotFoundError(`Invalid API VERSION, ${apiVersion} is not allowed`);
     }
-
-    return YAML.load(path.join(__dirname, '../docs/api', `${apiVersion}.docs.yaml`));
+    return YAML.safeLoad(path.join(__dirname, '../docs/api', `${apiVersion}.docs.yaml`));
   }
 }
