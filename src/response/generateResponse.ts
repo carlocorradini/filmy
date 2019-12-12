@@ -17,6 +17,9 @@ export default (res: Response, statusCode: StatusCode, data?: any) => {
       success: statusCode < StatusCode.BAD_REQUEST,
       status_code: statusCode,
       status_message: StatusMessage[statusCode],
+      metadata: {
+        ...(data !== undefined && Array.isArray(data) && { total: data.length }),
+      },
       ...(statusCode < StatusCode.BAD_REQUEST && { data }),
       ...(statusCode >= StatusCode.BAD_REQUEST && { error_message: data }),
     })
