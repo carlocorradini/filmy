@@ -7,7 +7,7 @@ import {
   QueryFailedError,
   Like,
   Between,
-  MoreThan,
+  MoreThanOrEqual,
 } from 'typeorm';
 import { validateOrReject } from 'class-validator';
 import FilmRepository from '../db/repository/FilmRepository';
@@ -72,7 +72,7 @@ export default class FilmController {
               new Date(`${release_year}-12-31`)
             ),
           }),
-          ...(rating !== undefined && { rating: MoreThan(rating) }),
+          ...(rating !== undefined && { rating: MoreThanOrEqual(rating) }),
         },
       });
 

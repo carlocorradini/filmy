@@ -23,6 +23,8 @@ It uses a system of _continuous integration_, using _Git Actions_, and _continuo
 
 Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://github.com/okonet/lint-staged) we used _git hooks_ for having continuous integration in local too with the aim to have standardized code between developer and more conscious code writing.
 
+**Try our mockup [here](https://www.figma.com/proto/3kqyW6cUFMuWvYLQvnlu3g/IS2_InterfaceMockup?node-id=1%3A3&viewport=799%2C544%2C0.24361670017242432&scaling=scale-down)**.
+
 ## Run
 
 1. Clone the repo and install the dependencies by doing
@@ -95,6 +97,7 @@ Example of body of the POST request:
 ```
 
 Example of the reply
+
 ```
 {
   "success": true,
@@ -105,6 +108,7 @@ Example of the reply
   }
 }
 ```
+
 2. Use the protected request by inserting in the **header** of the request the value "bearer [TOKEN]" where _[TOKEN]_ is the token you were given in the step 1.
 
 Example of the authorization **header**:
@@ -127,6 +131,44 @@ Further information is available at the following address: https://www.mountaing
 - [NodeJS](https://nodejs.org/it/) - JavaScript run-time environment
 - [Git](https://git-scm.com) - Distributed version control system
 - [Heroku](https://www.heroku.com/) - Hosting service
+
+## Endpoints
+
+For a more detailed description go to our [documentation](https://filmy-19.herokuapp.com/api/v1/docs/)
+
+| Endpoint                                                                                                                                                                                        | Method | Description                                                                                                                                            |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----: | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| http://filmy-19.herokuapp.com/v1/auth/signin                                                                                                                                                    |  POST  | Get authentication token                                                                                                                               |
+| http://filmy-19.herokuapp.com/api/v1/status                                                                                                                                                     |  GET   | Get APIs status                                                                                                                                        |
+| http://filmy-19.herokuapp.com/v1/film <ol>Query options:<li>title=_string_</li><li>release*year=\_integer*</li><li>rating=_integer_</li></ol>                                                   |  GET   | Get all films <ol>Description of query options:<li>by title</li><li>by release year</li><li>>= inserted rating</li></ol>                               |
+| http://filmy-19.herokuapp.com/v1/film                                                                                                                                                           |  POST  | Add a new film                                                                                                                                         |
+| http://filmy-19.herokuapp.com/v1/film/{filmID}                                                                                                                                                  |  GET   | Get film by ID                                                                                                                                         |
+| http://filmy-19.herokuapp.com/v1/film/{filmID}                                                                                                                                                  |  PUT   | Update film by ID                                                                                                                                      |
+| http://filmy-19.herokuapp.com/v1/film/{filmID}                                                                                                                                                  | DELETE | Delete film by ID                                                                                                                                      |
+| http://filmy-19.herokuapp.com/v1/actor <ol>Query options:<li>name=_string_</li><li>surname=_string_</li><li>birth*year=\_integer*</li><li>death*year=\_integer*</li><li>gender=_char_</li></ol> |  GET   | Get all actors <ol>Description of query options:<li>by name</li><li>by surname</li><li>by birth year</li><li>by death year</li><li>by gender</li></ol> |
+| http://filmy-19.herokuapp.com/v1/actor                                                                                                                                                          |  POST  | Add new actor                                                                                                                                          |
+| http://filmy-19.herokuapp.com/v1/actor/{actorID}                                                                                                                                                |  GET   | Get actor by ID                                                                                                                                        |
+| http://filmy-19.herokuapp.com/v1/actor/{actorID}                                                                                                                                                |  PUT   | Update actor by ID                                                                                                                                     |
+| http://filmy-19.herokuapp.com/v1/actor/{actorID}                                                                                                                                                | DELETE | Delete actor by ID                                                                                                                                     |
+| http://filmy-19.herokuapp.com/v1/user                                                                                                                                                           |  GET   | Get all users                                                                                                                                          |
+| http://filmy-19.herokuapp.com/v1/user                                                                                                                                                           |  POST  | Add new user                                                                                                                                           |
+| http://filmy-19.herokuapp.com/v1/user/{userID}                                                                                                                                                  |  GET   | Get user by ID                                                                                                                                         |
+| http://filmy-19.herokuapp.com/v1/user/{userID}                                                                                                                                                  |  PUT   | Update user by ID                                                                                                                                      |
+| http://filmy-19.herokuapp.com/v1/user/{userID}                                                                                                                                                  | DELETE | Delete user by ID                                                                                                                                      |
+
+### Examples of query options usage
+
+Example 1: I want all films released in 2017
+
+```
+http://filmy-19.herokuapp.com/v1/film?release_year=2017
+```
+
+Example 2: I want all films released in 2017 with rating more than or equal to 70
+
+```
+http://filmy-19.herokuapp.com/v1/film?release_year=2017&rating=70
+```
 
 ## Dependancies
 
@@ -167,30 +209,6 @@ Further information is available at the following address: https://www.mountaing
 |   [test:staged]()   | Runs **_test_** against staged git files                                                           |
 |   [start:prod]()    | Runs the server with compiled files                                                                |
 |    [start:dev]()    | Runs a local copy the server without compiling. Just for Dev mode                                  |
-
-## Endpoints
-
-For a more detailed description go to our [documentation](https://filmy-19.herokuapp.com/api/v1/docs/)
-
-| Endpoint                                         | Method | Description              |
-| :----------------------------------------------- | :----: | :----------------------- |
-| http://filmy-19.herokuapp.com/v1/auth/signin     |  POST  | Get authentication token |
-| http://filmy-19.herokuapp.com/api/v1/status      |  GET   | Get APIs status          |
-| http://filmy-19.herokuapp.com/v1/film            |  GET   | Get all films            |
-| http://filmy-19.herokuapp.com/v1/film            |  POST  | Add a new film           |
-| http://filmy-19.herokuapp.com/v1/film/{filmID}   |  GET   | Get film by ID           |
-| http://filmy-19.herokuapp.com/v1/film/{filmID}   |  PUT   | Update film by ID        |
-| http://filmy-19.herokuapp.com/v1/film/{filmID}   | DELETE | Delete film by ID        |
-| http://filmy-19.herokuapp.com/v1/actor           |  GET   | Get all actors           |
-| http://filmy-19.herokuapp.com/v1/actor           |  POST  | Add new actor            |
-| http://filmy-19.herokuapp.com/v1/actor/{actorID} |  GET   | Get actor by ID          |
-| http://filmy-19.herokuapp.com/v1/actor/{actorID} |  PUT   | Update actor by ID       |
-| http://filmy-19.herokuapp.com/v1/actor/{actorID} | DELETE | Delete actor by ID       |
-| http://filmy-19.herokuapp.com/v1/user            |  GET   | Get all users            |
-| http://filmy-19.herokuapp.com/v1/user            |  POST  | Add new user             |
-| http://filmy-19.herokuapp.com/v1/user/{userID}   |  GET   | Get user by ID           |
-| http://filmy-19.herokuapp.com/v1/user/{userID}   |  PUT   | Upload user by ID        |
-| http://filmy-19.herokuapp.com/v1/user/{userID}   | DELETE | Delete user by ID        |
 
 ## License
 
