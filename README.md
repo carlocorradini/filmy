@@ -23,6 +23,8 @@ It uses a system of _continuous integration_, using _Git Actions_, and _continuo
 
 Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://github.com/okonet/lint-staged) we used _git hooks_ for having continuous integration in local too with the aim to have standardized code between developer and more conscious code writing.
 
+Try our mockup [here](https://www.figma.com/proto/3kqyW6cUFMuWvYLQvnlu3g/IS2_InterfaceMockup?node-id=1%3A3&viewport=799%2C544%2C0.24361670017242432&scaling=scale-down)
+
 ## Run
 
 1. Clone the repo and install the dependencies by doing
