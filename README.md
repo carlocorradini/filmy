@@ -156,13 +156,13 @@ For a more detailed description go to our [documentation](https://filmy-19.herok
 
 ### Examples of query options usage
 
-Example 1
+Example 1: I want all films released in 2017
 
 ```
 http://filmy-19.herokuapp.com/v1/film?release_year=2017
 ```
 
-Example 2
+Example 2: I want all films released in 2017 with rating more than or equal to 70
 
 ```
 http://filmy-19.herokuapp.com/v1/film?release_year=2017&rating=70
