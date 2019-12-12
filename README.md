@@ -23,7 +23,7 @@ It uses a system of _continuous integration_, using _Git Actions_, and _continuo
 
 Using [Husky](https://github.com/typicode/husky) and [Lint-staged](https://github.com/okonet/lint-staged) we used _git hooks_ for having continuous integration in local too with the aim to have standardized code between developer and more conscious code writing.
 
-Try our mockup [here](https://www.figma.com/proto/3kqyW6cUFMuWvYLQvnlu3g/IS2_InterfaceMockup?node-id=1%3A3&viewport=799%2C544%2C0.24361670017242432&scaling=scale-down)
+**Try our mockup [here](https://www.figma.com/proto/3kqyW6cUFMuWvYLQvnlu3g/IS2_InterfaceMockup?node-id=1%3A3&viewport=799%2C544%2C0.24361670017242432&scaling=scale-down)**.
 
 ## Run
 
@@ -168,20 +168,6 @@ Example 2: I want all films released in 2017 with rating more than or equal to 7
 
 ```
 http://filmy-19.herokuapp.com/v1/film?release_year=2017&rating=70
-```
-
-#### Results
-
-Result 1
-
-```
-{"success":true,"status_code":200,"status_message":"Success","data":[{"id":5,"title":"Guardians of the Galaxy Vol. 2 ","rating":77,"release_date":"2017-05-05","poster":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg","actors":[9,10]},{"id":8,"title":"Baywatch ","rating":61,"release_date":"2017-05-26","poster":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6HE4xd8zloDqmjMZuhUCCw2UcY1.jpg","actors":[12,15,16]}]}
-```
-
-Result 2
-
-```
-{"success":true,"status_code":200,"status_message":"Success","data":[{"id":5,"title":"Guardians of the Galaxy Vol. 2 ","rating":77,"release_date":"2017-05-05","poster":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg","actors":[9,10]}]}
 ```
 
 ## Dependancies
