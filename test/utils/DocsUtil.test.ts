@@ -6,6 +6,6 @@ describe('Docs Util functionality', () => {
   });
 
   test('It should pass due to a valid docs', () => {
-    expect(typeof DocsUtil.load(DocsUtil.API_VERSION.V1)).toBe('string');
+    expect(typeof DocsUtil.load(DocsUtil.API_VERSION.V1)).toBe('object');
   });
 });
