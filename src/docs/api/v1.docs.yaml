@@ -248,7 +248,7 @@ paths:
                           example: 1
                         title:
                           type: string
-                          example: "Spider-Man: Far from Home"
+                          example: Spider-Man Far from Home
                         rating:
                           type: integer
                           format: int32
@@ -491,7 +491,7 @@ paths:
                         example: 1
                       title:
                         type: string
-                        example: "Spider-Man: Far from Home"
+                        example: Spider-Man Far from Home
                       rating:
                         type: integer
                         format: int32
@@ -1829,7 +1829,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: ed2e46bb-be58-46ac-82c7-ec07281c3176
       responses:
         200:
           description: everything went good, and the server is going to return all the information about the specified user
@@ -1936,7 +1936,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: ed2e46bb-be58-46ac-82c7-ec07281c3176
       security:
         - bearerAuth: []
       requestBody:
@@ -2092,7 +2092,7 @@ paths:
           required: true
           schema:
             type: string
-            example: "ed2e46bb-be58-46ac-82c7-ec07281c3176"
+            example: ed2e46bb-be58-46ac-82c7-ec07281c3176
       security:
         - bearerAuth: []
       responses:
