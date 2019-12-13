@@ -40,7 +40,7 @@ INSERT INTO public.film (id, title, rating, release_date, poster, create_date, u
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (13, 'The Irishman', 80, '2019-11-01', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/2Qi4m1w57701OXeNhu1wQwLKMY0.jpg', '2019-12-12 09:57:31.716522', '2019-12-12 09:57:31.716522');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (14, 'Ad astra: missione classificata', 61, '2019-09-20', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/yUJJzKiAi5akgRYVJVw6nIEYTOi.jpg', '2019-12-12 09:59:44.239545', '2019-12-12 09:59:44.239545');
 INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (15, 'Jumanji', 72, '1995-12-15', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/p67m5dzwyxWd46a6of2c9IVfQz7.jpg', '2019-12-12 10:02:43.317176', '2019-12-12 10:02:43.317176');
-INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (16, 'Rambo: Last Blood', 59, '2019-09-20', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/1sElVrhcZfxdngXsBzSu6yZW1mM.jpg\', '2019-12-12 10:05:40.223401', '2019-12-12 10:05:40.223401');
+INSERT INTO public.film (id, title, rating, release_date, poster, create_date, update_date) VALUES (16, 'Rambo: Last Blood', 59, '2019-09-20', 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/1sElVrhcZfxdngXsBzSu6yZW1mM.jpg', '2019-12-12 10:05:40.223401', '2019-12-12 10:05:40.223401');
 
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (1, 1);
 INSERT INTO public.film_actor (film_id, actor_id) VALUES (1, 2);
