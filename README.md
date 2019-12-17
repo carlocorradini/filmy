@@ -18,3 +18,7 @@ A little set of [APIs](https://en.wikipedia.org/wiki/Application_programming_int
 
 The user has the capacity to view all the items or to ask for a specific film/actor by ID.
 The user is allowed to access the database informations via _GET_ requests without any need of authentication. _Tokens_ are used to gain the permissions required to alterate the content of the database (for instance: add, update and delete items).
+
+## Wiki
+
+See the [**Wiki**](https://github.com/carlocorradini/filmy/wiki) for more information.
